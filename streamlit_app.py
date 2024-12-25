@@ -62,12 +62,11 @@ st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_h
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
 
 # # Download the model from Google Drive
-# url = "https://drive.google.com/uc?export=download&id=1-dE-T-0X1gEAbLR_14eXyTTvA4aHEKbY"
-# response = requests.get(url)
-
-# # Save the model to a local file
-# with open("improved_resnet50.keras", "wb") as f:
-#     f.write(response.content)
+url = "https://drive.google.com/uc?export=download&id=1-dE-T-0X1gEAbLR_14eXyTTvA4aHEKbY"
+response = requests.get(url)
+# Save the model to a local file
+with open("improved_resnet50.keras", "wb") as f:
+    f.write(response.content)
 
 # # Load the model
 # model = load_model("improved_resnet50.keras")
