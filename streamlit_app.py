@@ -86,9 +86,21 @@ st.markdown(
         color: #ffffff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
+
+    /* Help Icon Color */
+    .stSlider .stHelpIcon {
+        color: white !important;  /* Change the color of the help icon to white */
+    }
+
+    /* Radio Button Text Color */
+    .stRadio label {
+        color: white !important;  /* Change the radio button labels to white */
+    }
+
     </style>
     """, unsafe_allow_html=True
 )
+
 
 # Title Section
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
@@ -159,7 +171,7 @@ def main():
             
             # Add a note above the slider for recommended threshold
             st.markdown(
-                "**Recommended threshold: 0.5665** (This is the optimal threshold based on our model's performance)"
+                "**Recommended threshold: 56.65%** This is the optimal threshold based on our model's performance."
             )
             
             sensitivity = st.slider(
