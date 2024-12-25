@@ -129,14 +129,14 @@ def fancy_detection(image_file, prediction, threshold=0.5):
         st.markdown(f'<div class="result">This is a **real** image. Probability: {100 - probability}%</div>', unsafe_allow_html=True)
 
 # Main Functionality
-def main():
-    # Load the model
-    model_path = 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras' 
-    model, model_error = load_deepfake_model(model_path)
+# def main():
+#     # Load the model
+#     model_path = 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras' 
+#     model, model_error = load_deepfake_model(model_path)
 
-    if model_error:
-        st.error(model_error)
-        return
+#     if model_error:
+#         st.error(model_error)
+#         return
 
     # Tab Layout
     tabs = st.tabs(["About", "Detection","Deep Neural Network", "Contact Us"])
@@ -207,4 +207,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
