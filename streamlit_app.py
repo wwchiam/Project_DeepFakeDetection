@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Global CSS Styling with Background Image (McKinsey Style)
+# Global CSS Styling with Background Image
 st.markdown(
     """
     <style>
@@ -20,51 +20,71 @@ st.markdown(
         background-image: url('https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/background_v2.jpg');
         background-size: cover;
         background-position: center;
-        font-family: 'Helvetica Neue', sans-serif;
-        color: #212121;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
     }
-
+    
     /* Title Section */
     .title {
         font-size: 48px;
         font-weight: bold;
-        color: #2A2A2A;
+        color: #ffffff;
         text-align: center;
         margin-top: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
     .sub-title {
         font-size: 24px;
-        font-weight: 300;
-        color: #424242;
+        font-weight: 400;
+        color: #ffffff;
         text-align: center;
         margin-bottom: 40px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     
     /* Section Headers */
     .section-header {
         font-size: 22px;
-        font-weight: 600;
-        color: #212121;
+        font-weight: bold;
+        color: #ffffff;
         margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
-
+    
+    /* Adjusted Tab Styling */
+    .stTabs div[role="tablist"] {
+        justify-content: center !important;
+        gap: 20px !important;
+    }
+    .stTabs [role="tab"] {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        padding: 10px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+    .stTabs [role="tab"][aria-selected="true"] {
+        background-color: #4a90e2;
+        color: #ffffff;
+    }
+    
+    /* File Uploader Styling */
+    .stFileUploader label {
+        font-size: 18px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+    
+    /* Result Styling */
     .result {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
         text-align: center;
         margin-top: 20px;
-        color: #212121;
-    }
-
-    .stSlider > div {
-        font-size: 16px;
-    }
-
-    .stFileUploader label {
-        font-size: 18px;
-        color: #212121;
-        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     </style>
     """, unsafe_allow_html=True
