@@ -201,7 +201,7 @@ def main():
             ### How it works?:
             - **Transfer Learning: Utilizing the power of ImageNet pre-trained ResNet50, our model is tailored for detecting deepfakes with advanced fine-tuning.**  
             - **Diverse Datasets: Trained on a comprehensive dataset sourced from multiple platforms to enhance generalization and robustness.**
-            - **Performance: Optimized to ensure accurate, fast, and scalable detection to meet real-world challenges.**
+            - **Performance: Optimized to ensure accurate, fast, and scalable detection to meet real-world challenges.**"""
             )
     
     # Contact Us Tab
