@@ -131,7 +131,7 @@ def fancy_detection(image_file, prediction, threshold=0.5):
 # Main Functionality
 def main():
     # Load the model
-    model_path = 'improved_vgg16.keras' 
+    model_path = 'improved_resnet50.keras' 
     model, model_error = load_deepfake_model(model_path)
 
     if model_error:
@@ -191,7 +191,7 @@ def main():
         st.write("Our deepfake detection engine is built on ResNet50, a state-of-the-art convolutional neural network, fine-tuned for precision and reliability." )
 
         st.subheader("How it works?")
-            st.markdown("""
+        st.markdown("""
             - **Transfer Learning: Utilizing the power of ImageNet pre-trained ResNet50, our model is tailored for detecting deepfakes with advanced fine-tuning.**  
             - **Diverse Datasets: Trained on a comprehensive dataset sourced from multiple platforms to enhance generalization and robustness.**
             - **Performance: Optimized to ensure accurate, fast, and scalable detection to meet real-world challenges.**
