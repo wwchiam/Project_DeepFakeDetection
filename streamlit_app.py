@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Global CSS Styling with Background Image
+# Global CSS Styling with Background Image (McKinsey Style)
 st.markdown(
     """
     <style>
@@ -20,71 +20,51 @@ st.markdown(
         background-image: url('https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/background_v2.jpg');
         background-size: cover;
         background-position: center;
-        font-family: Arial, sans-serif;
-        color: #ffffff;
+        font-family: 'Helvetica Neue', sans-serif;
+        color: #212121;
     }
-    
+
     /* Title Section */
     .title {
         font-size: 48px;
         font-weight: bold;
-        color: #ffffff;
+        color: #2A2A2A;
         text-align: center;
         margin-top: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
     .sub-title {
         font-size: 24px;
-        font-weight: 400;
-        color: #ffffff;
+        font-weight: 300;
+        color: #424242;
         text-align: center;
         margin-bottom: 40px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     
     /* Section Headers */
     .section-header {
         font-size: 22px;
-        font-weight: bold;
-        color: #ffffff;
+        font-weight: 600;
+        color: #212121;
         margin-bottom: 10px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
-    
-    /* Adjusted Tab Styling */
-    .stTabs div[role="tablist"] {
-        justify-content: center !important;
-        gap: 20px !important;
-    }
-    .stTabs [role="tab"] {
-        font-size: 18px;
-        font-weight: bold;
-        color: #ffffff;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-        padding: 10px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    }
-    .stTabs [role="tab"][aria-selected="true"] {
-        background-color: #4a90e2;
-        color: #ffffff;
-    }
-    
-    /* File Uploader Styling */
-    .stFileUploader label {
-        font-size: 18px;
-        color: #ffffff;
-        font-weight: bold;
-    }
-    
-    /* Result Styling */
+
     .result {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: bold;
         text-align: center;
         margin-top: 20px;
-        color: #ffffff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        color: #212121;
+    }
+
+    .stSlider > div {
+        font-size: 16px;
+    }
+
+    .stFileUploader label {
+        font-size: 18px;
+        color: #212121;
+        font-weight: bold;
     }
     </style>
     """, unsafe_allow_html=True
@@ -157,11 +137,16 @@ def main():
         with col1:  # Left column for upload and detection controls
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
             
+            # Add a note above the slider for recommended threshold
+            st.markdown(
+                "**Recommended threshold: 0.5665** (This is the optimal threshold based on our model's performance)"
+            )
+            
             sensitivity = st.slider(
                 "Select Detection Sensitivity", 
                 min_value=0.1, 
                 max_value=0.9, 
-                value=0.5, 
+                value=0.5665,  # Set the default threshold to 0.5665
                 step=0.05, 
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
@@ -189,9 +174,12 @@ def main():
                                         width=400  # Set the width to 400px for the uploaded image
                                     )
                                     st.markdown(
-                                        f"### Prediction: **{'Fake' if predicted_prob > sensitivity else 'Real'}** image\n"
-                                        f"Probability: {predicted_prob * 100:.2f}%"
+                                        f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%"
                                     )
+                                    
+                                    # Determine if the image is fake based on the threshold
+                                    result = 'Fake' if predicted_prob > sensitivity else 'Real'
+                                    st.markdown(f"**This image is classified as {result}.**")
                                   
                                     # Option to report fake
                                     agree = st.radio(
