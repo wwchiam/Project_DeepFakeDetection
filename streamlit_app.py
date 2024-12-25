@@ -141,27 +141,59 @@ def main():
     # Detection Tab
     with tabs[1]:
         st.subheader("Upload an Image for Detection")
-        uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
-
+        
+        # Layout with two columns
+        col1, col2 = st.columns(2)
+        
+        with col1:  # Left column for upload and sensitivity selection
+            uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+            
+            sensitivity = st.slider(
+                "Select Detection Sensitivity", 
+                min_value=0.1, 
+                max_value=0.9, 
+                value=0.5, 
+                step=0.05, 
+                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+            )
+        
         if uploaded_file:
-            st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
             image_array = preprocess_image(uploaded_file)
+            
+            with col2:  # Right column for displaying the image and confidence
+                st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
+                
+                if st.button("Detect Deepfake"):
+                    if image_array is not None:
+                        with st.spinner("Analyzing the image..."):
+                            try:
+                                prediction = mock_predict(image_array)
+                                probability = round(prediction[0][0] * 100, 2)
+                                
+                                if prediction[0][0] > sensitivity:
+                                    st.markdown(
+                                        f'<div class="result">This is a **fake** image. Probability: {probability}%</div>', 
+                                        unsafe_allow_html=True
+                                    )
+                                else:
+                                    st.markdown(
+                                        f'<div class="result">This is a **real** image. Probability: {100 - probability}%</div>', 
+                                        unsafe_allow_html=True
+                                    )
+                                
+                                # Allow user to report fake image
+                                agree = st.radio(
+                                    "Would you like to report this image as a deepfake?", 
+                                    ["Yes", "No"], 
+                                    index=1
+                                )
+                                if agree == "Yes":
+                                    report_fake_image()
+                            except Exception as e:
+                                st.error(f"Error during prediction: {e}")
+                    else:
+                        st.warning("Please upload a valid image.")
 
-            # Prediction
-            if st.button("Detect Deepfake"):
-                if image_array is not None:
-                    with st.spinner("Analyzing the image..."):
-                        try:
-                            prediction = mock_predict(image_array)
-                            fancy_detection(uploaded_file, prediction)
-                            
-                            agree = st.radio("Would you like to report this image as a deepfake?", ["Yes", "No"], index=1)
-                            if agree == "Yes":
-                                report_fake_image()
-                        except Exception as e:
-                            st.error(f"Error during prediction: {e}")
-                else:
-                    st.warning("Please upload a valid image.")
 
     # Technology Tab
     with tabs[2]:
