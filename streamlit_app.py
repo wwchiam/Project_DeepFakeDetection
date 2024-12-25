@@ -140,25 +140,25 @@ def main():
     
     # Detection Tab
     with tabs[1]:
-    st.subheader("Upload an Image for Detection")
-    
-    # Layout with two columns
-    col1, col2 = st.columns([1, 2])  # Adjust column ratios
-    
-    with col1:  # Left column for upload and sensitivity selection
-        uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+        st.subheader("Upload an Image for Detection")
         
-        sensitivity = st.slider(
-            "Select Detection Sensitivity", 
-            min_value=0.1, 
-            max_value=0.9, 
-            value=0.5, 
-            step=0.05, 
-            help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
-        )
+        # Layout with two columns
+        col1, col2 = st.columns([1, 2])  # Adjust column ratios
         
-        if st.button("Detect Deepfake", key="detect_button_left"):
-            st.warning("Please upload an image first to detect.")  # Guard against no image uploaded
+        with col1:  # Left column for upload and sensitivity selection
+            uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+            
+            sensitivity = st.slider(
+                "Select Detection Sensitivity", 
+                min_value=0.1, 
+                max_value=0.9, 
+                value=0.5, 
+                step=0.05, 
+                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+            )
+            
+            if st.button("Detect Deepfake", key="detect_button_left"):
+                st.warning("Please upload an image first to detect.")  # Guard against no image uploaded
 
     if uploaded_file:
         # Display uploaded image and add detection button on the right
