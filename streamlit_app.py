@@ -228,6 +228,7 @@ def main():
                 else:
                     st.warning("Please upload an image to proceed.")
                 
+ 
     # Technology Tab
     with tabs[2]:
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
@@ -242,15 +243,15 @@ def main():
             Whether combating misinformation or ensuring digital media integrity, our technology is designed to **empower trust in the digital age**.
             """
         )
-    
+        
         # Model Performance Metrics
         st.write("### Model Performance in Action")
         
         # Accuracy Plot
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", caption="Enhanced Loss Curve: Optimized for Deepfake Detection", use_column_width=True)
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", caption="Enhanced Loss Curve: Optimized for Deepfake Detection", width=300)
         
         # Confusion Matrix
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", caption="Confusion Matrix: High Precision, Low False Positives", use_column_width=True)
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", caption="Confusion Matrix: High Precision, Low False Positives", width=300)
 
     
     # Contact Us Tab
