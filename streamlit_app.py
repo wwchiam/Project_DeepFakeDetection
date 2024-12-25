@@ -130,7 +130,7 @@ def fancy_detection(image_file, prediction, threshold=0.5):
 # Main Functionality
 def main():
     # Load the model
-    model_path = 'improved_vgg16.keras' 
+    model_path = 'improved_resnet50.keras' 
     model, model_error = load_deepfake_model(model_path)
 
     if model_error:
