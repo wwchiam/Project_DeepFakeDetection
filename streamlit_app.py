@@ -3,6 +3,9 @@ import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 from keras.applications.resnet50 import preprocess_input
+import requests
+from tensorflow.keras.models import load_model
+
 
 # Page Title and Config
 st.set_page_config(
@@ -57,6 +60,18 @@ st.markdown(
 # Title Section
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
+
+# Download the model from Google Drive
+url = "https://drive.google.com/uc?export=download&id=1-dE-T-0X1gEAbLR_14eXyTTvA4aHEKbY"
+response = requests.get(url)
+
+# Save the model to a local file
+with open("improved_resnet50.keras", "wb") as f:
+    f.write(response.content)
+
+# Load the model
+model = load_model("improved_resnet50.keras")
+
 
 # Load your custom model
 model = load_model('improved_resnet50.keras')
