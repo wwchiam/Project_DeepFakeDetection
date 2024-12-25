@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
+from keras.applications.resnet50 import ResNet50, preprocess_input
 from keras.models import load_model
 
 # Page Title and Config
@@ -93,16 +94,17 @@ st.markdown(
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
 
-# Load the Model
-model = load_model("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras")
+# Load ResNet50 Model
+model = ResNet50(weights="imagenet")
 
 # Preprocess Image for Prediction
 def preprocess_image(image_file, target_size=(224, 224)):
     """Preprocess the image for model prediction."""
     try:
         image = load_img(image_file, target_size=target_size)
-        image_array = img_to_array(image) / 255.0
-        return np.expand_dims(image_array, axis=0)
+        image_array = img_to_array(image)
+        image_array = np.expand_dims(image_array, axis=0)
+        return preprocess_input(image_array)
     except Exception as e:
         st.error(f"Error processing image: {e}")
         return None
@@ -174,7 +176,9 @@ def main():
                             try:
                                 # Use the loaded model to make predictions
                                 prediction = model.predict(image_array)
-                                probability = round(prediction[0][0] * 100, 2)
+                                # Extract the top predicted class and the corresponding probability
+                                predicted_class = np.argmax(prediction[0])
+                                predicted_prob = prediction[0][predicted_class]
                                 
                                 # Display results in the right column
                                 with col2:
@@ -185,7 +189,8 @@ def main():
                                         width=400  # Set the width to 400px for the uploaded image
                                     )
                                     st.markdown(
-                                        f"### Probability this is a **{'fake' if prediction[0][0] > sensitivity else 'real'}** image: {probability}%"
+                                        f"### Prediction: **{'Fake' if predicted_prob > sensitivity else 'Real'}** image\n"
+                                        f"Probability: {predicted_prob * 100:.2f}%"
                                     )
                                   
                                     # Option to report fake
@@ -215,46 +220,6 @@ def main():
             ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.
             """
         )
-    
-        # Displaying Metrics
-        st.markdown("<div class='section-header'>Model Performance</div>", unsafe_allow_html=True)
-        st.write(
-            """
-            Below are the key performance metrics of our **ResNet50** model:
-    
-            - **Accuracy**: 79%
-            - **Recall**: 92%
-            - **Precision**: 73%
-            - **F1-Score**: 81%
-            
-            These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.
-            """
-        )
-    
-        # Displaying the Images (Confusion Matrix and Loss Plot)
-        st.markdown("<div class='section-header'>Model Evaluation</div>", unsafe_allow_html=True)
-        st.write(
-            """
-            The following visualizations provide insights into the model's performance:
-            - **Confusion Matrix**: Shows the model's predictions against actual labels, illustrating its accuracy.
-            - **Loss Plot**: Tracks the model's training progress over time, ensuring it converges toward optimal performance.
-            """
-        )
-
-        # Display Confusion Matrix and Loss Plot Images with controlled size
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
-                 caption="Confusion Matrix", use_container_width =False, width=300)
-        
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
-                 caption="Loss Plot", use_container_width =False, width=300)
-    
-        # Model Insights
-        st.write(
-            """
-            These visualizations highlight key aspects of the model's performance during training and evaluation. The **Confusion Matrix** reveals how well the model distinguishes between real and fake images. The **Loss Plot** demonstrates the model's ability to minimize the error across training epochs, ensuring high precision and accuracy.
-            """
-        )
-
     
     # Contact Us Tab
     with tabs[3]:
