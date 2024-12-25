@@ -1,8 +1,8 @@
 import streamlit as st
 import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
-from keras.applications.resnet50 import ResNet50, preprocess_input
 from keras.models import load_model
+from keras.applications.resnet50 import preprocess_input
 
 # Page Title and Config
 st.set_page_config(
@@ -50,64 +50,16 @@ st.markdown(
         margin-bottom: 10px;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
-    
-    /* Adjusted Tab Styling */
-    .stTabs div[role="tablist"] {
-        justify-content: center !important;
-        gap: 20px !important;
-    }
-    .stTabs [role="tab"] {
-        font-size: 18px;
-        font-weight: bold;
-        color: #ffffff;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-        padding: 10px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    }
-    .stTabs [role="tab"][aria-selected="true"] {
-        background-color: #4a90e2;
-        color: #ffffff;
-    }
-    
-    /* File Uploader Styling */
-    .stFileUploader label {
-        font-size: 18px;
-        color: #ffffff;
-        font-weight: bold;
-    }
-    
-    /* Result Styling */
-    .result {
-        font-size: 22px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-        color: #ffffff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Help Icon Color */
-    .stSlider .stHelpIcon {
-        color: white !important;  /* Change the color of the help icon to white */
-    }
-
-    /* Radio Button Text Color */
-    .stRadio label {
-        color: white !important;  /* Change the radio button labels to white */
-    }
-
     </style>
     """, unsafe_allow_html=True
 )
-
 
 # Title Section
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
 
-# Load ResNet50 Model
-model = ResNet50(weights="imagenet")
+# Load your custom model
+model = load_model('https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras')
 
 # Preprocess Image for Prediction
 def preprocess_image(image_file, target_size=(224, 224)):
@@ -169,16 +121,11 @@ def main():
         with col1:  # Left column for upload and detection controls
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
             
-            # Add a note above the slider for recommended threshold
-            st.markdown(
-                "**Recommended threshold: 56.65%** This is the optimal threshold based on our model's performance."
-            )
-            
             sensitivity = st.slider(
                 "Select Detection Sensitivity", 
                 min_value=0.1, 
                 max_value=0.9, 
-                value=0.5665,  # Set the default threshold to 0.5665
+                value=0.5665, 
                 step=0.05, 
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
@@ -191,7 +138,7 @@ def main():
                     if image_array is not None:
                         with st.spinner("Analyzing the image..."):
                             try:
-                                # Use the loaded model to make predictions
+                                # Use the custom model to make predictions
                                 prediction = model.predict(image_array)
                                 # Extract the top predicted class and the corresponding probability
                                 predicted_class = np.argmax(prediction[0])
@@ -206,12 +153,9 @@ def main():
                                         width=400  # Set the width to 400px for the uploaded image
                                     )
                                     st.markdown(
-                                        f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%"
+                                        f"### Prediction: **{'Fake' if predicted_prob > sensitivity else 'Real'}** image\n"
+                                        f"Probability of Fake: {predicted_prob * 100:.2f}%"
                                     )
-                                    
-                                    # Determine if the image is fake based on the threshold
-                                    result = 'Fake' if predicted_prob > sensitivity else 'Real'
-                                    st.markdown(f"**This image is classified as {result}.**")
                                   
                                     # Option to report fake
                                     agree = st.radio(
@@ -228,7 +172,6 @@ def main():
                 else:
                     st.warning("Please upload an image to proceed.")
                 
- 
     # Technology Tab
     with tabs[2]:
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
@@ -236,23 +179,11 @@ def main():
         # Technology Overview
         st.write(
             """
-            At the heart of our **Deepfake Detection System** lies **ResNet50**, an advanced deep learning model engineered for **unmatched precision** and **speed** in image classification.  
-            By leveraging ResNet50’s innovative architecture, we’ve fine-tuned the model to detect deepfakes with **exceptional accuracy**, providing **reliable real-time verification**. 
-    
-            With an accuracy rate of **78.94%**, a **recall rate of 91.75%**, and an **F1 score of 81.31%**, our system sets a new standard for deepfake detection, achieving a **perfect balance** between performance and efficiency.  
-            Whether combating misinformation or ensuring digital media integrity, our technology is designed to **empower trust in the digital age**.
+            Our deepfake detection system leverages a **customized version of ResNet50**, fine-tuned specifically for detecting deepfakes. By adapting a robust and high-performance model like ResNet50, we've achieved an exceptional level of accuracy, with over **78.94% accuracy**, **91.75% recall**, and **81.31% F1 score** in real-world tests. 
+            
+            This cutting-edge solution allows us to quickly and reliably distinguish between real and manipulated images, empowering users to trust the content they interact with online. Our model has been rigorously tested on diverse datasets to ensure it provides reliable predictions under various conditions, setting a new benchmark in the fight against misinformation.
             """
         )
-        
-        # Model Performance Metrics
-        st.write("### Model Performance in Action")
-        
-        # Accuracy Plot
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", caption="Enhanced Loss Curve: Optimized for Deepfake Detection", width=300)
-        
-        # Confusion Matrix
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", caption="Confusion Matrix: High Precision, Low False Positives", width=300)
-
     
     # Contact Us Tab
     with tabs[3]:
