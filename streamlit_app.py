@@ -228,9 +228,12 @@ def main():
             """
         )
 
-        # Display Confusion Matrix and Loss Plot Images
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", caption="Confusion Matrix", use_container_width=True)
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", caption="Loss Plot", use_container_width=True)
+        # Display Confusion Matrix and Loss Plot Images with controlled size
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
+                 caption="Confusion Matrix", use_column_width=False, width=600)
+        
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
+                 caption="Loss Plot", use_column_width=False, width=600)
     
         # Model Insights
         st.write(
