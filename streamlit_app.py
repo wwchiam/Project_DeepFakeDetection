@@ -93,13 +93,13 @@ st.markdown('<div class="sub-title">Seeing is no longer believing </div>', unsaf
 @st.cache_resource
 def load_deepfake_model(model_path):
     """Load the deepfake detection model."""
-    if os.path.exists(model_path):
-        try:
-            model = load_model(model_path)
-            return model, None
-        except Exception as e:
-            return None, f"Failed to load the model. Error: {e}"
-    return None, "Model file not found. Please check the path."
+    if not os.path.exists(model_path):
+    st.error(f"Model file not found at: {model_path}.")
+else:
+    st.write("Model file exists, attempting to load...")
+    model, model_error = load_deepfake_model(model_path)
+    if model_error:
+        st.error(model_error)
 
 # Image Preprocessing
 def preprocess_image(image_file, target_size=(224, 224)):
