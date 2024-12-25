@@ -147,48 +147,64 @@ def main():
         )
     
     # Detection Tab
+   
     with tabs[1]:
-        st.markdown('<div class="section-header">Upload an Image for Detection</div>', unsafe_allow_html=True)
+        st.subheader("Upload an Image for Detection")
         
-        col1, col2 = st.columns([1, 2])  # Input and Output Layout
+        # Layout with two columns
+        col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
         
-        with col1:
+        with col1:  # Left column for upload and detection controls
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+            
             sensitivity = st.slider(
-                "Select Detection Sensitivity",
-                min_value=0.1,
-                max_value=0.9,
-                value=0.5,
-                step=0.05,
-                help="Adjust the sensitivity of the detection. Lower values may reduce false positives."
+                "Select Detection Sensitivity", 
+                min_value=0.1, 
+                max_value=0.9, 
+                value=0.5, 
+                step=0.05, 
+                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
+            
+            # Single detection button
             if st.button("Detect Deepfake"):
                 if uploaded_file:
+                    # Process the image and analyze
                     image_array = preprocess_image(uploaded_file)
                     if image_array is not None:
                         with st.spinner("Analyzing the image..."):
                             try:
+                                # Mock prediction
                                 prediction = mock_predict(image_array)
                                 probability = round(prediction[0][0] * 100, 2)
                                 
                                 # Display results in the right column
                                 with col2:
-                                    st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
-                                    st.markdown(
-                                        f"<div class='result'>"
-                                        f"This image is likely **{'FAKE' if prediction[0][0] > sensitivity else 'REAL'}**. "
-                                        f"Confidence: {probability}%"
-                                        f"</div>", unsafe_allow_html=True
+                                    st.image(
+                                        uploaded_file, 
+                                        caption="Uploaded Image", 
+                                        use_container_width=False, 
+                                        width=400  # Set the width to 400px for the uploaded image
                                     )
-                                    if st.radio("Would you like to report this image?", ["Yes", "No"], index=1) == "Yes":
+                                    st.markdown(
+                                        f"### Probability this is a **{'fake' if prediction[0][0] > sensitivity else 'real'}** image: {probability}%"
+                                    )
+                                    
+                                    # Option to report fake
+                                    agree = st.radio(
+                                        "Would you like to report this image as a deepfake?", 
+                                        ["Yes", "No"], 
+                                        index=1
+                                    )
+                                    if agree == "Yes":
                                         report_fake_image()
                             except Exception as e:
                                 st.error(f"Error during prediction: {e}")
                     else:
                         st.warning("Please upload a valid image.")
                 else:
-                    st.warning("Please upload an image.")
-    
+                    st.warning("Please upload an image to proceed.")
+                
     # Technology Tab
     with tabs[2]:
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
