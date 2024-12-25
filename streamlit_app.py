@@ -10,37 +10,43 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Global CSS Styling
+# Global CSS Styling with Background Image
 st.markdown(
     """
     <style>
     .stApp {
-        background-color: #f4f4f4;
+        background-image: url('https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/background_v2.jpg');
+        background-size: cover;
+        background-position: center;
         font-family: Arial, sans-serif;
+        color: #ffffff;
     }
     
     /* Title Section */
     .title {
         font-size: 48px;
         font-weight: bold;
-        color: #1c1e21;
+        color: #ffffff;
         text-align: center;
         margin-top: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
     .sub-title {
         font-size: 24px;
         font-weight: 400;
-        color: #3d3d3d;
+        color: #ffffff;
         text-align: center;
         margin-bottom: 40px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     
     /* Section Headers */
     .section-header {
         font-size: 22px;
         font-weight: bold;
-        color: #2d3748;
+        color: #ffffff;
         margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     
     /* Adjusted Tab Styling */
@@ -51,20 +57,21 @@ st.markdown(
     .stTabs [role="tab"] {
         font-size: 18px;
         font-weight: bold;
-        color: #1c1e21;
-        background-color: #e8e8e8;
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.6);
         border-radius: 10px;
         padding: 10px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     }
     .stTabs [role="tab"][aria-selected="true"] {
         background-color: #4a90e2;
-        color: #fff;
+        color: #ffffff;
     }
     
     /* File Uploader Styling */
     .stFileUploader label {
         font-size: 18px;
-        color: #1c1e21;
+        color: #ffffff;
         font-weight: bold;
     }
     
@@ -74,7 +81,8 @@ st.markdown(
         font-weight: bold;
         text-align: center;
         margin-top: 20px;
-        color: #2d3748;
+        color: #ffffff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     </style>
     """, unsafe_allow_html=True
