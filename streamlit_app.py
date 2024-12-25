@@ -1,9 +1,6 @@
-
 import streamlit as st
 import numpy as np
-from keras.models import load_model
 from keras.preprocessing.image import load_img, img_to_array
-import os
 
 # Page Title Appear at browser
 st.set_page_config(
@@ -81,28 +78,13 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-###################################################################################################################################
+# Placeholder Model Logic
+def mock_predict(image_array):
+    """Mock prediction function for UI testing."""
+    # This simulates a deepfake detection model's output
+    return np.array([[0.8]])  # Pretend it predicts a fake image with 80% probability
 
-# Title Section
-st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">Seeing is no longer believing </div>', unsafe_allow_html=True)
-
-# Banner Image - No custom div needed, let Streamlit handle the structure
-# st.image('https://raw.githubusercontent.com/wwchiam/DeepFakeDetect/main/DeepfakeBanner.jpg')
-
-# Model Loading
-@st.cache_resource
-def load_deepfake_model(model_path):
-    """Load the deepfake detection model."""
-    if os.path.exists(model_path):
-        try:
-            model = load_model(model_path)
-            return model, None
-        except Exception as e:
-            return None, f"Failed to load the model. Error: {e}"
-    return None, "Model file not found. Please check the path."
-
-# Image Preprocessing
+# Preprocessing
 def preprocess_image(image_file, target_size=(224, 224)):
     """Preprocess the image for model prediction."""
     try:
@@ -118,7 +100,7 @@ def report_fake_image():
     """Simulate reporting a deepfake image."""
     st.success("Thank you for reporting. We will use this image for future training.")
 
-# Fancy Detection (Bounding Box and Probability Display)
+# Fancy Detection
 def fancy_detection(image_file, prediction, threshold=0.5):
     """Simulate bounding box display and fake probability."""
     st.image(image_file, caption="Detected Face", use_container_width=True)
@@ -129,17 +111,9 @@ def fancy_detection(image_file, prediction, threshold=0.5):
         st.markdown(f'<div class="result">This is a **real** image. Probability: {100 - probability}%</div>', unsafe_allow_html=True)
 
 # Main Functionality
-# def main():
-#     # Load the model
-#     model_path = 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras' 
-#     model, model_error = load_deepfake_model(model_path)
-
-#     if model_error:
-#         st.error(model_error)
-#         return
-
+def main():
     # Tab Layout
-    tabs = st.tabs(["About", "Detection","Deep Neural Network", "Contact Us"])
+    tabs = st.tabs(["About", "Detection", "Deep Neural Network", "Contact Us"])
     
     # About Tab
     with tabs[0]:
@@ -158,8 +132,7 @@ def fancy_detection(image_file, prediction, threshold=0.5):
         - **Report Deepfakes**: Contribute to combating misinformation by reporting suspicious content directly through the platform.  
         - **Stay Informed**: Access resources and guides to understand and navigate the challenges of deepfake technology.  
         """)
-        
-
+    
     # Detection Tab
     with tabs[1]:
         st.subheader("Upload an Image for Detection")
@@ -171,10 +144,10 @@ def fancy_detection(image_file, prediction, threshold=0.5):
 
             # Prediction
             if st.button("Detect Deepfake"):
-                if image_array is not None and model is not None:
+                if image_array is not None:
                     with st.spinner("Analyzing the image..."):
                         try:
-                            prediction = model.predict(image_array)
+                            prediction = mock_predict(image_array)
                             fancy_detection(uploaded_file, prediction)
                             
                             agree = st.radio("Would you like to report this image as a deepfake?", ["Yes", "No"], index=1)
@@ -185,26 +158,15 @@ def fancy_detection(image_file, prediction, threshold=0.5):
                 else:
                     st.warning("Please upload a valid image.")
 
-    # Technology
+    # Technology Tab
     with tabs[2]:
         st.subheader("Cutting-Edge AI for Reliable Detection")
-        st.write("Our deepfake detection engine is built on ResNet50, a state-of-the-art convolutional neural network, fine-tuned for precision and reliability." )
+        st.write("Our deepfake detection engine is built on ResNet50, a state-of-the-art convolutional neural network, fine-tuned for precision and reliability.")
 
-        st.subheader("How it works?")
-        st.markdown("""
-            - **Transfer Learning: Utilizing the power of ImageNet pre-trained ResNet50, our model is tailored for detecting deepfakes with advanced fine-tuning.**  
-            - **Diverse Datasets: Trained on a comprehensive dataset sourced from multiple platforms to enhance generalization and robustness.**
-            - **Performance: Optimized to ensure accurate, fast, and scalable detection to meet real-world challenges.**
-
-        st.subheader("Our Training Results")
-            
-            """)
-    
-    # Contact us Tab
+    # Contact Us Tab
     with tabs[3]:
         st.subheader("Need Help?")
-        st.write("Email to 23054196@siswa.um.edu.my for more information")
+        st.write("Email to 23054196@siswa.um.edu.my for more information.")
 
-
-# if __name__ == "__main__":
-#     # main()
+if __name__ == "__main__":
+    main()
