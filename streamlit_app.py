@@ -124,19 +124,25 @@ def main():
         st.write(
             """
             Welcome to our **Deepfake Detection System**, your trusted tool for identifying manipulated media.  
-            In today's digital age, deepfakes can erode trust and spread misinformation.  
-            With our platform, you can:
-            
-            - Detect deepfakes instantly.
-            - Report suspicious content.
-            - Learn about the risks and implications of deepfake technology.
+            In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users to verify the authenticity of images with just a simple upload. 
+            This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.
             """
         )
+        
         st.markdown(
             """
             ### Why It Matters:
             - Over 8 million deepfake attempts are shared weekly on social media.  
             - Deepfakes fuel misinformation, invade privacy, and undermine trust.  
+            """
+        )
+
+        st.markdown(
+            """
+            ### How We Help?:
+            - **Detect & Verify**: Quickly identify manipulated media using cutting-edge deep learning techniques.  
+            - **Report Deepfakes**: Contribute to combating misinformation by reporting suspicious content directly through the platform.  
+            - **Stay Informed**: Access resources and guides to understand and navigate the challenges of deepfake technology.  
             """
         )
     
@@ -188,10 +194,15 @@ def main():
         st.markdown('<div class="section-header">Powered by Advanced AI</div>', unsafe_allow_html=True)
         st.write(
             """
-            Our deepfake detection leverages ResNet50, a leading neural network for image classification.  
-            With millions of parameters fine-tuned for precision, it achieves high accuracy on manipulated media.
+            Our deepfake detection engine is built on ResNet50, a state-of-the-art convolutional neural network, fine-tuned for precision and reliability.
             """
         )
+        st.markdown("""
+            ### How it works?:
+            - **Transfer Learning: Utilizing the power of ImageNet pre-trained ResNet50, our model is tailored for detecting deepfakes with advanced fine-tuning.**  
+            - **Diverse Datasets: Trained on a comprehensive dataset sourced from multiple platforms to enhance generalization and robustness.**
+            - **Performance: Optimized to ensure accurate, fast, and scalable detection to meet real-world challenges.**
+            )
     
     # Contact Us Tab
     with tabs[3]:
