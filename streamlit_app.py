@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
+from keras.models import load_model
 
 # Page Title and Config
 st.set_page_config(
@@ -92,10 +93,8 @@ st.markdown(
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
 
-# Mock Prediction Logic
-def mock_predict(image_array):
-    """Simulate a deepfake detection model's output."""
-    return np.array([[0.8]])  # Pretend it predicts a fake image with 80% probability
+# Load the Model
+model = load_model("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras")
 
 # Preprocess Image for Prediction
 def preprocess_image(image_file, target_size=(224, 224)):
@@ -147,7 +146,6 @@ def main():
         )
     
     # Detection Tab
-   
     with tabs[1]:
         st.subheader("Upload an Image for Detection")
         
@@ -174,8 +172,8 @@ def main():
                     if image_array is not None:
                         with st.spinner("Analyzing the image..."):
                             try:
-                                # Mock prediction
-                                prediction = mock_predict(image_array)
+                                # Use the loaded model to make predictions
+                                prediction = model.predict(image_array)
                                 probability = round(prediction[0][0] * 100, 2)
                                 
                                 # Display results in the right column
@@ -189,7 +187,7 @@ def main():
                                     st.markdown(
                                         f"### Probability this is a **{'fake' if prediction[0][0] > sensitivity else 'real'}** image: {probability}%"
                                     )
-                                    
+                                  
                                     # Option to report fake
                                     agree = st.radio(
                                         "Would you like to report this image as a deepfake?", 
