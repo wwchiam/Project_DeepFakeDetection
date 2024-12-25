@@ -138,41 +138,29 @@ def main():
         - **Stay Informed**: Access resources and guides to understand and navigate the challenges of deepfake technology.  
         """)
     
-    # Detection Tab
-    with tabs[1]:
-        st.subheader("Upload an Image for Detection")
+# Detection Tab
+with tabs[1]:
+    st.subheader("Upload an Image for Detection")
+    
+    # Layout with two columns
+    col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
+    
+    with col1:  # Left column for upload and detection controls
+        uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
         
-        # Layout with two columns
-        col1, col2 = st.columns([1, 2])  # Adjust column ratios
+        sensitivity = st.slider(
+            "Select Detection Sensitivity", 
+            min_value=0.1, 
+            max_value=0.9, 
+            value=0.5, 
+            step=0.05, 
+            help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+        )
         
-        with col1:  # Left column for upload and sensitivity selection
-            uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
-            
-            sensitivity = st.slider(
-                "Select Detection Sensitivity", 
-                min_value=0.1, 
-                max_value=0.9, 
-                value=0.5, 
-                step=0.05, 
-                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
-            )
-            
-            if st.button("Detect Deepfake", key="detect_button_left"):
-                st.warning("Please upload an image first to detect.")  # Guard against no image uploaded
-
-    if uploaded_file:
-        # Display uploaded image and add detection button on the right
-        with col2:
-            st.image(
-                uploaded_file, 
-                caption="Uploaded Image", 
-                use_container_width=True, 
-                output_format="auto", 
-                width=300  # Reduce the size of the image
-            )
-            
-            # Button to trigger detection
-            if st.button("Detect Deepfake", key="detect_button_right"):
+        # Single detection button
+        if st.button("Detect Deepfake"):
+            if uploaded_file:
+                # Process the image and analyze
                 image_array = preprocess_image(uploaded_file)
                 if image_array is not None:
                     with st.spinner("Analyzing the image..."):
@@ -181,23 +169,32 @@ def main():
                             prediction = mock_predict(image_array)
                             probability = round(prediction[0][0] * 100, 2)
                             
-                            # Show detection results
-                            st.markdown(
-                                f"### Probability this is a **{'fake' if prediction[0][0] > sensitivity else 'real'}** image: {probability}%"
-                            )
-                            
-                            # Option to report fake
-                            agree = st.radio(
-                                "Would you like to report this image as a deepfake?", 
-                                ["Yes", "No"], 
-                                index=1
-                            )
-                            if agree == "Yes":
-                                report_fake_image()
+                            # Display results in the right column
+                            with col2:
+                                st.image(
+                                    uploaded_file, 
+                                    caption="Uploaded Image", 
+                                    use_container_width=True, 
+                                    width=300  # Adjust size of the image
+                                )
+                                st.markdown(
+                                    f"### Probability this is a **{'fake' if prediction[0][0] > sensitivity else 'real'}** image: {probability}%"
+                                )
+                                
+                                # Option to report fake
+                                agree = st.radio(
+                                    "Would you like to report this image as a deepfake?", 
+                                    ["Yes", "No"], 
+                                    index=1
+                                )
+                                if agree == "Yes":
+                                    report_fake_image()
                         except Exception as e:
                             st.error(f"Error during prediction: {e}")
                 else:
                     st.warning("Please upload a valid image.")
+            else:
+                st.warning("Please upload an image to proceed.")
 
 
 
