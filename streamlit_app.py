@@ -19,7 +19,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://raw.githubusercontent.com/wwchiam/DeepFakeDetect/main/background.jpg');
+        background-image: url('https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/background_v2.jpg');
         background-size: cover;
         background-position: center;
         font-family: Arial, sans-serif;
@@ -131,7 +131,7 @@ def fancy_detection(image_file, prediction, threshold=0.5):
 # Main Functionality
 def main():
     # Load the model
-    model_path = 'improved_resnet50.keras' 
+    model_path = 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50.keras' 
     model, model_error = load_deepfake_model(model_path)
 
     if model_error:
