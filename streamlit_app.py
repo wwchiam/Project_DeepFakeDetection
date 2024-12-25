@@ -208,10 +208,10 @@ def main():
             """
             Below are the key performance metrics of our **ResNet50** model:
     
-            - **Accuracy**: 60%
-            - **Recall**: 64%
-            - **Precision**: 86%
-            - **F1-Score**: 73%
+            - **Accuracy**: 79%
+            - **Recall**: 92%
+            - **Precision**: 73%
+            - **F1-Score**: 81%
             
             These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.
             """
