@@ -206,5 +206,5 @@ def fancy_detection(image_file, prediction, threshold=0.5):
         st.write("Email to 23054196@siswa.um.edu.my for more information")
 
 
-if __name__ == "__main__":
-    # main()
+# if __name__ == "__main__":
+#     # main()
