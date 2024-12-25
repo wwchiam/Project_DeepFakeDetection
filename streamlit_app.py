@@ -235,11 +235,23 @@ def main():
         # Technology Overview
         st.write(
             """
-            Our deepfake detection system is powered by **ResNet50**, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.  
-            By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
-            ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.
+            At the heart of our **Deepfake Detection System** lies **ResNet50**, an advanced deep learning model engineered for **unmatched precision** and **speed** in image classification.  
+            By leveraging ResNet50’s innovative architecture, we’ve fine-tuned the model to detect deepfakes with **exceptional accuracy**, providing **reliable real-time verification**. 
+    
+            With an accuracy rate of **78.94%**, a **recall rate of 91.75%**, and an **F1 score of 81.31%**, our system sets a new standard for deepfake detection, achieving a **perfect balance** between performance and efficiency.  
+            Whether combating misinformation or ensuring digital media integrity, our technology is designed to **empower trust in the digital age**.
             """
         )
+    
+        # Model Performance Metrics
+        st.write("### Model Performance in Action")
+        
+        # Accuracy Plot
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", caption="Enhanced Loss Curve: Optimized for Deepfake Detection", use_column_width=True)
+        
+        # Confusion Matrix
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", caption="Confusion Matrix: High Precision, Low False Positives", use_column_width=True)
+
     
     # Contact Us Tab
     with tabs[3]:
