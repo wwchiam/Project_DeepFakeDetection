@@ -61,20 +61,19 @@ st.markdown(
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
 
-# Download the model from Google Drive
-url = "https://drive.google.com/uc?export=download&id=1-dE-T-0X1gEAbLR_14eXyTTvA4aHEKbY"
-response = requests.get(url)
+# # Download the model from Google Drive
+# url = "https://drive.google.com/uc?export=download&id=1-dE-T-0X1gEAbLR_14eXyTTvA4aHEKbY"
+# response = requests.get(url)
 
-# Save the model to a local file
-with open("improved_resnet50.keras", "wb") as f:
-    f.write(response.content)
+# # Save the model to a local file
+# with open("improved_resnet50.keras", "wb") as f:
+#     f.write(response.content)
 
-# Load the model
-model = load_model("improved_resnet50.keras")
-
+# # Load the model
+# model = load_model("improved_resnet50.keras")
 
 # Load your custom model
-model = load_model('improved_resnet50.keras')
+model = load_model('project_deepfakedetection/improved_resnet50.keras')
 
 # Preprocess Image for Prediction
 def preprocess_image(image_file, target_size=(224, 224)):
