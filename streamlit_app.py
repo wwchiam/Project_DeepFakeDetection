@@ -190,7 +190,6 @@ def main():
                     st.warning("Please upload an image.")
     
     # Technology Tab
-    # Technology Tab
     with tabs[2]:
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
         
@@ -230,10 +229,10 @@ def main():
 
         # Display Confusion Matrix and Loss Plot Images with controlled size
         st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
-                 caption="Confusion Matrix", use_column_width=False, width=600)
+                 caption="Confusion Matrix", use_container_width =False, width=300)
         
         st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
-                 caption="Loss Plot", use_column_width=False, width=600)
+                 caption="Loss Plot", use_container_width =False, width=300)
     
         # Model Insights
         st.write(
