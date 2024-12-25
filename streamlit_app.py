@@ -78,6 +78,11 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
+# Title Section
+st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-title">Seeing is no longer believing </div>', unsafe_allow_html=True)
+
+
 # Placeholder Model Logic
 def mock_predict(image_array):
     """Mock prediction function for UI testing."""
