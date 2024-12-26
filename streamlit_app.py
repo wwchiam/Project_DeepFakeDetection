@@ -6,6 +6,17 @@ from keras.applications.resnet50 import preprocess_input
 import requests
 from tensorflow.keras.models import load_model
 
+import streamlit as st
+import sys
+import tensorflow as tf
+
+# Display Python version
+st.write("Python version:", sys.version)
+
+# Display TensorFlow version
+st.write("TensorFlow version:", tf.__version__)
+
+
 
 # Page Title and Config
 st.set_page_config(
