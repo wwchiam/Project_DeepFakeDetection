@@ -229,6 +229,7 @@ def main():
                     st.warning("Please upload an image to proceed.")
                 
     # Technology Tab
+    # Technology Tab
     with tabs[2]:
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
         
@@ -238,6 +239,45 @@ def main():
             Our deepfake detection system is powered by **ResNet50**, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.  
             By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
             ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.
+            """
+        )
+    
+        # Displaying Metrics
+        st.markdown("<div class='section-header'>Model Performance</div>", unsafe_allow_html=True)
+        st.write(
+            """
+            Below are the key performance metrics of our **ResNet50** model:
+    
+            - **Accuracy**: 79%
+            - **Recall**: 92%
+            - **Precision**: 73%
+            - **F1-Score**: 81%
+            
+            These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.
+            """
+        )
+    
+        # Displaying the Images (Confusion Matrix and Loss Plot)
+        st.markdown("<div class='section-header'>Model Evaluation</div>", unsafe_allow_html=True)
+        st.write(
+            """
+            The following visualizations provide insights into the model's performance:
+            - **Confusion Matrix**: Shows the model's predictions against actual labels, illustrating its accuracy.
+            - **Loss Plot**: Tracks the model's training progress over time, ensuring it converges toward optimal performance.
+            """
+        )
+
+        # Display Confusion Matrix and Loss Plot Images with controlled size
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
+                 caption="Confusion Matrix", use_container_width =False, width=300)
+        
+        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
+                 caption="Loss Plot", use_container_width =False, width=300)
+    
+        # Model Insights
+        st.write(
+            """
+            These visualizations highlight key aspects of the model's performance during training and evaluation. The **Confusion Matrix** reveals how well the model distinguishes between real and fake images. The **Loss Plot** demonstrates the model's ability to minimize the error across training epochs, ensuring high precision and accuracy.
             """
         )
     
