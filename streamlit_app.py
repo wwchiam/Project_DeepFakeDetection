@@ -215,4 +215,4 @@ st.write("TensorFlow version:", tf.__version__)
 #         st.write("For inquiries or support, email us at [23054196@siswa.um.edu.my](mailto:23054196@siswa.um.edu.my).")
 
 # if __name__ == "__main__":
-    main()
+#    main()
