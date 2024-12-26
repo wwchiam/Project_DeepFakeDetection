@@ -1,4 +1,11 @@
 streamlit
+streamlit_navigation_bar
+tensorflow
+opencv-python
+streamlit
 numpy
-keras
-Pillow
+pillow
+streamlit
+streamlit_lottie
+numpy
+scikit-learn
