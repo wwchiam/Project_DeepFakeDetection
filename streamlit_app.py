@@ -196,21 +196,34 @@ def main():
             unsafe_allow_html=True
         )
 
-    # What is Deepfake Tab
-    with tabs[1]:  # What is Deepfake Tab
+    # # Usage Tab
+    # with tabs[1]: 
+    #     st.markdown(
+    #         """
+    #         <div class="tab-content">
+    #             <div class="section-header">Usage Statistic</div>
+    #             <p>Thinking...</p>
+    #         </div>
+            
+    #         """, 
+    #         unsafe_allow_html=True
+    #     )
+         
+    # Usage Tab
+    with tabs[1]: 
         st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header">What is Deepfake?</div>
-                <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
-                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
-                
-            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
-    
-            """, 
-            unsafe_allow_html=True
-        )
+                    """
+                    <div class="tab-content">
+                        <div class="section-header">What is Deepfake?</div>
+                        <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
+                        The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
+                        
+                    <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+                        <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            
+                    """, 
+                    unsafe_allow_html=True
+                )
     
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
@@ -218,76 +231,35 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
-        
-        # Initialize session state variables for tracking progress and answers
-        if 'current_image' not in st.session_state:
-            st.session_state['current_image'] = 0
-        if 'answers' not in st.session_state:
-            st.session_state['answers'] = []
-        if 'score' not in st.session_state:
-            st.session_state['score'] = 0
-        
-        # Function to handle image navigation
-        def navigate_images(direction):
-            if direction == 'Next' and st.session_state['current_image'] < len(deepfake_images) - 1:
-                st.session_state['current_image'] += 1
-            elif direction == 'Previous' and st.session_state['current_image'] > 0:
-                st.session_state['current_image'] -= 1
-    
-        # Show the current image
-        st.image(deepfake_images[st.session_state['current_image']], caption=f"Image {st.session_state['current_image'] + 1}", width=400)
     
         # User answers
-        answer = st.radio(
-            f"Is this a deepfake? (Image {st.session_state['current_image'] + 1})", 
-            ["Yes", "No"],
-            key=f"question_{st.session_state['current_image']}",
-            index=-1  # No default selection
-        )
+        answers = []
+        score = 0
     
-        # Feedback and Save Answer only after selecting an answer
-        if answer:
-            correct_answer = "Yes"  # Assuming all images are deepfakes in this case
-            if answer == correct_answer:
-                feedback = "Correct!"
-                st.session_state['score'] += 1
-            else:
-                feedback = "Incorrect. The correct answer is Yes."
-            
-            st.write(feedback)
+        for idx, image_url in enumerate(deepfake_images):
+            st.image(image_url, caption=f"Image {idx + 1}", width=400)
+            answer = st.radio(
+                f"Is this a deepfake? (Image {idx + 1})", 
+                ["Yes", "No"],
+                key=f"question_{idx}"
+            )
     
-            # Save the user's answer
-            st.session_state['answers'].append(answer)
+            # Store the answers
+            answers.append(answer)
     
-            # Wait for the user to click next
-            st.session_state['current_image'] += 1
+            # Calculate score (assumes the correct answer is "Yes" for all images)
+            if answer == "Yes":  # Assuming all images are deepfakes in this case
+                score += 1
     
-        # Buttons to navigate between images
-        col1, col2 = st.columns([1, 1])
-        with col1:
-            if st.session_state['current_image'] > 0:
-                if st.button("Previous"):
-                    navigate_images('Previous')
-    
-        with col2:
-            if st.session_state['current_image'] < len(deepfake_images):
-                if st.button("Next"):
-                    navigate_images('Next')
-    
-        # Display progress bar
-        progress = (st.session_state['current_image'] + 1) / len(deepfake_images) * 100
-        st.progress(progress)
-    
-        # If all images are answered, display the final score
-        if st.session_state['current_image'] == len(deepfake_images):
-            st.write(f"Your final score: {st.session_state['score']}/{len(deepfake_images)}")
-            if st.session_state['score'] == len(deepfake_images):
+        if len(answers) == len(deepfake_images):
+            st.markdown(f"Your score: {score}/3")
+            if score == 3:
                 st.success("Excellent! You correctly identified all the deepfakes.")
-            elif st.session_state['score'] > len(deepfake_images) // 2:
-                st.warning("Good job! You got most of them right.")
+            elif score == 2:
+                st.warning("Good job! You got 2 out of 3 correct.")
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
-        
+    
         # End of the tab content
         st.markdown(
             """
@@ -295,9 +267,9 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-    
 
     
+    # Detection Tab
     # Detection Tab
     with tabs[2]:
     
@@ -344,7 +316,7 @@ def main():
                                 # Extract the top predicted class and the corresponding probability
                                 predicted_class = np.argmax(prediction[0])
                                 predicted_prob = prediction[0][predicted_class]
-                                 
+                                
                                 # Display results in the right column
                                 with col2:
                                     st.image(
@@ -356,7 +328,7 @@ def main():
                                     st.markdown(
                                         f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%"
                                     )
-                                 
+                                    
                                     # Determine if the image is fake based on the threshold
                                     result = 'Fake' if predicted_prob > sensitivity else 'Real'
                                     st.markdown(f"**This image is classified as {result}.**")
@@ -383,41 +355,66 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+    
 
 
     # Technology Tab
-    with tabs[3]:  # Technology Tab
+    with tabs[3]: 
         st.markdown(
             """
             <div class="tab-content">
-                <div class="section-header">Our Technology</div>
-                <p>Our system utilizes state-of-the-art deep learning models to analyze and detect deepfake content in images.</p>
-                <p>The model is trained on thousands of real and deepfake images, and uses advanced features to identify telltale signs of manipulation.</p>
+                <div class="section-header">Powered by ResNet50</div>
+                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.
+                By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
+                ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
                 
-            </div> <!-- End of the transparent box -->
+            <div class="section-header">Model Performance</div>
+                <p>These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
+                <ul>
+                    <li>Accuracy: 79% </li>
+                    <li>Recall: 92% </li>
+                    <li>Precision: 73% </li>
+                    <li>F1-Score: 81% </li>
+                </ul>
+        
+            <div class="section-header">Model Evaluation</div>
+            <div style="text-align: left;">
+                <ul>
+                <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
+                </ul>
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="400" />
+                <br>
+            </div>
+                
+            <div style="text-align: left;">
+                <ul>
+                <br>
+                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
+                </ul>
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
+            </div>
+            </div>
             """, 
             unsafe_allow_html=True
         )
 
 
     # Contact Us Tab
-    with tabs[4]:  # Contact Tab
+    with tabs[4]: 
         st.markdown(
             """
             <div class="tab-content">
                 <div class="section-header">Contact Us</div>
-                <p>Have questions or feedback? Reach out to us!</p>
-                <ul>
-                <li>Email: support@deepfake-detection.com</li>
-                <li>Phone: +123 456 789</li>
-                <li>Address: 123 Main St, City, Country</li>
-                </ul>
-                
-            </div> <!-- End of the transparent box -->
+                <p>For inquiries or support, please contact us at:</p>
+                <p>📧 23054196@siswa.um.edu.com"</p>
+            </div>
+            
             """, 
             unsafe_allow_html=True
         )
 
-# Run the app
+
+
+# Run the main function
 if __name__ == "__main__":
     main()
