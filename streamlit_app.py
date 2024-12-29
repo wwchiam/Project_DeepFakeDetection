@@ -326,7 +326,7 @@ def main():
                     """
                     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
                         <div class="question-box" style="text-align: left;">
-                            <!-- Question (radio button) -->
+                
                             <label for="deepfake_question_{idx}" style="color: #FFFFFF; font-size: 18px;">
                                 Is this a deepfake? (Image {idx + 1})
                             </label>
