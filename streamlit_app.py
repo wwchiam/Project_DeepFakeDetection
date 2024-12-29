@@ -16,6 +16,54 @@ st.set_page_config(
 )
 
 # Global CSS Styling with Background Image and button/radio styling
+import streamlit as st
+
+# Inject custom CSS for transparent black background on various widgets
+st.markdown("""
+    <style>
+        /* Custom transparent black background for the whole app */
+        .css-1v0mbdj {  /* Tab content */
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+        }
+
+        /* Custom transparent black background for the radio button widget */
+        .stRadio > div > label {
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Custom transparent black background for the file uploader widget */
+        .stFileUploader > div {
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            border-radius: 5px;
+        }
+
+        /* Custom transparent background for other Streamlit elements like buttons */
+        .stButton > button {
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Apply transparent background to other form elements if needed */
+        .stTextInput > div > div {
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Make sure text inputs also have transparent black background */
+        .stTextArea > div > div {
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
 st.markdown(
     """
     <style>
