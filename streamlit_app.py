@@ -171,31 +171,24 @@ def main():
     # Detection Tab
     # Detection Tab
     with tabs[2]:
-        # Overall container with a transparent background and a subtle box shadow
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);">
-                <div class="section-header" style="color: white; font-size: 24px; font-weight: bold; margin-bottom: 20px;">Upload an Image for Detection</div>
-                <p style="color: white; font-size: 16px; margin-bottom: 20px;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
-            
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="flex: 1; padding-right: 10px;">
-                        <div class="section-header" style="color: white;">Image Upload</div>
-                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
-                    </div>
-                    <div style="flex: 1; padding-left: 10px;">
-                        <div class="section-header" style="color: white;">Detection Settings</div>
-                        <p style="color: white;">Adjust the sensitivity and click Detect to check if the image is a deepfake.</p>
-                    </div>
-                </div>
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                <div class="section-header" style="color: white;">Upload an Image for Detection</div>
+                <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
+    
+            <div style="display: flex; justify-content: space-between;">
+                <div style="flex: 1; padding-right: 10px;">
+                    <div class="section-header" style="color: white;">Image Upload</div>
+                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
         """, 
-        unsafe_allow_html=True
-    )
+            unsafe_allow_html=True
+        )
     
-        # Create two columns for left (image upload and settings) and right (result display)
-        col1, col2 = st.columns([1, 2])  # Left column for controls, right for result
+        # Create two columns for left (image upload) and right (result)
+        col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
     
-        with col1:  # Left column for image upload and settings
+        with col1:  # Left column for image upload
             # File Uploader (Streamlit Widget)
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
     
@@ -213,13 +206,13 @@ def main():
                 step=0.05, 
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
-    
-            # Style the 'Detect Deepfake' button with a red color
+            
+            # Style the 'Detect Deepfake' button with red color
             st.markdown(
                 """
                 <style>
                     .stButton>button {
-                        background-color: #e74c3c; /* McKinsey-style red */
+                        background-color: red;
                         color: white;
                         font-size: 18px;
                         border-radius: 8px;
@@ -228,7 +221,7 @@ def main():
                         cursor: pointer;
                     }
                     .stButton>button:hover {
-                        background-color: #c0392b;
+                        background-color: darkred;
                     }
                 </style>
                 """, unsafe_allow_html=True
@@ -236,11 +229,11 @@ def main():
             
             # Detect Button 
             detect_button = st.button("Detect Deepfake")
-            
+    
         with col2:  # Right column for results (initially empty)
-            # Displaying the uploaded image (if available)
             if uploaded_file:
-                st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
+                # Displaying the uploaded image (if available) in the right column with smaller size
+                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=300)
             
             # Displaying the results (probability and classification)
             if uploaded_file and detect_button:
@@ -264,7 +257,14 @@ def main():
                             # Determine if the image is fake based on the threshold
                             result = 'Fake' if predicted_prob > sensitivity else 'Real'
                             st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
-                            
+    
+                            # White styled text for report question
+                            st.markdown(
+                                """
+                                <p style="color: white;">Would you like to report this image as a deepfake?</p>
+                                """, unsafe_allow_html=True
+                            )
+    
                             # Option to report fake image
                             report_fake = st.radio(
                                 "Would you like to report this image as a deepfake?", 
@@ -283,8 +283,7 @@ def main():
             st.text_area("Leave a comment (optional)", height=100)
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
-
-
+    
 
     # Technology Tab
     with tabs[3]: 
