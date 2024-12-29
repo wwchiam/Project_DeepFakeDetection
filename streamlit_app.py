@@ -209,84 +209,70 @@ def main():
             )
     
         
-            # # Add custom CSS for tooltip (help) icon color
-            # st.markdown(
-            #     """
-            #     <style>
-            #         /* Styling tooltips to be white */
-            #         .stTooltip {
-            #             color: white !important;
-            #         }
-    
-            #         /* Styling the slider */
-            #         .stSlider .st-bc {
-            #             background-color: rgba(0, 0, 0, 0.7) !important;
-            #             padding: 10px !important;
-            #             border-radius: 10px !important;
-            #             margin-top: -50px !important; /* Adjust margin for alignment */
-            #         }
-    
-            #         /* Styling the slider handle */
-            #         .stSlider .st-bd {
-            #             background-color: white;
-                        
-            #         }
-    
-            #         /* Styling the Detect button */
-            #         .stButton>button {
-            #             background-color: red;
-            #             color: black;
-            #             font-size: 18px;
-            #             border-radius: 8px;
-            #             border: none;
-            #             padding: 10px 20px;
-            #             cursor: pointer;
-            #         }
-    
-            #         /* Hover effect for the button */
-            #         .stButton>button:hover {
-            #             background-color: darkred;
-            #         }
-    
-            #         /* Styling the Radio Buttons */
-            #         .stRadio>label {
-            #             color: white;
-            #         }
-    
-            #         /* Styling the comment box */
-            #         .stTextArea>label {
-            #             color: white;
-            #         }
-    
-            #         /* Styling the file uploader label */
-            #         .stFileUploader>label {
-            #             color: white !important;
-            #         }
-    
-            #         /* Making sure sliders are visible */
-            #         .stSlider div {
-            #             color: white;
-            #         }
-            #     </style>
-            #     """, 
-            #     unsafe_allow_html=True
-            # )
-
-            # Add CSS to align the file uploader visually within the black box
+            # Add custom CSS for tooltip (help) icon color
             st.markdown(
                 """
                 <style>
-                    .stslider {
+                    /* Styling tooltips to be white */
+                    .stTooltip {
+                        color: white !important;
+                    }
+    
+                    /* Styling the slider */
+                    .stSlider .st-bc {
                         background-color: rgba(0, 0, 0, 0.7) !important;
                         padding: 10px !important;
                         border-radius: 10px !important;
                         margin-top: -50px !important; /* Adjust margin for alignment */
                     }
+    
+                    /* Styling the slider handle */
+                    .stSlider .st-bd {
+                        background-color: white;
+                        
+                    }
+    
+                    /* Styling the Detect button */
+                    .stButton>button {
+                        background-color: red;
+                        color: black;
+                        font-size: 18px;
+                        border-radius: 8px;
+                        border: none;
+                        padding: 10px 20px;
+                        cursor: pointer;
+                    }
+    
+                    /* Hover effect for the button */
+                    .stButton>button:hover {
+                        background-color: darkred;
+                    }
+    
+                    /* Styling the Radio Buttons */
+                    .stRadio>label {
+                        color: white;
+                    }
+    
+                    /* Styling the comment box */
+                    .stTextArea>label {
+                        color: white;
+                    }
+    
+                    /* Styling the file uploader label */
+                    .stFileUploader>label {
+                        color: white !important;
+                    }
+    
+                    /* Making sure sliders are visible */
+                    .stSlider div {
+                        color: white;
+                    }
                 </style>
-                """,
+                """, 
                 unsafe_allow_html=True
             )
-    
+
+
     
             # Sensitivity Slider (Streamlit Widget)
             sensitivity = st.slider(
@@ -345,34 +331,58 @@ def main():
                                 """, unsafe_allow_html=True
                             )
     
-                            # Option to report fake image
-                            report_fake = st.radio(
-                                "",  # No need to repeat the question here
-                                ["Yes", "No"], 
-                                index=1,
-                                help="Select 'Yes' to report the image as a deepfake"
-                            )
+                            # # Option to report fake image
+                            # report_fake = st.radio(
+                            #     "",  # No need to repeat the question here
+                            #     ["Yes", "No"], 
+                            #     index=1,
+                            #     help="Select 'Yes' to report the image as a deepfake"
+                            # )
     
+                            # # Comment box for feedback or additional notes
+                            # comment = st.text_area("Leave a comment (optional)", height=100)
+    
+                            # # Submit Button
+                            # submit_button = st.button("Submit Report")
+
+                            # Option to report fake image using a dropdown
+                            report_fake = st.selectbox(
+                                "Would you like to report this image as a deepfake?", 
+                                ["No", "Yes"], 
+                                index=0, 
+                                help="Select 'Yes' to report the image as a deepfake."
+                            )
+                            
                             # Comment box for feedback or additional notes
                             comment = st.text_area("Leave a comment (optional)", height=100)
-    
+                            
                             # Submit Button
                             submit_button = st.button("Submit Report")
-    
-                            # Check if the submit button is clicked
+                            
                             if submit_button:
                                 if report_fake == "Yes":
-                                    # Here you can handle the report and comment submission logic
-                                    report_fake_image()  # Example: Send the report for the fake image
+                                    # Handle the report submission logic
+                                    report_fake_image()
                                     st.success("Report submitted successfully!")
+                                if comment:
+                                    # Handle the comment submission logic
+                                    st.info(f"Your comment: {comment}")
+
     
-                                # Save or handle the comment
-                                st.text_area("Your comment: " + comment)
+                #             # Check if the submit button is clicked
+                #             if submit_button:
+                #                 if report_fake == "Yes":
+                #                     # Here you can handle the report and comment submission logic
+                #                     report_fake_image()  # Example: Send the report for the fake image
+                #                     st.success("Report submitted successfully!")
     
-                        except Exception as e:
-                            st.error(f"Error during prediction: {e}")
-                else:
-                    st.warning("Please upload a valid image.")
+                #                 # Save or handle the comment
+                #                 st.text_area("Your comment: " + comment)
+    
+                #         except Exception as e:
+                #             st.error(f"Error during prediction: {e}")
+                # else:
+                #     st.warning("Please upload a valid image.")
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
 
