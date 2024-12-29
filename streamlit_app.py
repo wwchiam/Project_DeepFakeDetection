@@ -216,6 +216,22 @@ def main():
                 
                 # Title and Instructions for Reporting
                 st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
+
+                st.markdown("""
+                        <style>
+                        .stRadio > label {
+                            color: white !important;  /* Ensures that the radio buttons text is white */
+                        }
+                        .stRadio input[type="radio"]:checked + label {
+                            color: white !important;  /* Ensures selected radio option is white */
+                        }
+                        .stRadio label:hover {
+                            color: #4a90e2 !important;  /* Optional: change color on hover */
+                        }
+                        </style>
+                    """, unsafe_allow_html=True)
+
+                
                 
                 # Radio buttons for reporting (Yes / No)
                 st.session_state.report_fake = st.radio(
