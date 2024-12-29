@@ -313,14 +313,14 @@ def main():
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
         
         with col1:  # Left column for upload and detection controls
-            # st.markdown(
-            #     """
-            #     <div class="section-header">Image Upload</div>
-            #     <p>Upload a JPG, JPEG, or PNG image for detection.</p>
-            #     """, 
-            #     unsafe_allow_html=True
-            # )
-            uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG) for detection", type=["jpg", "jpeg", "png"])
+            st.markdown(
+                """
+                <div class="section-header">Image Upload</div>
+                <p>Upload a JPG, JPEG, or PNG image for detection.</p>
+                """, 
+                unsafe_allow_html=True
+            )
+            uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
             
             # Add a note above the slider for recommended threshold
             st.markdown(
