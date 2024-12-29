@@ -169,7 +169,7 @@ def report_fake_image():
 # Main Functionality
 def main():
     # Tab Layout
-    tabs = st.tabs(["About", "What is Deepfake", "Detection", "Technology", "Contact Us"])
+    tabs = st.tabs(["About Us", "What is Deepfake", "Detection", "Technology", "Contact Us"])
     
     with tabs[0]:  # About Tab
         st.markdown(
@@ -210,20 +210,21 @@ def main():
     #     )
          
     # Usage Tab
+    # Inside the What is Deepfake Tab
     with tabs[1]: 
         st.markdown(
-                    """
-                    <div class="tab-content">
-                        <div class="section-header">What is Deepfake?</div>
-                        <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
-                        The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
-                        
-                    <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                        <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
-            
-                    """, 
-                    unsafe_allow_html=True
-                )
+            """
+            <div class="tab-content">
+                <div class="section-header">What is Deepfake?</div>
+                <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
+                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
+                
+            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+    
+            """, 
+            unsafe_allow_html=True
+        )
     
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
@@ -231,6 +232,28 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
+        
+        # Add a dummy radio button that will be invisible (to ensure no pre-selection)
+        st.markdown(
+            """
+            <style>
+                /* Hide the dummy radio button */
+                div[role=radiogroup] .st-cs:first-of-type {
+                    visibility: hidden;
+                    height: 0px;
+                }
+            </style>
+            """, 
+            unsafe_allow_html=True
+        )
+        
+        # Dummy radio button for default unselected state (no selection)
+        st.radio(
+            "Dummy selection to ensure no pre-selected option", 
+            ["Dummy"],  # Single option for the dummy
+            key="dummy_radio", 
+            index=0  # This makes the dummy option selected by default but hidden
+        )
     
         # User answers
         answers = []
@@ -238,19 +261,21 @@ def main():
     
         for idx, image_url in enumerate(deepfake_images):
             st.image(image_url, caption=f"Image {idx + 1}", width=400)
+            
+            # Actual deepfake detection radio buttons
             answer = st.radio(
                 f"Is this a deepfake? (Image {idx + 1})", 
                 ["Yes", "No"],
-                key=f"question_{idx}"
+                key=f"question_{idx}"  # Each question should have a unique key
             )
-        
+    
             # Store the answers
             answers.append(answer)
-        
+    
             # Calculate score (assumes the correct answer is "Yes" for all images)
             if answer == "Yes":  # Assuming all images are deepfakes in this case
                 score += 1
-        
+    
         if len(answers) == len(deepfake_images):
             st.markdown(f"Your score: {score}/3")
             if score == 3:
@@ -267,6 +292,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+
 
     
     # Detection Tab
