@@ -177,11 +177,11 @@ def main():
                 <div class="section-header">Upload an Image for Detection</div>
                 <p>Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
             </div>
-        """, 
-        unsafe_allow_html=True
+            """, 
+            unsafe_allow_html=True
         )
     
-        # Create the transparent box for the entire content of this tab
+        # Begin transparent box for the entire tab content
         st.markdown(
             """
             <div class="tab-content">
@@ -264,12 +264,14 @@ def main():
                 else:
                     st.warning("Please upload an image to proceed.")
         
+        # End transparent box for the entire tab content
         st.markdown(
             """
             </div> <!-- End of the transparent box -->
             """, 
             unsafe_allow_html=True
         )
+    
 
 
     # Technology Tab
