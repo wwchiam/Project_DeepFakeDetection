@@ -405,6 +405,7 @@ def main():
     # Detection Tab
 
     # Detection Tab
+    # Detection Tab
     with tabs[2]:
         
         # Layout with two columns
@@ -476,19 +477,20 @@ def main():
                                     
                                     # Maintain session state for radio button and comment box
                                     if "agree" not in st.session_state:
-                                        st.session_state.agree = "I'm not sure"  # Default to "I'm not sure"
+                                        st.session_state.agree = "No"  # Default to "No"
                                     
-                                    # Radio button and comment box
+                                    # Radio button for "Yes" or "No"
                                     agree = st.radio(
                                         "Would you like to report this image as a deepfake?", 
-                                        ["Yes", "No", "I'm not sure"],  # Added "I'm not sure"
-                                        index=["Yes", "No", "I'm not sure"].index(st.session_state.agree),  # Preserve the previous choice
+                                        ["Yes", "No"],  # Only "Yes" and "No" options
+                                        index=["Yes", "No"].index(st.session_state.agree),  # Preserve the previous choice
                                         key="agree_radio"
                                     )
                                     
                                     # Save the radio button choice in session state
                                     st.session_state.agree = agree
                                     
+                                    # Comment box
                                     comment = st.text_area(
                                         "Leave a comment (optional):", 
                                         placeholder="Please enter your comment here.",
@@ -496,15 +498,21 @@ def main():
                                         value=st.session_state.get("comment_text", "")  # Retrieve comment from session state
                                     )
                                     
+                                    # Submit button for comment
+                                    if st.button("Submit Comment"):
+                                        if comment:
+                                            # Save the comment in session state
+                                            st.session_state.comment_text = comment
+                                            st.write(f"**Comment:** {comment}")
+                                        else:
+                                            st.warning("Please enter a comment before submitting.")
+                                            
                                     # Handle the reporting logic after the radio selection
                                     if agree == "Yes":
                                         report_fake_image()  # Call your function to report fake images
                                         st.write(f"**Comment:** {comment}" if comment else "")
                                     elif agree == "No":
                                         st.write("Thank you for your feedback.")
-                                        st.write(f"**Comment:** {comment}" if comment else "")
-                                    elif agree == "I'm not sure":
-                                        st.write("You are unsure about the image.")
                                         st.write(f"**Comment:** {comment}" if comment else "")
                             except Exception as e:
                                 st.error(f"Error during prediction: {e}")
@@ -520,6 +528,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+
     
 
 
