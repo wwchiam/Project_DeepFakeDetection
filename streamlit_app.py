@@ -543,7 +543,7 @@ def main():
         
         with kpi3:
             st.markdown("**% Deepfake Detected**")
-            number3 = 70% 
+            number3 = '70%'
             st.markdown(f"<h1 style='text-align: center; color: red;'>{number3}</h1>", unsafe_allow_html=True)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
