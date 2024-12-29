@@ -233,13 +233,13 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
         
-        # Add CSS for background styling and hiding the "Dummy" option
+        # Add CSS for black transparent background and hiding the "Dummy" option
         st.markdown(
             """
             <style>
-                /* Style for the background of each question */
+                /* Style for the background of each question with a black transparent box */
                 .tab-content {
-                    background-color: rgba(255, 255, 255, 0.9);  /* Light transparent white background */
+                    background-color: rgba(0, 0, 0, 0.5);  /* Black transparent background */
                     padding: 20px;
                     border-radius: 8px;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -247,11 +247,12 @@ def main():
                 }
     
                 .question-box {
-                    background-color: #ffffff;  /* White background */
+                    background-color: rgba(0, 0, 0, 0.8);  /* Black transparent background */
                     padding: 10px;
                     border-radius: 8px;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     margin-bottom: 20px;
+                    color: white;  /* Text color inside the box */
                 }
     
                 /* Hide the dummy radio button */
@@ -310,7 +311,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-    
+
         
     # Detection Tab
     # Detection Tab
