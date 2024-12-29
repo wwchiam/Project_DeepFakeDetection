@@ -533,8 +533,19 @@ def main():
     # Dashboard Tab
     # Dashboard Tab
     # Dashboard Tab
-    with tabs[4]:
+    # Sample country data with submissions and coordinates
+    country_data = {
+        'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
+        'Submissions': [130, 95, 70, 120, 85, 60, 40, 50, 55, 100],
+        'Latitude': [37.0902, 4.2105, 20.5937, 35.8617, 1.3521, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],  # Corrected Malaysia and Singapore coords
+        'Longitude': [-95.7129, 101.9758, 78.9629, 104.1954, 103.8198, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]  # Corrected Malaysia and Singapore coords
+    }
     
+    # Convert to DataFrame
+    country_df = pd.DataFrame(country_data)
+    
+    # Streamlit app
+    with st.container():
         ##################### Statistic Section #####################
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
@@ -571,8 +582,7 @@ def main():
         
         st.markdown("<hr/>", unsafe_allow_html=True)
         
-        ##################### Filter #####################
-        # Filters for country and date range (at the top)
+        ##################### Filters #####################
         countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
         selected_countries = st.multiselect("Select Countries", countries, default=countries, key="country_filter")
         
@@ -582,25 +592,17 @@ def main():
         selected_date_range = st.date_input("Select Date Range", [start_date, end_date], key="date_filter")
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-    
-        ##################### Map and Table Layout #####################
-    
-        # Create Mock Data for Deepfake Submissions by Country (with corrected coordinates)
-        country_data = {
-            'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
-            'Submissions': [130, 95, 70, 120, 85, 60, 40, 50, 55, 100],
-            'Latitude': [37.0902, 4.2105, 20.5937, 35.8617, 1.3521, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],  # Corrected Malaysia and Singapore coords
-            'Longitude': [-95.7129, 101.9758, 78.9629, 104.1954, 103.8198, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]  # Corrected Malaysia and Singapore coords
-        }
         
-        # Convert to DataFrame
-        country_df = pd.DataFrame(country_data)
+        ##################### Map and Table Layout #####################
+        
+        # Filter the data for the selected countries (same as table)
+        filtered_country_df = country_df[country_df['Country'].isin(selected_countries)]
         
         # Create the map
         m = folium.Map(location=[20, 0], zoom_start=2)
         
-        # Create the heatmap
-        heat_data = [[row['Latitude'], row['Longitude'], row['Submissions']] for index, row in country_df.iterrows()]
+        # Create the heatmap using the filtered data
+        heat_data = [[row['Latitude'], row['Longitude'], row['Submissions']] for index, row in filtered_country_df.iterrows()]
         HeatMap(heat_data).add_to(m)
         
         # Layout for the map and the table side-by-side
@@ -623,10 +625,8 @@ def main():
             </div>
             """, unsafe_allow_html=True)
             
-            # Filter the data based on selected countries (this will now show data for all selected countries)
-            filtered_data = country_df[country_df['Country'].isin(selected_countries)]
-            
-            # Display the filtered data in the table
+            # Display filtered data in the table (this will be filtered by the country selected)
+            filtered_data = filtered_country_df
             st.write(filtered_data)
             
             # Display message when no data is available
@@ -634,9 +634,9 @@ def main():
                 st.warning(f"No data available for the selected countries in the selected date range.")
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-    
+        
         ##################### Daily Trend Section #####################
-    
+        
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
             <h5 style="color: white;">Daily Trend</h5>
@@ -644,7 +644,7 @@ def main():
         """, unsafe_allow_html=True)
         
         ##################### Simulate Data for Charts #####################
-    
+        
         # Simulate data for the chart (Visitors, Submissions, and Detections)
         num_days = 30  # Number of days for the dataset
         
@@ -665,13 +665,13 @@ def main():
         selected_start_date, selected_end_date = selected_date_range
         selected_start_date = pd.to_datetime(selected_start_date)
         selected_end_date = pd.to_datetime(selected_end_date)
-    
+        
         # Filter data based on the selected date range
         filtered_chart_data1 = chart_data1[(chart_data1.index >= selected_start_date) & (chart_data1.index <= selected_end_date)]
         filtered_chart_data2 = chart_data2[(chart_data2.index >= selected_start_date) & (chart_data2.index <= selected_end_date)]
-    
+        
         ##################### Display Charts #####################
-    
+        
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
             <h5 style="color: white;">Number of Visitors Over Time</h5>
