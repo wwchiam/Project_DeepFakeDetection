@@ -531,6 +531,7 @@ def main():
 
 
     # Dashboard Tab
+    # Dashboard Tab
     with tabs[4]:
         # Filter Section at the Top
         st.markdown("""
@@ -653,7 +654,7 @@ def main():
         submissions = np.random.randint(10, 100, num_days)
         detections = np.random.randint(5, submissions+1, num_days)
         
-        # Filter data based on the selected country and date range
+        # Create the dataframes
         chart_data1 = pd.DataFrame({
             'Visitors': visitors
         }, index=pd.date_range('2024-12-01', periods=num_days))
@@ -662,12 +663,14 @@ def main():
             'Deepfakes Detected': detections
         }, index=pd.date_range('2024-12-01', periods=num_days))
         
-        # --- Filter the chart data based on date range ---
-        filtered_chart_data1 = chart_data1[chart_data1.index >= selected_date_range[0]]
-        filtered_chart_data1 = filtered_chart_data1[filtered_chart_data1.index <= selected_date_range[1]]
+        # Convert selected_date_range to datetime64[ns] for comparison with DataFrame index
+        selected_start_date, selected_end_date = selected_date_range
+        selected_start_date = pd.to_datetime(selected_start_date)
+        selected_end_date = pd.to_datetime(selected_end_date)
     
-        filtered_chart_data2 = chart_data2[chart_data2.index >= selected_date_range[0]]
-        filtered_chart_data2 = filtered_chart_data2[filtered_chart_data2.index <= selected_date_range[1]]
+        # Filter data based on the selected date range
+        filtered_chart_data1 = chart_data1[(chart_data1.index >= selected_start_date) & (chart_data1.index <= selected_end_date)]
+        filtered_chart_data2 = chart_data2[(chart_data2.index >= selected_start_date) & (chart_data2.index <= selected_end_date)]
     
         ##################### Display Charts #####################
     
