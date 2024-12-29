@@ -2,8 +2,6 @@ import streamlit as st
 import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.resnet50 import ResNet50, preprocess_input
-from keras.models import load_model
-import altair as alt
 import plotly.express as px
 
 # Page Title and Config
@@ -96,6 +94,22 @@ st.markdown(
         color: #ffffff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
+
+    /* Custom Button Styling */
+    .stButton {
+        background-color: red !important;
+        color: black !important;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .stButton:hover {
+        background-color: darkred !important;
+    }
+
+    /* Styling for radio buttons and text area */
+    .stRadio, .stTextInput, .stTextArea {
+        color: white !important;
+    }
     </style>
     """, unsafe_allow_html=True
 )
@@ -118,11 +132,6 @@ def preprocess_image(image_file, target_size=(224, 224)):
     except Exception as e:
         st.error(f"Error processing image: {e}")
         return None
-
-# Report Fake Image
-def report_fake_image():
-    """Simulate reporting a deepfake image."""
-    st.success("Thank you for reporting. Your input will help improve our system.")
 
 # Main Functionality
 def main():
@@ -167,7 +176,6 @@ def main():
             unsafe_allow_html=True
         )
          
-
     # Detection Tab
     with tabs[2]:  # Detection Tab
         col1, col2 = st.columns([1, 2])
@@ -219,78 +227,13 @@ def main():
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
                 st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100)
                 
-                # Submit button
-                if st.button("Submit"):
+                # Submit button with red background and black text
+                submit_button = st.button("Submit", key="submit_button")
+
+                if submit_button:
                     if st.session_state.report_fake == "Yes" and st.session_state.comment:
                         st.success("Thank you for reporting. Your input helps improve our system.")
                     elif st.session_state.report_fake == "Yes" and not st.session_state.comment:
                         st.warning("You didn't leave a comment. Your input will be submitted without a comment.")
                     else:
-                        st.success("Thank you! No report was submitted.")
-
-
-
-
-    
-    
-
-    # Technology Tab
-    with tabs[3]: 
-        st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header">Powered by ResNet50</div>
-                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.
-                By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
-                ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
-                
-            <div class="section-header">Model Performance</div>
-                <p>These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
-                <ul>
-                    <li>Accuracy: 79% </li>
-                    <li>Recall: 92% </li>
-                    <li>Precision: 73% </li>
-                    <li>F1-Score: 81% </li>
-                </ul>
-        
-            <div class="section-header">Model Evaluation</div>
-            <div style="text-align: left;">
-                <ul>
-                <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
-                </ul>
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="400" />
-                <br>
-            </div>
-                
-            <div style="text-align: left;">
-                <ul>
-                <br>
-                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
-                </ul>
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
-            </div>
-            </div>
-            """, 
-            unsafe_allow_html=True
-        )
-
-
-    # Contact Us Tab
-    with tabs[4]: 
-        st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header">Contact Us</div>
-                <p>For inquiries or support, please contact us at:</p>
-                <p>📧 23054196@siswa.um.edu.com"</p>
-            </div>
-            
-            """, 
-            unsafe_allow_html=True
-        )
-
-
-
-# Run the main function
-if __name__ == "__main__":
-    main()
+                        st.success("Thank
