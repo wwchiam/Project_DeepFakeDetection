@@ -593,24 +593,20 @@ def main():
     
         else:
             st.write("Please upload a dataset to proceed.")
-    
-# Generate mock-up data for the dashboard
-np.random.seed(42)
-current_time = datetime.now()
-timestamps = [current_time - timedelta(minutes=5 * i) for i in range(50)]
-num_users = [np.random.randint(50, 100) for _ in range(50)]
-detection_counts = [np.random.randint(0, 30) for _ in range(50)]
-        
-mock_data = pd.DataFrame({
-'Timestamp': timestamps,
-'Active Users': num_users,
-'Deepfake Detections': detection_counts
-})
+    # Manually created data for the dashboard
+data = {
+    'Timestamp': [
+        datetime.now() - timedelta(minutes=5 * i) for i in range(10)
+    ],
+    'Active Users': [75, 80, 85, 78, 90, 100, 95, 88, 85, 80],
+    'Deepfake Detections': [10, 12, 8, 9, 15, 18, 14, 13, 11, 9]
+}
 
+
+    manual_data = pd.DataFrame(data)
+    
     # Dashboard Tab
     with tabs[5]:
-  
-
         st.markdown(
             """
             <div class="tab-content">
@@ -624,7 +620,7 @@ mock_data = pd.DataFrame({
         # Show active users over time
         st.markdown("### Active Users Over Time")
         fig, ax = plt.subplots(figsize=(10, 5))
-        sns.lineplot(x=mock_data['Timestamp'], y=mock_data['Active Users'], ax=ax, label='Active Users', color='blue')
+        sns.lineplot(x=manual_data['Timestamp'], y=manual_data['Active Users'], ax=ax, label='Active Users', color='blue')
         ax.set_title("Real-Time Active Users", fontsize=16)
         ax.set_xlabel("Time")
         ax.set_ylabel("Number of Users")
@@ -634,7 +630,7 @@ mock_data = pd.DataFrame({
         # Show deepfake detections over time
         st.markdown("### Deepfake Detections Over Time")
         fig, ax = plt.subplots(figsize=(10, 5))
-        sns.lineplot(x=mock_data['Timestamp'], y=mock_data['Deepfake Detections'], ax=ax, label='Detections', color='red')
+        sns.lineplot(x=manual_data['Timestamp'], y=manual_data['Deepfake Detections'], ax=ax, label='Detections', color='red')
         ax.set_title("Deepfake Detections", fontsize=16)
         ax.set_xlabel("Time")
         ax.set_ylabel("Number of Detections")
@@ -643,15 +639,15 @@ mock_data = pd.DataFrame({
     
         # Show summary statistics
         st.markdown("### Summary Statistics")
-        total_users = mock_data['Active Users'].sum()
-        total_detections = mock_data['Deepfake Detections'].sum()
+        total_users = manual_data['Active Users'].sum()
+        total_detections = manual_data['Deepfake Detections'].sum()
         st.write(f"**Total Active Users Monitored:** {total_users}")
         st.write(f"**Total Deepfake Detections:** {total_detections}")
     
         # Display detection distribution
         st.markdown("### Detection Distribution")
         fig, ax = plt.subplots(figsize=(10, 5))
-        sns.histplot(mock_data['Deepfake Detections'], bins=10, kde=True, color='purple', ax=ax)
+        sns.histplot(manual_data['Deepfake Detections'], bins=10, kde=True, color='purple', ax=ax)
         ax.set_title("Distribution of Deepfake Detections", fontsize=16)
         ax.set_xlabel("Detections")
         ax.set_ylabel("Frequency")
@@ -664,7 +660,7 @@ mock_data = pd.DataFrame({
             """,
             unsafe_allow_html=True
         )
-    
+
 # Run the main function
 if __name__ == "__main__":
     main()
