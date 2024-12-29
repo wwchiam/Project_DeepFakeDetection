@@ -136,14 +136,14 @@ def main():
                 <p>In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users to verify the authenticity of images with just a simple upload. 
                 This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.</p>
                 
-                <div class="section-header">Why It Matters?</div>
-                    <p>Over 8 million deepfake attempts are shared weekly on social media.</p>
-                    <p>Deepfakes fuel misinformation, invade privacy, and undermine trust.</p>
+            <div class="section-header">Why It Matters?</div>
+                <p>Over 8 million deepfake attempts are shared weekly on social media.</p>
+                <p>Deepfakes fuel misinformation, invade privacy, and undermine trust.</p>
     
-                <div class="section-header">How can we help</div>
-                    <p><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</p>
-                    <p><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</p>
-                    <p><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</p>
+            <div class="section-header">How can we help</div>
+                <p><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</p>
+                <p><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</p>
+                <p><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</p>
             </div>
             """, 
             unsafe_allow_html=True
