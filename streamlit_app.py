@@ -202,23 +202,18 @@ def main():
                         border-radius: 10px !important;
                         margin-top: -50px !important; /* Adjust margin for alignment */
                     }
+
+                    .st.slider{
+                        background-color: rgba(0, 0, 0, 0.7) !important;
+                        padding: 10px !important;
+                        border-radius: 10px !important;
+                        margin-top: -50px !important; /* Adjust margin for alignment */
+                    }
                 </style>
                 """,
                 unsafe_allow_html=True
             )
     
-
-        # with col1:  # Left column for image upload and controls
-        #     # Apply custom background and padding
-        #     st.markdown(
-        #         """
-        #         <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; color: white;">
-        #         """, 
-        #         unsafe_allow_html=True
-        #     )
-        
-        #     # File Uploader (Streamlit Widget)
-        #     uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
         
             # Add custom CSS for tooltip (help) icon color
             st.markdown(
