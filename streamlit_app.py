@@ -293,10 +293,12 @@ def main():
             with col1:
                 # Image column
                 st.markdown(f"""
-                <div class="question-box" style="text-align: center;">
-                    <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
-                </div>
-                """, unsafe_allow_html=True)
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                        <div class="question-box" style="text-align: center;">
+                            <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
             
             with col2:
                 # Question column
