@@ -533,19 +533,9 @@ def main():
     # Dashboard Tab
     # Dashboard Tab
     # Dashboard Tab
-    # Sample country data with submissions and coordinates
-    country_data = {
-        'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
-        'Submissions': [130, 95, 70, 120, 85, 60, 40, 50, 55, 100],
-        'Latitude': [37.0902, 4.2105, 20.5937, 35.8617, 1.3521, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],  # Corrected Malaysia and Singapore coords
-        'Longitude': [-95.7129, 101.9758, 78.9629, 104.1954, 103.8198, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]  # Corrected Malaysia and Singapore coords
-    }
+    # Dashboard Tab
+    with tabs[4]:
     
-    # Convert to DataFrame
-    country_df = pd.DataFrame(country_data)
-    
-    # Streamlit app
-    with st.container():
         ##################### Statistic Section #####################
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
@@ -672,6 +662,12 @@ def main():
         
         ##################### Display Charts #####################
         
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+            <h5 style="color: white;">Number of Visitors Over Time</h5>
+        </div>
+        """, unsafe_allow_html=True)
+        
         chart1, chart2 = st.columns(2)
         
         with chart1:
@@ -685,7 +681,7 @@ def main():
         
         st.markdown("<hr/>", unsafe_allow_html=True)
     
-                 
+                     
     # Contact Us Tab
     with tabs[5]:
         st.markdown(
