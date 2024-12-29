@@ -169,7 +169,7 @@ def main():
          
 
     # Detection Tab
-    # Detection Tab
+   # Detection Tab
     with tabs[2]:
         # Overall container with a slightly transparent background, rounded corners, and padding
         st.markdown(
@@ -271,7 +271,7 @@ def main():
             
         # Closing the divs properly
         st.markdown("</div></div></div>", unsafe_allow_html=True)
-    
+
 
 
     # Technology Tab
