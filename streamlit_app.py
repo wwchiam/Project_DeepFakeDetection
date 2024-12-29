@@ -533,24 +533,7 @@ def main():
     # Dashboard Tab
     # Dashboard Tab
     with tabs[4]:
-        # Filter Section at the Top
-        st.markdown("""
-        <div style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
-            <h4 style="color: white; text-align: center;">Filter Data</h4>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Filters for country and date range (at the top)
-        countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
-        selected_country = st.selectbox("Select Country", countries, key="country_filter")
-        
-        today = datetime.today()
-        start_date = today - timedelta(days=30)
-        end_date = today
-        selected_date_range = st.date_input("Select Date Range", [start_date, end_date], key="date_filter")
-        
-        st.markdown("<hr/>", unsafe_allow_html=True)
-    
+
         ##################### Statistic Section #####################
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
@@ -586,6 +569,22 @@ def main():
             """, unsafe_allow_html=True)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
+        
+         #####################filter  #####################
+        # Filters for country and date range (at the top)
+        # Filters for country and date range (at the top)
+        countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
+        selected_countries = st.multiselect("Select Countries", countries, default=countries, key="country_filter")
+
+        
+        today = datetime.today()
+        start_date = today - timedelta(days=30)
+        end_date = today
+        selected_date_range = st.date_input("Select Date Range", [start_date, end_date], key="date_filter")
+        
+        st.markdown("<hr/>", unsafe_allow_html=True)
+    
+
     
         ##################### Map and Table Layout #####################
     
