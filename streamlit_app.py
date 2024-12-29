@@ -877,13 +877,6 @@ def main():
                 st.warning("Please agree to the Privacy Notice before submitting your dataset.")
 
             
-            # Optionally, you can provide a button to confirm submission
-            if st.button("Submit Dataset"):
-                st.success("Thank you for submitting your dataset! We will review it shortly.")
-                # Here you can handle the submission logic, like saving the file or sending it via email
-    
-        else:
-            st.write("Please upload a dataset to proceed.")
 
 # Run the main function
 if __name__ == "__main__":
