@@ -263,19 +263,17 @@ def main():
                     <p>The following visualizations provide insights into the model's performance:</p>
                     <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
                 </ul>
-                
-                <!-- Image below Confusion Matrix description -->
-            <div style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="300" />
+            # Images
+            <div style="text-align: left;">
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="400" />
             </div>
                 
                 <ul>
                     <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
                 </ul>
                 
-                <!-- Image below Learning Curve description -->
             <div style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="300" />
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
             </div>
             </div>
             """, 
