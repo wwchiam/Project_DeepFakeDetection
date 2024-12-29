@@ -143,8 +143,7 @@ def main():
                 <li>Deepfakes fuel misinformation, invade privacy, and undermine trust.</li>
                 </ul>
     
-            <div class="tab-content">
-                <div class="section-header">How can we help</div>
+            <div class="section-header">How can we help</div>
                 <ul>
                     <li><b>Detect & Verify</b><br>
                     Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
@@ -156,13 +155,19 @@ def main():
                     Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
                 </ul>
             </div>
-            
             """, 
             unsafe_allow_html=True
         )
 
+    # Usage Tab
+    with tabs[1]:
+        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
+        st.write("This tab will explain how to use the Deepfake Detection system.")
+        st.markdown('</div>', unsafe_allow_html=True)
+
     # Detection Tab
     with tabs[2]:
+        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
         st.subheader("Upload an Image for Detection")
         
         # Layout with two columns
@@ -229,9 +234,11 @@ def main():
                         st.warning("Please upload a valid image.")
                 else:
                     st.warning("Please upload an image to proceed.")
-                
+        st.markdown('</div>', unsafe_allow_html=True)
+
     # Technology Tab
     with tabs[3]:
+        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
         
         # Technology Overview
@@ -242,52 +249,16 @@ def main():
             ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.
             """
         )
-    
-        # Displaying Metrics
-        st.markdown("<div class='section-header'>Model Performance</div>", unsafe_allow_html=True)
-        st.write(
-            """
-            Below are the key performance metrics of our **ResNet50** model:
-    
-            - **Accuracy**: 79%
-            - **Recall**: 92%
-            - **Precision**: 73%
-            - **F1-Score**: 81%
-            
-            These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.
-            """
-        )
-    
-        # Displaying the Images (Confusion Matrix and Loss Plot)
-        st.markdown("<div class='section-header'>Model Evaluation</div>", unsafe_allow_html=True)
-        st.write(
-            """
-            The following visualizations provide insights into the model's performance:
-            - **Confusion Matrix**: Shows the model's predictions against actual labels, illustrating its accuracy.
-            - **Loss Plot**: Tracks the model's training progress over time, ensuring it converges toward optimal performance.
-            """
-        )
+        st.markdown('</div>', unsafe_allow_html=True)
 
-        # Display Confusion Matrix and Loss Plot Images with controlled size
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
-                 caption="Confusion Matrix", use_container_width =False, width=300)
-        
-        st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
-                 caption="Loss Plot", use_container_width =False, width=300)
-    
-        # Model Insights
-        st.write(
-            """
-            These visualizations highlight key aspects of the model's performance during training and evaluation. The **Confusion Matrix** reveals how well the model distinguishes between real and fake images. The **Loss Plot** demonstrates the model's ability to minimize the error across training epochs, ensuring high precision and accuracy.
-            """
-        )
-    
     # Contact Us Tab
     with tabs[4]:
+        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
         st.markdown('<div class="section-header">Contact Us</div>', unsafe_allow_html=True)
         st.write("For inquiries or support, please contact us at:")
         st.write("📧 support@deepfakedetection.com")
         st.write("💼 Visit our website: [Deepfake Detection](https://www.deepfakedetection.com)")
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # Run the main function
 if __name__ == "__main__":
