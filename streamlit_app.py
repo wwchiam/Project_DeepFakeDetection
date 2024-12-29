@@ -218,14 +218,6 @@ def main():
         # What is Deepfake section
         st.markdown(
             """
-            <style>
-            .tab-content {
-                margin: 0;
-                padding: 0;
-            }
-            .section-header {
-                margin-bottom: 15px;
-            }
             <div class="tab-content">
                 <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">What is Deepfake?</div>
                 <p style="font-size: 16px; color: #FFFFFF;"> 
