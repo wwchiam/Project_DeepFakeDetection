@@ -223,12 +223,14 @@ def main():
                 <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
                 The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
                 </p>
-            </div>
-            """, 
+                
+                <!-- News Section -->
+                <div class="news-container">
+        """, 
             unsafe_allow_html=True
         )
     
-        # Display News Links with Larger Images and Improved Layout in a single line
+        # News Links Data
         news_links = [
             {
                 'title': 'AI and 2024 Elections: What to Expect', 
@@ -253,11 +255,10 @@ def main():
             <style>
                 .news-container {
                     display: flex;
-                    justify-content: space-around;  /* Distribute items evenly */
-                    flex-wrap: nowrap;  /* Prevent wrapping */
+                    justify-content: space-between;  /* Distribute items evenly */
                     gap: 20px;
                     padding: 20px;
-                    align-items: center;
+                    flex-wrap: wrap;  /* Allows wrapping if the screen size is small */
                 }
                 .news-item {
                     background-color: rgba(0, 0, 0, 0.7);
@@ -265,8 +266,8 @@ def main():
                     border-radius: 10px;
                     text-align: center;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    width: 30%; /* Fixed width for consistency */
                     transition: transform 0.3s ease;
-                    width: 250px; /* Fixed width for consistency */
                 }
                 .news-item:hover {
                     transform: scale(1.05);
@@ -294,9 +295,6 @@ def main():
             unsafe_allow_html=True
         )
     
-        # Create a container for the news links
-        st.markdown('<div class="news-container">', unsafe_allow_html=True)
-    
         # Loop through the news articles
         for article in news_links:
             st.markdown(
@@ -309,8 +307,14 @@ def main():
                 unsafe_allow_html=True
             )
     
-        st.markdown('</div>', unsafe_allow_html=True)  # Close the news container
-    
+        st.markdown(
+            """
+            </div> <!-- End of news-container -->
+            </div> <!-- End of tab-content -->
+            """, 
+            unsafe_allow_html=True
+        )
+        
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
             """
