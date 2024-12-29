@@ -672,12 +672,6 @@ def main():
         
         ##################### Display Charts #####################
         
-        st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
-            <h5 style="color: white;">Number of Visitors Over Time</h5>
-        </div>
-        """, unsafe_allow_html=True)
-        
         chart1, chart2 = st.columns(2)
         
         with chart1:
