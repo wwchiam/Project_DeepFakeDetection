@@ -316,11 +316,11 @@ def main():
             st.markdown(
                 """
                 <div class="section-header">Image Upload</div>
-                <p>Upload a JPG, JPEG, or PNG image for detection.</p>
+                # <p>Upload a JPG, JPEG, or PNG image for detection.</p>
                 """, 
                 unsafe_allow_html=True
             )
-            uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
+            uploaded_file = st.file_uploader("Upload a JPG, JPEG, or PNG image for detection.", type=["jpg", "jpeg", "png"])
             
             # Add a note above the slider for recommended threshold
             st.markdown(
