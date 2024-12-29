@@ -143,9 +143,11 @@ def main():
                 </ul>
     
             <div class="section-header">How can we help</div>
-                <p><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</p>
-                <p><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</p>
-                <p><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</p>
+                <ul>
+                <li><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
+                <li><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
+                <li><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
+                </ul>
             </div>
             """, 
             unsafe_allow_html=True
