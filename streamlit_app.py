@@ -177,10 +177,10 @@ def main():
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
     
-            <div style="display: flex; justify-content: space-between;">
-                <div style="flex: 1; padding-right: 10px;">
-                    <div class="section-header" style="color: white;">Image Upload</div>
-                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; padding-right: 10px; color: white;">
+                        <div class="section-header" style="color: white;">Image Upload</div>
+                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
         """, 
             unsafe_allow_html=True
         )
@@ -232,9 +232,9 @@ def main():
     
         with col2:  # Right column for results (initially empty)
             if uploaded_file:
-                # Displaying the uploaded image (if available) in the right column with smaller size
-                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=300)
-            
+                # Displaying the uploaded image (if available) in the right column with optimized size
+                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=350)
+    
             # Displaying the results (probability and classification)
             if uploaded_file and detect_button:
                 # Processing the uploaded file
@@ -269,7 +269,8 @@ def main():
                             report_fake = st.radio(
                                 "Would you like to report this image as a deepfake?", 
                                 ["Yes", "No"], 
-                                index=1
+                                index=1,
+                                help="Select 'Yes' to report the image as a deepfake"
                             )
                             if report_fake == "Yes":
                                 report_fake_image()
@@ -283,7 +284,7 @@ def main():
             st.text_area("Leave a comment (optional)", height=100)
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
-    
+
 
     # Technology Tab
     with tabs[3]: 
