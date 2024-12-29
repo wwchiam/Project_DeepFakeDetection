@@ -6,6 +6,9 @@ from keras.applications.resnet50 import ResNet50, preprocess_input
 from keras.models import load_model
 import altair as alt
 import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime, timedelta
 
 # Page Title and Config
 st.set_page_config(
@@ -591,6 +594,76 @@ def main():
         else:
             st.write("Please upload a dataset to proceed.")
     
+
+
+    # Generate mock-up data for the dashboard
+    np.random.seed(42)
+    current_time = datetime.now()
+    timestamps = [current_time - timedelta(minutes=5 * i) for i in range(50)]
+    num_users = [np.random.randint(50, 100) for _ in range(50)]
+    detection_counts = [np.random.randint(0, 30) for _ in range(50)]
+    
+    mock_data = pd.DataFrame({
+        'Timestamp': timestamps,
+        'Active Users': num_users,
+        'Deepfake Detections': detection_counts
+    })
+    
+    # Dashboard Tab
+    with tabs[5]:
+        st.markdown(
+            """
+            <div class="tab-content">
+                <div class="section-header" style="font-size: 24px; font-weight: bold;">Dashboard</div>
+                <p style="font-size: 16px;">Monitor system performance and deepfake statistics in real-time.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        # Show active users over time
+        st.markdown("### Active Users Over Time")
+        fig, ax = plt.subplots(figsize=(10, 5))
+        sns.lineplot(x=mock_data['Timestamp'], y=mock_data['Active Users'], ax=ax, label='Active Users', color='blue')
+        ax.set_title("Real-Time Active Users", fontsize=16)
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Number of Users")
+        ax.legend()
+        st.pyplot(fig)
+    
+        # Show deepfake detections over time
+        st.markdown("### Deepfake Detections Over Time")
+        fig, ax = plt.subplots(figsize=(10, 5))
+        sns.lineplot(x=mock_data['Timestamp'], y=mock_data['Deepfake Detections'], ax=ax, label='Detections', color='red')
+        ax.set_title("Deepfake Detections", fontsize=16)
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Number of Detections")
+        ax.legend()
+        st.pyplot(fig)
+    
+        # Show summary statistics
+        st.markdown("### Summary Statistics")
+        total_users = mock_data['Active Users'].sum()
+        total_detections = mock_data['Deepfake Detections'].sum()
+        st.write(f"**Total Active Users Monitored:** {total_users}")
+        st.write(f"**Total Deepfake Detections:** {total_detections}")
+    
+        # Display detection distribution
+        st.markdown("### Detection Distribution")
+        fig, ax = plt.subplots(figsize=(10, 5))
+        sns.histplot(mock_data['Deepfake Detections'], bins=10, kde=True, color='purple', ax=ax)
+        ax.set_title("Distribution of Deepfake Detections", fontsize=16)
+        ax.set_xlabel("Detections")
+        ax.set_ylabel("Frequency")
+        st.pyplot(fig)
+    
+        st.markdown(
+            """
+            <div class="section-header" style="font-size: 18px; font-weight: bold;">Insights:</div>
+            <p style="font-size: 16px;">Our system is actively monitoring users and detecting deepfakes in real-time. The visualized trends provide key insights into usage patterns and system performance.</p>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 # Run the main function
