@@ -545,8 +545,6 @@ def main():
     # Convert to DataFrame
     country_df = pd.DataFrame(country_data)
     
-    # Streamlit app
-    tabs = st.tabs(["Dashboard", "About", "Data", "Visualization", "Statistics", "Contact Us"])
     
     # Dashboard Tab
     with tabs[4]:
