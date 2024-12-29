@@ -535,7 +535,7 @@ def main():
     with tabs[4]:
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <h2 style="color: white;">Overall Trend</h2>
+            <div class="section-header">Statistic Today</div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -544,6 +544,7 @@ def main():
         
         with kpi1:
             st.markdown("""
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
                 <p style="color: white; text-align: center;">**Total Visitors today**</p>
                 <h1 style="text-align: center; color: #1E90FF;">111</h1>
@@ -552,6 +553,7 @@ def main():
         
         with kpi2:
             st.markdown("""
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
                 <p style="color: white; text-align: center;">**Total Submission**</p>
                 <h1 style="text-align: center; color: #1E90FF;">130</h1>
@@ -560,6 +562,7 @@ def main():
         
         with kpi3:
             st.markdown("""
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
                 <p style="color: white; text-align: center;">**% Deepfake Detected**</p>
                 <h1 style="text-align: center; color: #FF6347;">70%</h1>
@@ -567,14 +570,8 @@ def main():
             """, unsafe_allow_html=True)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-    
-        st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <h3 style="color: white;">Daily Trend</h3>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Filters for country and date range
+
+         # Filters for country and date range
         st.markdown("### Filter Data", unsafe_allow_html=True)
         
         countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
@@ -586,13 +583,9 @@ def main():
         selected_date_range = st.date_input("Select Date Range", [start_date, end_date])
     
         st.markdown("<hr/>", unsafe_allow_html=True)
+
+##################### Mapsss
     
-        st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <h3 style="color: white;">Deepfake Submissions by Country</h3>
-        </div>
-        """, unsafe_allow_html=True)
-        
         # Create Mock Data for Deepfake Submissions by Country (with corrected coordinates)
         country_data = {
             'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
@@ -625,7 +618,8 @@ def main():
         
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <h3 style="color: white;">Summary of Submissions</h3>
+            <div class="section-header">Daily Trend</div>
+            
         </div>
         """, unsafe_allow_html=True)
         
@@ -636,6 +630,8 @@ def main():
         # Display message when no data is available
         if filtered_data.empty:
             st.warning(f"No data available for {selected_country} in the selected date range.")
+
+##################### Charts
         
         # Simulate data for the chart (Visitors, Submissions, and Detections)
         num_days = 30  # Number of days for the dataset
