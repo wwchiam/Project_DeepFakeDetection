@@ -243,28 +243,67 @@ def main():
             }
         ]
     
+        # Display News Links in a Catalog Style
+        st.markdown(
+            """
+            <style>
+                .news-container {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                }
+                .news-item {
+                    background-color: rgba(0, 0, 0, 0.7);
+                    padding: 15px;
+                    border-radius: 8px;
+                    width: 30%;
+                    text-align: center;
+                }
+                .news-item img {
+                    width: 80px;
+                    height: 80px;
+                    margin-bottom: 10px;
+                }
+                .news-item a {
+                    font-size: 16px;
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                .news-item a:hover {
+                    color: #4a90e2;
+                }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        # Create a container for the news links
+        st.markdown('<div class="news-container">', unsafe_allow_html=True)
+    
+        # Loop through the news articles
         for article in news_links:
             st.markdown(
                 f"""
-                <div class="tab-content">
-                <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                    <img src="{article['icon']}" alt="{article['title']}" width="30" style="margin-right: 10px;" />
-                    <a href="{article['url']}" target="_blank" style="font-size: 18px; color: #4a90e2; text-decoration: none;">
-                        {article['title']}
-                    </a>
+                <div class="news-item">
+                    <img src="{article['icon']}" alt="{article['title']}"/>
+                    <a href="{article['url']}" target="_blank">{article['title']}</a>
                 </div>
                 """, 
                 unsafe_allow_html=True
             )
-
-        st.markdown(
-            """
-            <div class="tab-content">
-            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
-            """, 
-            unsafe_allow_html=True
-        )
+    
+        st.markdown('</div>', unsafe_allow_html=True)  # Close the news container
+    
+            st.markdown(
+                """
+                <div class="tab-content">
+                <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+                    <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+                """, 
+                unsafe_allow_html=True
+            )
         
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
