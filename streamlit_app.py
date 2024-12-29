@@ -236,4 +236,64 @@ def main():
                     elif st.session_state.report_fake == "Yes" and not st.session_state.comment:
                         st.warning("You didn't leave a comment. Your input will be submitted without a comment.")
                     else:
-                        st.success("Thank
+                        st.success("Thank you! No report was submitted.")
+            
+    # Technology Tab
+    with tabs[3]: 
+        st.markdown(
+            """
+            <div class="tab-content">
+                <div class="section-header">Powered by ResNet50</div>
+                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.
+                By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
+                ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
+                
+            <div class="section-header">Model Performance</div>
+                <p>These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
+                <ul>
+                    <li>Accuracy: 79% </li>
+                    <li>Recall: 92% </li>
+                    <li>Precision: 73% </li>
+                    <li>F1-Score: 81% </li>
+                </ul>
+        
+            <div class="section-header">Model Evaluation</div>
+            <div style="text-align: left;">
+                <ul>
+                <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
+                </ul>
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="400" />
+                <br>
+            </div>
+                
+            <div style="text-align: left;">
+                <ul>
+                <br>
+                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
+                </ul>
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
+            </div>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+
+
+    # Contact Us Tab
+    with tabs[4]: 
+        st.markdown(
+            """
+            <div class="tab-content">
+                <div class="section-header">Contact Us</div>
+                <p>For inquiries or support, please contact us at:</p>
+                <p>📧 23054196@siswa.um.edu.com"</p>
+            </div>
+            
+            """, 
+            unsafe_allow_html=True
+        )
+
+
+# Run the main function
+if __name__ == "__main__":
+    main()
