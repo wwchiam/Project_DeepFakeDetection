@@ -212,18 +212,18 @@ def main():
     # Usage Tab
     with tabs[1]: 
         st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header">What is Deepfake?</div>
-                <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
-                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
-
-                <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
-            </div>
-            """, 
-            unsafe_allow_html=True
-        )
+                    """
+                    <div class="tab-content">
+                        <div class="section-header">What is Deepfake?</div>
+                        <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
+                        The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
+                        
+                    <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+                        <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            
+                    """, 
+                    unsafe_allow_html=True
+                )
     
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
