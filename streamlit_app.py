@@ -297,6 +297,53 @@ def main():
                 """, 
                 unsafe_allow_html=True
             ):
+                # Display the image using Streamlit's st.image() for better control
+                st.image(image_url, caption=f"Image {idx + 1}", width=400)
+    
+                # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
+                answer = st.radio(
+                    f"Is this a deepfake? (Image {idx + 1})", 
+                    ["Yes", "No", "I'm not sure"],  
+                    key=f"question_{idx}", 
+                    index=2  # Default to "I'm not sure" (index 2)
+                )
+    
+            # Store the answers
+            answers.append(answer)
+    
+            # Calculate score (assumes the correct answer is "Yes" for all images)
+            if answer == "Yes":  # Assuming all images are deepfakes in this case
+                score += 1
+    
+        if len(answers) == len(deepfake_images):
+            st.markdown(f"Your score: {score}/3")
+            if score == 3:
+                st.success("Excellent! You correctly identified all the deepfakes.")
+            elif score == 2:
+                st.warning("Good job! You got 2 out of 3 correct.")
+            else:
+                st.error("Try again! You can improve your ability to spot deepfakes.")
+        
+        # End of the tab content
+        st.markdown(
+            """
+            </div> <!-- End of the transparent box -->
+            """, 
+            unsafe_allow_html=True
+        )
+
+        # User answers
+        answers = []
+        score = 0
+    
+        for idx, image_url in enumerate(deepfake_images):
+            # Wrap each question inside the question-box div with the background styling
+            with st.markdown(
+                """
+                <div class="question-box">
+                """, 
+                unsafe_allow_html=True
+            ):
                 # Display the image using HTML img tag
                 st.markdown(f'<div class="image-box"><img src="{image_url}" width="400" /></div>', unsafe_allow_html=True)
     
