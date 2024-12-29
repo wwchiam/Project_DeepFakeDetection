@@ -183,26 +183,51 @@ def main():
         # Create two columns for left (image upload) and right (result)
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
 
-        with col1:  # Left column for image upload and controls
-            # Apply custom background and padding
+        with col1:
+            # Transparent black box
             st.markdown(
                 """
-                <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; color: white;">
-                """, 
+                <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+                    <p style="color: white; font-size: 16px; margin-bottom: 10px;">Upload an image (JPG, JPEG, PNG):</p>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
         
-            # File Uploader (Streamlit Widget)
-            uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+            # File uploader with CSS to integrate visually
+            uploaded_file = st.file_uploader(
+                "",
+                type=["jpg", "jpeg", "png"]
+            )
         
-            # Sensitivity Slider (Streamlit Widget)
+            # Add CSS to align the file uploader visually within the black box
             st.markdown(
                 """
-                <p style="color: white;">Adjust the sensitivity:</p>
-                """, 
+                <style>
+                    .stFileUploader {
+                        background-color: rgba(0, 0, 0, 0.7) !important;
+                        padding: 10px !important;
+                        border-radius: 10px !important;
+                        margin-top: -50px !important; /* Adjust margin for alignment */
+                    }
+                </style>
+                """,
                 unsafe_allow_html=True
             )
-                
+    
+
+        # with col1:  # Left column for image upload and controls
+        #     # Apply custom background and padding
+        #     st.markdown(
+        #         """
+        #         <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; color: white;">
+        #         """, 
+        #         unsafe_allow_html=True
+        #     )
+        
+        #     # File Uploader (Streamlit Widget)
+        #     uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+        
             # Add custom CSS for tooltip (help) icon color
             st.markdown(
                 """
