@@ -360,7 +360,7 @@ def main():
                             submit_button = st.button("Submit Report")
                             
     
-        st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
+            st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
 
 
     # Technology Tab
