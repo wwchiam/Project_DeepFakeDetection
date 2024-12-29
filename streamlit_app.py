@@ -130,48 +130,20 @@ def main():
     with tabs[0]:  # About Tab
         st.markdown(
             """
-            <style>
-            .transparent-box {
-                background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-                padding: 20px;                      /* Inner padding for spacing */
-                border-radius: 10px;                /* Rounded corners for clean look */
-                color: white;                       /* White text for readability */
-                font-family: 'Arial', sans-serif;   /* Professional font */
-                line-height: 1.6;                   /* Improve line spacing */
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-            }
-            .transparent-box .section-title {
-                font-size: 20px;
-                font-weight: bold;
-                margin-bottom: 10px;
-                text-align: left;
-            }
-            .transparent-box .paragraph {
-                margin-bottom: 15px;
-            }
-            .transparent-box .bullet {
-                margin-left: 20px;
-                list-style-type: disc; /* Ensure bullet points are shown */
-            }
-            </style>
-            
-            <div class="transparent-box">
-                <div class="section-title">About the Platform</div>
-                <div class="paragraph">Welcome to our <b>Deepfake Detection System</b>, your trusted tool for identifying manipulated media.</div>
-                <div class="paragraph">In an age where manipulated media is becoming alarmingly common, our platform empowers users to verify the authenticity of images with just a simple upload. 
-                This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.</div>
+            <div class="tab-content">
+                <div class="section-header">About the Platform</div>
+                <p>Welcome to our <b>Deepfake Detection System</b>, your trusted tool for identifying manipulated media.</p>
+                <p>In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users to verify the authenticity of images with just a simple upload. 
+                This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.</p>
                 
-                <div class="section-title">Why It Matters?</div>
-                <ul class="bullet">
-                    <li>Over 8 million deepfake attempts are shared weekly on social media.</li>
-                    <li>Deepfakes fuel misinformation, invade privacy, and undermine trust.</li>
-                </ul>
-                
-                <div class="section-title">How We Help?</div>
-                <ul class="bullet">
-                    <li><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
-                    <li><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
-                    <li><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
+                <div class="section-header">Why It Matters?</div>
+                    <p>Over 8 million deepfake attempts are shared weekly on social media.</p>
+                    <p>Deepfakes fuel misinformation, invade privacy, and undermine trust.</p>
+    
+                <div class="section-header">How can we help</div>
+                    <p><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</p>
+                    <p><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</p>
+                    <p><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</p>
                 </ul>
             </div>
             """, 
