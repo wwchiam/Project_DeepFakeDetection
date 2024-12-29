@@ -223,10 +223,19 @@ def main():
                     ["Yes", "No"], 
                     index=0 if st.session_state.report_fake == "No" else 1
                 )
+
+                st.markdown("""
+                        <style>
+                        .stTextArea {
+                            width: 400px;
+                        }
+                        </style>
+                    """, unsafe_allow_html=True)
+
                 
                 # Always visible comment box
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
-                st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100, width:400)
+                st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100)
                 
                 # Submit button with red text and border, no background color
                 submit_button = st.button("Submit", key="submit_button")
