@@ -232,19 +232,6 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
         
-        # Add a dummy radio button that will be invisible for each question
-        st.markdown(
-            """
-            <style>
-                /* Hide all radio buttons but keep their functionality */
-                div[role=radiogroup] .st-cs:first-child {
-                    visibility: hidden;
-                    height: 0px;
-                }
-            </style>
-            """, 
-            unsafe_allow_html=True
-        )
     
         # User answers
         answers = []
@@ -253,20 +240,12 @@ def main():
         for idx, image_url in enumerate(deepfake_images):
             st.image(image_url, caption=f"Image {idx + 1}", width=400)
             
-            # Invisible dummy radio button for each question
-            st.radio(
-                f"Dummy selection for Image {idx + 1}", 
-                ["Dummy"],  # Only one option to keep it invisible
-                key=f"dummy_radio_{idx}", 
-                index=0,  # Automatically select the dummy option (hidden from view)
-                help="This is a dummy radio button to ensure no pre-selected state."
-            )
-            
             # Actual deepfake detection radio buttons (Yes, No, and Dummy)
             answer = st.radio(
                 f"Is this a deepfake? (Image {idx + 1})", 
                 ["Yes", "No", "Dummy"],  # Add "Dummy" as the third option
-                key=f"question_{idx}"  # Each question should have a unique key
+                key=f"question_{idx}" , # Each question should have a unique key
+                index=3
             )
     
             # Store the answers
