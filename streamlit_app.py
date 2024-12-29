@@ -2,9 +2,7 @@ import streamlit as st
 import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.resnet50 import ResNet50, preprocess_input
-from keras.models import load_model
 import altair as alt
-import plotly.express as px
 
 # Page Title and Config
 st.set_page_config(
@@ -26,15 +24,14 @@ st.markdown(
         color: #ffffff;
     }
     
-    /* Container for Tab Content */
+    /* General Styling */
     .tab-content {
-        background-color: rgba(0, 0, 0, 0.6);  /* Semi-transparent black background */
+        background-color: rgba(0, 0, 0, 0.6);
         padding: 20px;
         border-radius: 10px;
         margin: 10px 0;
     }
 
-    /* Title Section */
     .title {
         font-size: 48px;
         font-weight: bold;
@@ -53,7 +50,6 @@ st.markdown(
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
 
-    /* Section Headers */
     .section-header {
         font-size: 22px;
         font-weight: bold;
@@ -62,7 +58,6 @@ st.markdown(
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
 
-    /* Adjusted Tab Styling */
     .stTabs div[role="tablist"] {
         justify-content: center !important;
         gap: 20px !important;
@@ -83,14 +78,12 @@ st.markdown(
         color: #ffffff;
     }
 
-    /* File Uploader Styling */
     .stFileUploader label {
         font-size: 18px;
         color: #ffffff;
         font-weight: bold;
     }
 
-    /* Result Styling */
     .result {
         font-size: 22px;
         font-weight: bold;
@@ -122,17 +115,13 @@ def preprocess_image(image_file, target_size=(224, 224)):
         st.error(f"Error processing image: {e}")
         return None
 
-# Report Fake Image
-def report_fake_image():
-    """Simulate reporting a deepfake image."""
-    st.success("Thank you for reporting. Your input will help improve our system.")
-
 # Main Functionality
 def main():
     # Tab Layout
     tabs = st.tabs(["About", "Usage", "Detection", "Technology", "Contact Us"])
     
-    with tabs[0]:  # About Tab
+    # About Tab
+    with tabs[0]:  
         st.markdown(
             """
             <div class="tab-content">
@@ -147,221 +136,64 @@ def main():
                 <li>Deepfakes fuel misinformation, invade privacy, and undermine trust.</li>
                 </ul>
     
-            <div class="section-header">How can we help</div>
-                <li><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
-                <li><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
-                <li><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
+            <div class="section-header">How We Help</div>
+                <ul>
+                <li><b>Detect & Verify:</b> Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
+                <li><b>Report Deepfakes:</b> Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
+                <li><b>Stay Informed:</b> Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
+                </ul>
             </div>
-            
             """, 
             unsafe_allow_html=True
         )
-
+    
     # Usage Tab
     with tabs[1]: 
         st.markdown(
             """
             <div class="tab-content">
-                <div class="section-header">Usage Statistic</div>
-                <p>Thinking...</p>
+                <div class="section-header">Usage Statistics</div>
+                <p>Usage statistics and visualizations will be added here.</p>
             </div>
-            
             """, 
             unsafe_allow_html=True
         )
          
     # Detection Tab
     with tabs[2]:
-    
-        # Create two columns for left (image upload) and right (result)
-        col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
+        col1, col2 = st.columns([1, 2])  # Left (upload) and right (result)
 
         with col1:
-            # Transparent black box
-            st.markdown(
-                """
-                <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
-                    <p style="color: white; font-size: 16px; margin-bottom: 10px;">Upload an image (JPG, JPEG, PNG):</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        
-            # File uploader with CSS to integrate visually
             uploaded_file = st.file_uploader(
-                "",
+                "Upload an image (JPG, JPEG, PNG):",
                 type=["jpg", "jpeg", "png"]
             )
-        
-            # Add CSS to align the file uploader visually within the black box
-            st.markdown(
-                """
-                <style>
-                    .stFileUploader {
-                        background-color: rgba(0, 0, 0, 0.7) !important;
-                        padding: 10px !important;
-                        border-radius: 10px !important;
-                        margin-top: -50px !important; /* Adjust margin for alignment */
-                    }
-                </style>
-                """,
-                unsafe_allow_html=True
-            )
-    
-        
-            # Add custom CSS for tooltip (help) icon color
-            st.markdown(
-                """
-                <style>
-                    /* Styling tooltips to be white */
-                    .stTooltip {
-                        color: white !important;
-                    }
-    
-                    /* Styling the slider */
-                    .stSlider .st-bc {
-                        background-color: rgba(0, 0, 0, 0.7) !important;
-                        padding: 10px !important;
-                        border-radius: 10px !important;
-                        margin-top: -50px !important; /* Adjust margin for alignment */
-                    }
-    
-                    /* Styling the slider handle */
-                    .stSlider .st-bd {
-                        background-color: white;
-                        
-                    }
-    
-                    /* Styling the Detect button */
-                    .stButton>button {
-                        background-color: red;
-                        color: black;
-                        font-size: 18px;
-                        border-radius: 8px;
-                        border: none;
-                        padding: 10px 20px;
-                        cursor: pointer;
-                    }
-    
-                    /* Hover effect for the button */
-                    .stButton>button:hover {
-                        background-color: darkred;
-                    }
-    
-                    /* Styling the Radio Buttons */
-                    .stRadio>label {
-                        color: white;
-                    }
-    
-                    /* Styling the comment box */
-                    .stTextArea>label {
-                        color: white;
-                    }
-    
-                    /* Styling the file uploader label */
-                    .stFileUploader>label {
-                        color: white !important;
-                    }
-    
-                    /* Making sure sliders are visible */
-                    .stSlider div {
-                        color: white;
-                    }
-                </style>
-                """, 
-                unsafe_allow_html=True
-            )
-
-
-    
-            # Sensitivity Slider (Streamlit Widget)
             sensitivity = st.slider(
-                "Select Detection Sensitivity", 
+                "Detection Sensitivity", 
                 min_value=0.1, 
                 max_value=0.9, 
-                value=0.5665,  # Default threshold
-                step=0.05, 
-                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+                value=0.5,  
+                step=0.05
             )
-    
-            # Detect Button 
             detect_button = st.button("Detect Deepfake")
-    
-        with col2:  # Right column for results
-            # Transparent black box
-            st.markdown(
-                """
-                <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
-                    
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            # Displaying the uploaded image (if available) in the right column with optimized size
-            if uploaded_file:
-                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=400)
-    
-            # Displaying the results (probability and classification)
+
+        with col2:
             if uploaded_file and detect_button:
-                # Processing the uploaded file
                 image_array = preprocess_image(uploaded_file)
                 if image_array is not None:
-                    with st.spinner("Analyzing the image..."):
-                        try:
-                            # Use the loaded model to make predictions
-                            prediction = model.predict(image_array)
-                            # Extract the top predicted class and the corresponding probability
-                            predicted_class = np.argmax(prediction[0])
-                            predicted_prob = prediction[0][predicted_class]
-    
-                            # Probability and classification
-                            st.markdown(
-                                f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%",
-                                unsafe_allow_html=True
-                            )
-    
-                            # Determine if the image is fake based on the threshold
-                            result = 'Fake' if predicted_prob > sensitivity else 'Real'
-                            st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
-    
-                            # Report question
-                            st.markdown(
-                                """
-                                <p style="color: white;">Would you like to report this image as a deepfake?</p>
-                                """, unsafe_allow_html=True
-                            )
-    
-                            # # Option to report fake image
-                            # report_fake = st.radio(
-                            #     "",  # No need to repeat the question here
-                            #     ["Yes", "No"], 
-                            #     index=1,
-                            #     help="Select 'Yes' to report the image as a deepfake"
-                            # )
-    
-                            # # Comment box for feedback or additional notes
-                            # comment = st.text_area("Leave a comment (optional)", height=100)
-    
-                            # # Submit Button
-                            # submit_button = st.button("Submit Report")
-
-                            # Option to report fake image using a dropdown
-                            report_fake = st.selectbox(
-                                "Would you like to report this image as a deepfake?", 
-                                ["No", "Yes"], 
-                                index=0, 
-                                help="Select 'Yes' to report the image as a deepfake."
-                            )
-                            
-                            # Comment box for feedback or additional notes
-                            comment = st.text_area("Leave a comment (optional)", height=100, width=400)
-                            
-                            # Submit Button
-                            submit_button = st.button("Submit Report")
-                            
-    
-            st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
-
+                    with st.spinner("Analyzing..."):
+                        prediction = model.predict(image_array)
+                        predicted_prob = prediction[0][np.argmax(prediction)]
+                        result = 'Fake' if predicted_prob > sensitivity else 'Real'
+                        st.image(uploaded_file, caption="Uploaded Image")
+                        st.markdown(
+                            f"### Probability of Fake: {predicted_prob * 100:.2f}%",
+                            unsafe_allow_html=True
+                        )
+                        st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
+                        report_fake = st.selectbox("Report this image?", ["No", "Yes"])
+                        if st.button("Submit Report"):
+                            st.success("Thank you for your feedback!")
 
     # Technology Tab
     with tabs[3]: 
@@ -369,40 +201,22 @@ def main():
             """
             <div class="tab-content">
                 <div class="section-header">Powered by ResNet50</div>
-                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.
-                By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
-                ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
-                
-            <div class="section-header">Model Performance</div>
-                <p>These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
+                <p>Our system is powered by <b>ResNet50</b>, a deep learning model for image classification.</p>
+                <div class="section-header">Performance Metrics</div>
                 <ul>
-                    <li>Accuracy: 79% </li>
-                    <li>Recall: 92% </li>
-                    <li>Precision: 73% </li>
-                    <li>F1-Score: 81% </li>
+                    <li>Accuracy: 79%</li>
+                    <li>Recall: 92%</li>
+                    <li>Precision: 73%</li>
+                    <li>F1-Score: 81%</li>
                 </ul>
-        
-            <div class="section-header">Model Evaluation</div>
-            <div style="text-align: left;">
-                <ul>
-                <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
-                </ul>
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="400" />
-                <br>
-            </div>
-                
-            <div style="text-align: left;">
-                <ul>
-                <br>
-                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
-                </ul>
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
-            </div>
+                <p><b>Confusion Matrix:</b></p>
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" width="400" />
+                <p><b>Learning Curve:</b></p>
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" width="400" />
             </div>
             """, 
             unsafe_allow_html=True
         )
-
 
     # Contact Us Tab
     with tabs[4]: 
@@ -410,15 +224,11 @@ def main():
             """
             <div class="tab-content">
                 <div class="section-header">Contact Us</div>
-                <p>For inquiries or support, please contact us at:</p>
-                <p>📧 23054196@siswa.um.edu.com"</p>
+                <p>Email: 23054196@siswa.um.edu.com</p>
             </div>
-            
             """, 
             unsafe_allow_html=True
         )
-
-
 
 # Run the main function
 if __name__ == "__main__":
