@@ -177,11 +177,11 @@ def main():
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
     
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                    <!-- Left Column for Upload -->
-                    <div style="flex: 1; padding-right: 10px; color: white;">
-                        <div class="section-header" style="color: white;">Image Upload</div>
-                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <!-- Left Column for Upload -->
+                <div style="flex: 1; padding-right: 10px; color: white;">
+                    <div class="section-header" style="color: white;">Image Upload</div>
+                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
             """, 
             unsafe_allow_html=True
         )
@@ -201,18 +201,46 @@ def main():
                 unsafe_allow_html=True
             )
     
+           
             # Add custom CSS for tooltip (help) icon color
             st.markdown(
                 """
                 <style>
+                    /* Styling tooltips to be white */
                     .stTooltip {
                         color: white !important;
+                    }
+    
+                    /* Styling the slider */
+                    .stSlider .st-bc {
+                        color: white;
+                    }
+    
+                    /* Styling the slider handle */
+                    .stSlider .st-bd {
+                        background-color: white;
+                    }
+    
+                    /* Styling the Detect button */
+                    .stButton>button {
+                        background-color: red;
+                        color: white;
+                        font-size: 18px;
+                        border-radius: 8px;
+                        border: none;
+                        padding: 10px 20px;
+                        cursor: pointer;
+                    }
+    
+                    /* Hover effect for the button */
+                    .stButton>button:hover {
+                        background-color: darkred;
                     }
                 </style>
                 """, 
                 unsafe_allow_html=True
             )
-    
+
             # Sensitivity Slider (Streamlit Widget)
             sensitivity = st.slider(
                 "Select Detection Sensitivity", 
