@@ -20,7 +20,7 @@ st.markdown("""
     <style>
         /* Custom transparent black background for the whole app */
         .css-1v0mbdj {  /* Tab content */
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
         }
 
         /* Custom transparent black background for the radio button widget */
@@ -93,7 +93,7 @@ st.markdown(
     
     /* Container for Tab Content */
     .tab-content {
-        background-color: rgba(0, 0, 0, 0.6);  /* Semi-transparent black background */
+        background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent black background */
         padding: 20px;
         border-radius: 10px;
         margin: 10px 0;
@@ -114,7 +114,7 @@ st.markdown(
         color: #ffffff;
         text-align: center;
         margin-bottom: 40px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     }
 
     /* Section Headers */
@@ -123,7 +123,7 @@ st.markdown(
         font-weight: bold;
         color: #ffffff;
         margin-bottom: 10px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     }
 
     /* Adjusted Tab Styling */
@@ -135,7 +135,7 @@ st.markdown(
         font-size: 18px;
         font-weight: bold;
         color: #ffffff;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.7);
         border-radius: 10px;
         padding: 10px;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
@@ -159,7 +159,7 @@ st.markdown(
         text-align: center;
         margin-top: 20px;
         color: #ffffff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     }
 
     /* Styling for Radio Buttons */
