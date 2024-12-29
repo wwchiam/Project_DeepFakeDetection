@@ -25,7 +25,7 @@ st.markdown("""
 
         /* Custom transparent black background for the radio button widget */
         .stRadio > div > label {
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black */
             color: white;
             padding: 10px;
             border-radius: 5px;
@@ -33,34 +33,34 @@ st.markdown("""
 
         /* Custom transparent black background for the file uploader widget */
         .stFileUploader > div {
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black */
             border-radius: 5px;
         }
 
         /* Custom transparent background for other Streamlit elements like buttons */
         .stButton > button {
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black */
             color: white;
             border-radius: 5px;
         }
 
         /* Apply transparent background to other form elements if needed */
         .stTextInput > div > div {
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black */
             color: white;
             border-radius: 5px;
         }
 
         /* Make sure text inputs also have transparent black background */
         .stTextArea > div > div {
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black */
             color: white;
             border-radius: 5px;
         }
 
         /* Target the entire column and apply transparent black background */
         .stColumn {
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black */
             border-radius: 10px;
             padding: 10px;
             margin: 0 !important;  /* Remove any margin */
@@ -105,7 +105,7 @@ st.markdown(
         color: #ffffff;
         text-align: center;
         margin-top: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     }
     .sub-title {
         font-size: 24px;
@@ -113,7 +113,7 @@ st.markdown(
         color: #ffffff;
         text-align: center;
         margin-bottom: 40px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     }
 
     /* Section Headers */
@@ -122,7 +122,7 @@ st.markdown(
         font-weight: bold;
         color: #ffffff;
         margin-bottom: 10px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     }
 
     /* Adjusted Tab Styling */
@@ -134,10 +134,10 @@ st.markdown(
         font-size: 18px;
         font-weight: bold;
         color: #ffffff;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.6);
         border-radius: 10px;
         padding: 10px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
     }
     .stTabs [role="tab"][aria-selected="true"] {
         background-color: #4a90e2;
@@ -158,7 +158,7 @@ st.markdown(
         text-align: center;
         margin-top: 20px;
         color: #ffffff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     }
 
     /* Styling for Radio Buttons */
@@ -282,7 +282,7 @@ def main():
         # What is Deepfake section
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; margin-bottom: 0;">
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 8px; margin-bottom: 0;">
             <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">What is Deepfake?</div>
             <p style="font-size: 16px; color: #FFFFFF;">
             <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
@@ -299,7 +299,7 @@ def main():
         with col1:
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
                 <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%; width: 100%">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
@@ -313,7 +313,7 @@ def main():
         with col2:
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
                 <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%;width: 100%">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://time.com/7131271/ai-2024-elections/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">AI and 2024 Elections: What to Expect</a>
@@ -327,7 +327,7 @@ def main():
         with col3:
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
                 <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%;width: 100%">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
@@ -340,7 +340,7 @@ def main():
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 10; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); margin-top: 10; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
             <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
             <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
             """,
@@ -366,7 +366,7 @@ def main():
             with col1:
                 # Image column
                 st.markdown(f"""
-                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
                         <div class="question-box" style="text-align: center;">
                             <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                         </div>
@@ -408,7 +408,7 @@ def main():
 
         # st.markdown(
         #     """
-        #     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+        #     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 8px;">
         #     <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
         #     <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
         #     </div>
@@ -429,7 +429,7 @@ def main():
     
         # for idx, image_url in enumerate(deepfake_images):
         #     st.markdown(f"""
-        #     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+        #     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 8px;">
         #         <div class="question-box" style="text-align: left;">
         #             <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
         #         </div>
