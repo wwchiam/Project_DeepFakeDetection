@@ -67,17 +67,19 @@ st.markdown("""
         }
 
         /* Remove gap between columns */
-        .stColumn > div {
-            margin: 0 !important;  /* Remove any internal margin inside the column */
-            padding: 0 !important; /* Remove any internal padding inside the column */
+        .stColumns {
+            display: flex !important;           /* Ensure columns are displayed as flex */
+            gap: 0 !important;                  /* Remove any space (gap) between columns */
+            margin: 0 !important;               /* Remove any margin around columns */
         }
 
-        /* Adjust the gap between columns */
-        .stColumns > div {
-            margin-right: 0 !important;  /* Remove right margin */
+        .stColumn > div {
+            margin: 0 !important;               /* Remove internal margin in the column */
+            padding: 0 !important;              /* Remove internal padding in the column */
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 st.markdown(
     """
@@ -351,7 +353,7 @@ def main():
                 # Image column
                 st.markdown(f"""
                     <div class="tab-content">
-                        <div class="question-box" style="text-align: center;">
+                        <div class="question-box" style="text-align: center;  ">
                             <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                         </div>
                     </div>
