@@ -180,11 +180,11 @@ def main():
                 sensitivity = st.slider("", min_value=0.1, max_value=0.9, value=0.5, step=0.05)
     
                 detect_button = st.button("Detect Deepfake")
-    
-            with col2:
+                
+          with col2:
                 if uploaded_file:
-                    st.image(uploaded_file, caption="Uploaded Image", use_container_width=True, width=400)
-    
+                    st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=400)
+        
                 if uploaded_file and detect_button:
                     image_array = preprocess_image(uploaded_file)
                     if image_array is not None:
@@ -195,12 +195,26 @@ def main():
                             st.markdown(f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%")
                             result = "Fake" if predicted_prob > sensitivity else "Real"
                             st.markdown(f"**This image is classified as {result}.**")
+        
+                # Report Section
+                st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
+                
+                # Radio buttons for reporting (Yes / No)
+                report_fake = st.radio("", ["Yes", "No"], index=1)
+                
+                # Comment box is always visible
+                st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
+                comment = st.text_area("", height=100)
+                
+                # Submit button
+                if st.button("Submit"):
+                    if report_fake == "Yes":
+                        st.success("Thank you for reporting. Your input helps improve our system.")
+                    else:
+                        st.success("Thank you! No report was submitted.")
+
     
-                            report_fake = st.radio("Would you like to report this image as a deepfake?", ["Yes", "No"], index=1)
-                            if report_fake == "Yes":
-                                comment = st.text_area("Leave a comment (optional)", height=100)
-                                if st.button("Submit Report"):
-                                    st.success("Thank you for reporting. Your input helps improve our system.")
+    
 
     # Technology Tab
     with tabs[3]: 
