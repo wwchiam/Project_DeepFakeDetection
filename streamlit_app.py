@@ -170,48 +170,48 @@ def main():
 
     # Detection Tab
     with tabs[2]:  # Detection Tab
-            col1, col2 = st.columns([1, 2])
+        col1, col2 = st.columns([1, 2])
     
-            with col1:
-                st.markdown("<div style='color:white;'>Upload an image (JPG, JPEG, PNG):</div>", unsafe_allow_html=True)
-                uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
+        with col1:
+            st.markdown("<div style='color:white;'>Upload an image (JPG, JPEG, PNG):</div>", unsafe_allow_html=True)
+            uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
     
-                st.markdown("<div style='color:white;'>Detection Sensitivity:</div>", unsafe_allow_html=True)
-                sensitivity = st.slider("", min_value=0.1, max_value=0.9, value=0.5, step=0.05)
+            st.markdown("<div style='color:white;'>Detection Sensitivity:</div>", unsafe_allow_html=True)
+            sensitivity = st.slider("", min_value=0.1, max_value=0.9, value=0.5, step=0.05)
     
-                detect_button = st.button("Detect Deepfake")
+            detect_button = st.button("Detect Deepfake")
                 
-              with col2:
-                    if uploaded_file:
-                        st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=400)
+        with col2:
+            if uploaded_file:
+                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=400)
             
-                    if uploaded_file and detect_button:
-                        image_array = preprocess_image(uploaded_file)
-                        if image_array is not None:
-                            with st.spinner("Analyzing the image..."):
-                                prediction = model.predict(image_array)
-                                predicted_class = np.argmax(prediction[0])
-                                predicted_prob = prediction[0][predicted_class]
-                                st.markdown(f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%")
-                                result = "Fake" if predicted_prob > sensitivity else "Real"
-                                st.markdown(f"**This image is classified as {result}.**")
+            if uploaded_file and detect_button:
+                image_array = preprocess_image(uploaded_file)
+                if image_array is not None:
+                    with st.spinner("Analyzing the image..."):
+                        prediction = model.predict(image_array)
+                        predicted_class = np.argmax(prediction[0])
+                        predicted_prob = prediction[0][predicted_class]
+                        st.markdown(f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%")
+                        result = "Fake" if predicted_prob > sensitivity else "Real"
+                        st.markdown(f"**This image is classified as {result}.**")
             
-                    # Report Section
-                    st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
+                # Report Section
+                st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
                     
-                    # Radio buttons for reporting (Yes / No)
-                    report_fake = st.radio("", ["Yes", "No"], index=1)
+                # Radio buttons for reporting (Yes / No)
+                report_fake = st.radio("", ["Yes", "No"], index=1)
                     
-                    # Comment box is always visible
-                    st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
-                    comment = st.text_area("", height=100)
+                # Comment box is always visible
+                st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
+                comment = st.text_area("", height=100)
                     
-                    # Submit button
-                    if st.button("Submit"):
-                        if report_fake == "Yes":
-                            st.success("Thank you for reporting. Your input helps improve our system.")
-                        else:
-                            st.success("Thank you! No report was submitted.")
+                # Submit button
+                if st.button("Submit"):
+                    if report_fake == "Yes":
+                        st.success("Thank you for reporting. Your input helps improve our system.")
+                    else:
+                        st.success("Thank you! No report was submitted.")
 
     
     
