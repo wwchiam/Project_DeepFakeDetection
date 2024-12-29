@@ -530,12 +530,30 @@ def main():
 
 
 
-
     # Dashboard Tab
     with tabs[4]:
+        # Filter Section at the Top
         st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <div class="section-header">Statistic Today</div>
+        <div style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+            <h4 style="color: white; text-align: center;">Filter Data</h4>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Filters for country and date range (at the top)
+        countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
+        selected_country = st.selectbox("Select Country", countries, key="country_filter")
+        
+        today = datetime.today()
+        start_date = today - timedelta(days=30)
+        end_date = today
+        selected_date_range = st.date_input("Select Date Range", [start_date, end_date], key="date_filter")
+        
+        st.markdown("<hr/>", unsafe_allow_html=True)
+    
+        ##################### Statistic Section #####################
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+            <h5 style="color: white; text-align: center;">Statistic Today</h5>
         </div>
         """, unsafe_allow_html=True)
         
@@ -544,55 +562,31 @@ def main():
         
         with kpi1:
             st.markdown("""
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-                <p style="color: white; text-align: center;">**Total Visitors today**</p>
-                <h1 style="text-align: center; color: #1E90FF;">111</h1>
+            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+                <p style="color: white; text-align: center;">Total Visitors today</p>
+                <h2 style="text-align: center; color: #1E90FF;">111</h2>
             </div>
             """, unsafe_allow_html=True)
         
         with kpi2:
             st.markdown("""
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-                <p style="color: white; text-align: center;">**Total Submission**</p>
-                <h1 style="text-align: center; color: #1E90FF;">130</h1>
+            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+                <p style="color: white; text-align: center;">Total Submission</p>
+                <h2 style="text-align: center; color: #1E90FF;">130</h2>
             </div>
             """, unsafe_allow_html=True)
         
         with kpi3:
             st.markdown("""
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-                <p style="color: white; text-align: center;">**% Deepfake Detected**</p>
-                <h1 style="text-align: center; color: #FF6347;">70%</h1>
+            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+                <p style="color: white; text-align: center;">% Deepfake Detected</p>
+                <h2 style="text-align: center; color: #FF6347;">70%</h2>
             </div>
             """, unsafe_allow_html=True)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-
-         # Filters for country and date range
-        st.markdown("### Filter Data", unsafe_allow_html=True)
-        
-        countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
-        selected_country = st.selectbox("Select Country", countries)
-        
-        today = datetime.today()
-        start_date = today - timedelta(days=30)
-        end_date = today
-        selected_date_range = st.date_input("Select Date Range", [start_date, end_date])
     
-        st.markdown("<hr/>", unsafe_allow_html=True)
-
-##################### Mapsss
-
-         # Filter Data by Country (for demonstration purposes)
-        filtered_data = country_df[country_df['Country'] == selected_country]
-        st.write(filtered_data)
-        
-        # Display message when no data is available
-        if filtered_data.empty:
-            st.warning(f"No data available for {selected_country} in the selected date range.")
+        ##################### Map and Table Layout #####################
     
         # Create Mock Data for Deepfake Submissions by Country (with corrected coordinates)
         country_data = {
@@ -612,28 +606,46 @@ def main():
         heat_data = [[row['Latitude'], row['Longitude'], row['Submissions']] for index, row in country_df.iterrows()]
         HeatMap(heat_data).add_to(m)
         
-        # Display the map
-        st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <h3 style="color: white;">Heatmap of Deepfake Submissions by Country</h3>
-        </div>
-        """, unsafe_allow_html=True)
+        # Layout for the map and the table side-by-side
+        map_col, table_col = st.columns([3, 2])
         
-        st.markdown("The map below shows the intensity of deepfake video submissions across different countries.", unsafe_allow_html=True)
-        folium_static(m)
+        with map_col:
+            st.markdown("""
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+                <h5 style="color: white;">Heatmap of Deepfake Submissions by Country</h5>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("The map below shows the intensity of deepfake video submissions across different countries.", unsafe_allow_html=True)
+            folium_static(m)
+        
+        with table_col:
+            st.markdown("""
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+                <h5 style="color: white;">Submission Data</h5>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Display filtered data in the table (this will be filtered by the country selected)
+            filtered_data = country_df[country_df['Country'] == selected_country]
+            st.write(filtered_data)
+            
+            # Display message when no data is available
+            if filtered_data.empty:
+                st.warning(f"No data available for {selected_country} in the selected date range.")
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-        
+    
+        ##################### Daily Trend Section #####################
+    
         st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <div class="section-header">Daily Trend</div>
-            
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+            <h5 style="color: white;">Daily Trend</h5>
         </div>
         """, unsafe_allow_html=True)
-    
-
-##################### Charts
         
+        ##################### Simulate Data for Charts #####################
+    
         # Simulate data for the chart (Visitors, Submissions, and Detections)
         num_days = 30  # Number of days for the dataset
         
@@ -641,7 +653,7 @@ def main():
         submissions = np.random.randint(10, 100, num_days)
         detections = np.random.randint(5, submissions+1, num_days)
         
-        # Create the dataframes
+        # Filter data based on the selected country and date range
         chart_data1 = pd.DataFrame({
             'Visitors': visitors
         }, index=pd.date_range('2024-12-01', periods=num_days))
@@ -650,10 +662,18 @@ def main():
             'Deepfakes Detected': detections
         }, index=pd.date_range('2024-12-01', periods=num_days))
         
-        # --- Chart 1: Number of Visitors ---
+        # --- Filter the chart data based on date range ---
+        filtered_chart_data1 = chart_data1[chart_data1.index >= selected_date_range[0]]
+        filtered_chart_data1 = filtered_chart_data1[filtered_chart_data1.index <= selected_date_range[1]]
+    
+        filtered_chart_data2 = chart_data2[chart_data2.index >= selected_date_range[0]]
+        filtered_chart_data2 = filtered_chart_data2[filtered_chart_data2.index <= selected_date_range[1]]
+    
+        ##################### Display Charts #####################
+    
         st.markdown("""
-        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-            <h3 style="color: white;">Number of Visitors Over Time</h3>
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
+            <h5 style="color: white;">Number of Visitors Over Time</h5>
         </div>
         """, unsafe_allow_html=True)
         
@@ -661,16 +681,17 @@ def main():
         
         with chart1:
             st.markdown("#### Number of Visitors", unsafe_allow_html=True)
-            st.line_chart(chart_data1)
+            st.line_chart(filtered_chart_data1)
         
-        # --- Chart 2: Deepfake Detection  ---
+        # --- Chart 2: Deepfake Detection ---
         with chart2:
             st.markdown("#### Number of Deepfakes Detected over Time", unsafe_allow_html=True)
-            st.line_chart(chart_data2)
+            st.line_chart(filtered_chart_data2)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
     
-    
+        
+        
         
             
     # Contact Us Tab
