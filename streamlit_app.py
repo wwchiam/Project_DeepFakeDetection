@@ -178,10 +178,10 @@ def main():
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
     
                 <!-- Start Layout with two columns -->
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="flex: 1; padding-right: 10px;">
-                        <div class="section-header" style="color: white;">Image Upload</div>
-                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="flex: 1; padding-right: 10px;">
+                    <div class="section-header" style="color: white;">Image Upload</div>
+                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
             """, 
             unsafe_allow_html=True
         )
@@ -203,8 +203,28 @@ def main():
             step=0.05, 
             help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
         )
+        
+        # Style the 'Detect Deepfake' button with red color
+        st.markdown(
+            """
+            <style>
+                .stButton>button {
+                    background-color: red;
+                    color: white;
+                    font-size: 18px;
+                    border-radius: 8px;
+                    border: none;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                }
+                .stButton>button:hover {
+                    background-color: darkred;
+                }
+            </style>
+            """, unsafe_allow_html=True
+        )
     
-        # Detect Button (Streamlit Widget)
+        # Detect Button 
         detect_button = st.button("Detect Deepfake")
         
         # Displaying the results (will be inside the transparent box)
