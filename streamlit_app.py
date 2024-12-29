@@ -155,7 +155,7 @@ def main():
         )
 
     # Usage Tab
-     with tabs[1]: 
+    with tabs[1]: 
         st.markdown(
             """
             <div class="tab-content">
