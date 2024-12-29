@@ -238,7 +238,7 @@ def report_fake_image():
 # Main Functionality
 def main():
     # Tab Layout
-    tabs = st.tabs(["About Us", "What is Deepfake", "Detection", "Technology", "Contact Us"])
+    tabs = st.tabs(["About Us", "What is Deepfake", "Detection", "Technology", "Contact Us",'Dashboard'])
     
     with tabs[0]:  # About Tab
         st.markdown(
