@@ -533,6 +533,7 @@ def main():
     # Dashboard Tab
     # Dashboard Tab
     # Dashboard Tab
+    with tabs[4]:
     # Sample country data with submissions and coordinates
     country_data = {
         'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
