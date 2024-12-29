@@ -97,13 +97,14 @@ st.markdown(
 
     /* Custom Button Styling */
     .stButton {
-        background-color: red !important;
-        color: black !important;
+        border: 2px solid red !important;
+        color: red !important;
         font-weight: bold;
         text-transform: uppercase;
     }
     .stButton:hover {
-        background-color: darkred !important;
+        background-color: red !important;
+        color: black !important;
     }
 
     /* Styling for radio buttons and text area */
@@ -225,9 +226,9 @@ def main():
                 
                 # Always visible comment box
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
-                st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100)
+                st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100, width:400)
                 
-                # Submit button with red background and black text
+                # Submit button with red text and border, no background color
                 submit_button = st.button("Submit", key="submit_button")
 
                 if submit_button:
