@@ -218,6 +218,14 @@ def main():
         # What is Deepfake section
         st.markdown(
             """
+            <style>
+            .tab-content {
+                margin: 0;
+                padding: 0;
+            }
+            .section-header {
+                margin-bottom: 15px;
+            }
             <div class="tab-content">
                 <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">What is Deepfake?</div>
                 <p style="font-size: 16px; color: #FFFFFF;"> 
@@ -262,6 +270,7 @@ def main():
         with col3:
             st.markdown(
                 """
+                <div class="tab-content">
                 <div class="news-item">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold; display: block;">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
