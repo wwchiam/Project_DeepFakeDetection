@@ -184,16 +184,17 @@ def main():
     
         # Add a transparent background container for the content
         with col1:
-            st.markdown('<div class="tab-content">', unsafe_allow_html=True)
+            st.markdown('<div class="tab-content">', 
+                        "<div style='color:white;'>Upload an image (JPG, JPEG, PNG):</div>",
+                        unsafe_allow_html=True)
             
-            st.markdown("<div style='color:white;'>Upload an image (JPG, JPEG, PNG):</div>", unsafe_allow_html=True)
             uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
     
             st.markdown("<div style='color:white;'>Detection Sensitivity:</div>", unsafe_allow_html=True)
             sensitivity = st.slider("", min_value=0.1, max_value=0.9, value=0.5, step=0.05)
     
             # Improved button design with a modern look
-            detect_button = st.button("Detect Deepfake", key="detect_button")
+            detect_button = st.button("Detect Deepfake")
             
             st.markdown('</div>', unsafe_allow_html=True)  # End the container div for consistent design
             
@@ -220,14 +221,6 @@ def main():
                     st.session_state.comment = ""  # Default value for the comment box
     
                 st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
-    
-                # Radio buttons for reporting (Yes / No)
-                st.session_state.report_fake = st.radio(
-                    "Would you like to report this image as a deepfake?", 
-                    ["Yes", "No"], 
-                    index=0 if st.session_state.report_fake == "No" else 1,
-                    help="Select Yes if you believe this image is a deepfake."
-                )
     
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
                 st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100)
