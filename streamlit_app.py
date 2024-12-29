@@ -137,8 +137,10 @@ def main():
                 This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.</p>
                 
             <div class="section-header">Why It Matters?</div>
-                <p>Over 8 million deepfake attempts are shared weekly on social media.</p>
-                <p>Deepfakes fuel misinformation, invade privacy, and undermine trust.</p>
+                <ul>
+                <li>Over 8 million deepfake attempts are shared weekly on social media.</li>
+                <li>Deepfakes fuel misinformation, invade privacy, and undermine trust.</li>
+                </ul>
     
             <div class="section-header">How can we help</div>
                 <p><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</p>
