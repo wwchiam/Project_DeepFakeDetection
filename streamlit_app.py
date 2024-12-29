@@ -224,8 +224,6 @@ def main():
                 <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
                 The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
                 </p>
-    
-                <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">Latest News</div>
             </div>
             """, 
             unsafe_allow_html=True
@@ -238,6 +236,7 @@ def main():
         with col1:
             st.markdown(
                 """
+                <div class="tab-content">
                 <div class="news-item">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold; display: block;">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
@@ -250,6 +249,7 @@ def main():
         with col2:
             st.markdown(
                 """
+                <div class="tab-content">
                 <div class="news-item">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://time.com/7131271/ai-2024-elections/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold; display: block;">AI and 2024 Elections: What to Expect</a>
