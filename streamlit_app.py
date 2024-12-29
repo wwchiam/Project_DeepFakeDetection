@@ -224,7 +224,7 @@ def main():
                 The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
                 </p>
     
-                <!-- Latest News Section -->
+   
                 <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">Latest News</div>
     
                 <div class="news-container">
