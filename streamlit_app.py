@@ -218,7 +218,7 @@ def main():
         # Create a transparent black background for the entire tab content
         st.markdown(
             """
-            <div class="tab-container" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; width: 100%; height: 100%; display: block;">
+            <div class="tab-container" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; width: 100%; min-height: 100vh; display: block;">
             """, unsafe_allow_html=True
         )
     
@@ -305,7 +305,7 @@ def main():
         for idx, image_url in enumerate(deepfake_images):
             st.markdown(f"""
             <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
-                <div class="question-box" style="text-align: center;">
+                <div class="question-box" style="text-align: left;">
                     <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                 </div>
             </div>
