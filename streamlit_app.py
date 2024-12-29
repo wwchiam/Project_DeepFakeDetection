@@ -218,12 +218,11 @@ def main():
         # What is Deepfake section
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; margin-bottom: 0;">
                 <div class="section-header">What is Deepfake?</div>
                 <p style="font-size: 16px; color: #FFFFFF;">
                 <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
-                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
-                </p>
+                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
                 """,
                 unsafe_allow_html=True
             )
