@@ -243,7 +243,7 @@ def main():
 
             # Sensitivity Slider (Streamlit Widget)
             sensitivity = st.slider(
-                "Select Detection Sensitivity", 
+                "", 
                 min_value=0.1, 
                 max_value=0.9, 
                 value=0.5665,  # Default threshold
