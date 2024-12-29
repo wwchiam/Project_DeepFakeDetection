@@ -17,3 +17,4 @@ matplotlib
 seaborn
 datetime
 streamlit-aggrid
+random
