@@ -214,7 +214,7 @@ def main():
 
     # Inside the What is Deepfake Tab
 
-     with tabs[1]:
+    with tabs[1]:
         # Create a transparent black background for the entire tab content
         st.markdown(
             """
