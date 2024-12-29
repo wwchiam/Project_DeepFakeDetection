@@ -241,17 +241,16 @@ def main():
             answer = st.radio(
                 f"Is this a deepfake? (Image {idx + 1})", 
                 ["Yes", "No"],
-                key=f"question_{idx}",
-                index=-1 
+                key=f"question_{idx}"
             )
-    
+        
             # Store the answers
             answers.append(answer)
-    
+        
             # Calculate score (assumes the correct answer is "Yes" for all images)
             if answer == "Yes":  # Assuming all images are deepfakes in this case
                 score += 1
-    
+        
         if len(answers) == len(deepfake_images):
             st.markdown(f"Your score: {score}/3")
             if score == 3:
@@ -260,7 +259,7 @@ def main():
                 st.warning("Good job! You got 2 out of 3 correct.")
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
-    
+        
         # End of the tab content
         st.markdown(
             """
