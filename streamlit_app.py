@@ -209,68 +209,84 @@ def main():
             )
     
         
-            # Add custom CSS for tooltip (help) icon color
+            # # Add custom CSS for tooltip (help) icon color
+            # st.markdown(
+            #     """
+            #     <style>
+            #         /* Styling tooltips to be white */
+            #         .stTooltip {
+            #             color: white !important;
+            #         }
+    
+            #         /* Styling the slider */
+            #         .stSlider .st-bc {
+            #             background-color: rgba(0, 0, 0, 0.7) !important;
+            #             padding: 10px !important;
+            #             border-radius: 10px !important;
+            #             margin-top: -50px !important; /* Adjust margin for alignment */
+            #         }
+    
+            #         /* Styling the slider handle */
+            #         .stSlider .st-bd {
+            #             background-color: white;
+                        
+            #         }
+    
+            #         /* Styling the Detect button */
+            #         .stButton>button {
+            #             background-color: red;
+            #             color: black;
+            #             font-size: 18px;
+            #             border-radius: 8px;
+            #             border: none;
+            #             padding: 10px 20px;
+            #             cursor: pointer;
+            #         }
+    
+            #         /* Hover effect for the button */
+            #         .stButton>button:hover {
+            #             background-color: darkred;
+            #         }
+    
+            #         /* Styling the Radio Buttons */
+            #         .stRadio>label {
+            #             color: white;
+            #         }
+    
+            #         /* Styling the comment box */
+            #         .stTextArea>label {
+            #             color: white;
+            #         }
+    
+            #         /* Styling the file uploader label */
+            #         .stFileUploader>label {
+            #             color: white !important;
+            #         }
+    
+            #         /* Making sure sliders are visible */
+            #         .stSlider div {
+            #             color: white;
+            #         }
+            #     </style>
+            #     """, 
+            #     unsafe_allow_html=True
+            # )
+
+            # Add CSS to align the file uploader visually within the black box
             st.markdown(
                 """
                 <style>
-                    /* Styling tooltips to be white */
-                    .stTooltip {
-                        color: white !important;
-                    }
-    
-                    /* Styling the slider */
-                    .stSlider .st-bc {
+                    .stslider {
                         background-color: rgba(0, 0, 0, 0.7) !important;
                         padding: 10px !important;
                         border-radius: 10px !important;
                         margin-top: -50px !important; /* Adjust margin for alignment */
                     }
-    
-                    /* Styling the slider handle */
-                    .stSlider .st-bd {
-                        background-color: white;
-                        
-                    }
-    
-                    /* Styling the Detect button */
-                    .stButton>button {
-                        background-color: red;
-                        color: black;
-                        font-size: 18px;
-                        border-radius: 8px;
-                        border: none;
-                        padding: 10px 20px;
-                        cursor: pointer;
-                    }
-    
-                    /* Hover effect for the button */
-                    .stButton>button:hover {
-                        background-color: darkred;
-                    }
-    
-                    /* Styling the Radio Buttons */
-                    .stRadio>label {
-                        color: white;
-                    }
-    
-                    /* Styling the comment box */
-                    .stTextArea>label {
-                        color: white;
-                    }
-    
-                    /* Styling the file uploader label */
-                    .stFileUploader>label {
-                        color: white !important;
-                    }
-    
-                    /* Making sure sliders are visible */
-                    .stSlider div {
-                        color: white;
-                    }
                 </style>
-                """, 
+                """,
                 unsafe_allow_html=True
             )
+    
     
             # Sensitivity Slider (Streamlit Widget)
             sensitivity = st.slider(
@@ -290,7 +306,7 @@ def main():
             st.markdown(
                 """
                 <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
-                    <p style="color: white; font-size: 16px; margin-bottom: 10px;">Upload an image (JPG, JPEG, PNG):</p>
+                    
                 </div>
                 """,
                 unsafe_allow_html=True
