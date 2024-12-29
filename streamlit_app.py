@@ -25,7 +25,7 @@ st.markdown("""
 
         /* Custom transparent black background for the radio button widget */
         .stRadio > div > label {
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
             color: white;
             padding: 10px;
             border-radius: 5px;
@@ -33,34 +33,34 @@ st.markdown("""
 
         /* Custom transparent black background for the file uploader widget */
         .stFileUploader > div {
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
             border-radius: 5px;
         }
 
         /* Custom transparent background for other Streamlit elements like buttons */
         .stButton > button {
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
             color: white;
             border-radius: 5px;
         }
 
         /* Apply transparent background to other form elements if needed */
         .stTextInput > div > div {
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
             color: white;
             border-radius: 5px;
         }
 
         /* Make sure text inputs also have transparent black background */
         .stTextArea > div > div {
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
             color: white;
             border-radius: 5px;
         }
 
         /* Target the entire column and apply transparent black background */
         .stColumn {
-            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
             border-radius: 10px;
             padding: 10px;
             margin: 0 !important;  /* Remove any margin */
