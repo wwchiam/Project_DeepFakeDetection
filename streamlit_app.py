@@ -234,7 +234,7 @@ def main():
             with col1:
                 st.markdown(
                     """
-                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;margin-top: 0; margin-bottom: 0;">
                     <div class="news-item">
                         <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" />
                         <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
@@ -247,7 +247,7 @@ def main():
             with col2:
                 st.markdown(
                     """
-                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;margin-top: 0; margin-bottom: 0;">
                     <div class="news-item">
                         <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" />
                         <a href="https://time.com/7131271/ai-2024-elections/" target="_blank">AI and 2024 Elections: What to Expect</a>
@@ -260,7 +260,7 @@ def main():
             with col3:
                 st.markdown(
                     """
-                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;margin-top: 0; margin-bottom: 0;">
                     <div class="news-item">
                         <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" />
                         <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
