@@ -245,18 +245,6 @@ def main():
             """
             <div class="tab-content">
                 <div class="section-header">Powered by ResNet50</div>
-                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.  
-            By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
-            ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
-            </div>
-            
-            """, 
-            unsafe_allow_html=True
-        )
-        st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header">Powered by ResNet50</div>
                 <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.
                 By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
                 ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
@@ -271,21 +259,30 @@ def main():
                 </ul>
     
             <div class="section-header">Model Evaluation</div>
-                <li> The following visualizations provide insights into the model's performance</li>
+            <ul>
+                <li>The following visualizations provide insights into the model's performance:</li>
                 <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
-                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
+            </ul>
+            
+            <!-- Image below Confusion Matrix description -->
+            <div style="text-align: center;">
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" 
+                     alt="Confusion Matrix" width="300" />
             </div>
-
-            st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
-                 caption="Confusion Matrix", use_container_width =False, width=300)
-        
-            st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
-                 caption="Loss Plot", use_container_width =False, width=300)
-    
-  
-            """, 
-            unsafe_allow_html=True
-        )
+            
+            <ul>
+                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
+            </ul>
+            
+            <!-- Image below Learning Curve description -->
+            <div style="text-align: center;">
+                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" 
+                     alt="Loss Plot" width="300" />
+            </div>
+        </div>
+        """, 
+        unsafe_allow_html=True
+     )
     
 
     # Contact Us Tab
