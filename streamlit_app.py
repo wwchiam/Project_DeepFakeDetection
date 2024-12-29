@@ -16,9 +16,6 @@ st.set_page_config(
 )
 
 # Global CSS Styling with Background Image and button/radio styling
-import streamlit as st
-
-# Inject custom CSS for transparent black background on various widgets
 st.markdown("""
     <style>
         /* Custom transparent black background for the whole app */
@@ -59,6 +56,13 @@ st.markdown("""
             background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
             color: white;
             border-radius: 5px;
+        }
+
+        /* Target the entire column and apply transparent black background */
+        .stColumn {
+            background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
+            border-radius: 10px;
+            padding: 10px;
         }
     </style>
 """, unsafe_allow_html=True)
