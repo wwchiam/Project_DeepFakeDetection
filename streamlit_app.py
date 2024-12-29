@@ -213,6 +213,7 @@ def main():
 
 
     # Inside the What is Deepfake Tab
+  
     with tabs[1]:
         # What is Deepfake section
         st.markdown(
@@ -225,70 +226,54 @@ def main():
                 </p>
     
                 <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">Latest News</div>
-                <div class="news-container">
-                    <div class="news-item">
-                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" />
-                        <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" />
-                        <a href="https://time.com/7131271/ai-2024-elections/" target="_blank">AI and 2024 Elections: What to Expect</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" />
-                        <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
-                    </div>
-                </div>
             </div>
             """, 
             unsafe_allow_html=True
         )
+    
+        # Create three columns for the news items
+        col1, col2, col3 = st.columns(3)
+    
+        # First News Item in Column 1
+        with col1:
+            st.markdown(
+                """
+                <div class="news-item">
+                    <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
+                    <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold; display: block;">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+    
+        # Second News Item in Column 2
+        with col2:
+            st.markdown(
+                """
+                <div class="news-item">
+                    <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
+                    <a href="https://time.com/7131271/ai-2024-elections/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold; display: block;">AI and 2024 Elections: What to Expect</a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+    
+        # Third News Item in Column 3
+        with col3:
+            st.markdown(
+                """
+                <div class="news-item">
+                    <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
+                    <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold; display: block;">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+    
+    
+    
 
-        # Add CSS for the news section
-        st.markdown(
-            """
-            <style>
-                .news-container {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 20px;
-                    padding: 20px;
-                    flex-wrap: wrap;
-                }
-                .news-item {
-                    background-color: rgba(0, 0, 0, 0.7);
-                    padding: 15px;
-                    border-radius: 10px;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                    width: 30%;
-                    transition: transform 0.3s ease;
-                }
-                .news-item:hover {
-                    transform: scale(1.05);
-                }
-                .news-item img {
-                    width: 100%;
-                    height: 150px;
-                    object-fit: cover;
-                    border-radius: 8px;
-                    margin-bottom: 10px;
-                }
-                .news-item a {
-                    font-size: 16px;
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-weight: bold;
-                    display: block;
-                    transition: color 0.3s;
-                }
-                .news-item a:hover {
-                    color: #4a90e2;
-                }
-            </style>
-            """, 
-            unsafe_allow_html=True
-        )
+        
 
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
