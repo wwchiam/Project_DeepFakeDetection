@@ -215,26 +215,34 @@ def main():
     # Inside the What is Deepfake Tab
 
     with tabs[1]:
-        # Create a transparent black background for the entire tab content
+        # Create a transparent black background that stays behind the content
         st.markdown(
             """
-            <div class="tab-container" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; width: 100%; min-height: 100vh; display: block;">
+            <div class="tab-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: -1;">
+            </div>
+            """, unsafe_allow_html=True
+        )
+    
+        # Now start with the main content inside a container with relative positioning
+        st.markdown(
+            """
+            <div class="content-container" style="position: relative; z-index: 1; padding: 20px; color: #FFFFFF;">
             """, unsafe_allow_html=True
         )
     
         # What is Deepfake section
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; margin-bottom: 0;">
-            <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">What is Deepfake?</div>
-            <p style="font-size: 16px; color: #FFFFFF;">
+            <div class="tab-content" style="padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <div class="section-header" style="font-size: 24px; font-weight: bold;">What is Deepfake?</div>
+            <p style="font-size: 16px;">
             <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
             The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
             </div>
             """,
             unsafe_allow_html=True
         )
-        
+    
         # Create three columns for the news items
         col1, col2, col3 = st.columns(3)
     
@@ -242,8 +250,8 @@ def main():
         with col1:
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
-                <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%; width: 100%">
+                <div class="tab-content" style="margin-bottom: 20px;">
+                <div class="news-item" style="text-align: center;">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
                 </div>
@@ -256,8 +264,8 @@ def main():
         with col2:
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
-                <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%;width: 100%">
+                <div class="tab-content" style="margin-bottom: 20px;">
+                <div class="news-item" style="text-align: center;">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://time.com/7131271/ai-2024-elections/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">AI and 2024 Elections: What to Expect</a>
                 </div>
@@ -270,8 +278,8 @@ def main():
         with col3:
             st.markdown(
                 """
-                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
-                <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%;width: 100%">
+                <div class="tab-content" style="margin-bottom: 20px;">
+                <div class="news-item" style="text-align: center;">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
                 </div>
@@ -283,9 +291,9 @@ def main():
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
-            <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
-            <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
+            <div class="tab-content" style="padding: 20px; border-radius: 8px;">
+            <div class="section-header" style="font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
+            <p style="font-size: 16px;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
             </div>
             """,
             unsafe_allow_html=True
@@ -304,8 +312,8 @@ def main():
     
         for idx, image_url in enumerate(deepfake_images):
             st.markdown(f"""
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
-                <div class="question-box" style="text-align: left;">
+            <div class="tab-content" style="padding: 20px; border-radius: 8px;">
+                <div class="question-box" style="text-align: center;">
                     <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                 </div>
             </div>
@@ -332,8 +340,8 @@ def main():
                 st.warning("Good job! You got 2 out of 3 correct.")
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
-        
-        # Close the transparent background wrapper div
+    
+        # Close the content container div
         st.markdown("</div>", unsafe_allow_html=True)
     
 
