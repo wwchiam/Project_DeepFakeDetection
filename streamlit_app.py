@@ -861,7 +861,6 @@ def main():
                 """, 
                 unsafe_allow_html=True
             )
-            
             # Privacy notice checkbox
             privacy_accepted = st.checkbox(
                 "I have read and agree to the [Privacy Notice](#) and the terms of data usage.",
@@ -870,9 +869,10 @@ def main():
             
             # Proceed with submission only if the user agrees to the privacy notice
             if privacy_accepted:
-                # Proceed with the logic for dataset submission
-                st.button("Submit Dataset")
-                # You can replace this with any logic you have for handling dataset submission.
+                # Provide a unique key to the button
+                if st.button("Submit Dataset", key="submit_dataset_button"):
+                    # Handle dataset submission logic
+                    st.success("Thank you for submitting your dataset!")
             else:
                 st.warning("Please agree to the Privacy Notice before submitting your dataset.")
 
