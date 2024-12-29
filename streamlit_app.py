@@ -477,7 +477,7 @@ def main():
                                     
                                     # Maintain session state for radio button and comment box
                                     if "agree" not in st.session_state:
-                                        st.session_state.agree = "Yes"  # Default to "No"
+                                        st.session_state.agree = "Yes"  # Default to "Yes"
                                     
                                     # Radio button for "Yes" or "No"
                                     agree = st.radio(
