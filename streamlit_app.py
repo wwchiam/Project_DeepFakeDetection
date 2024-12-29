@@ -218,8 +218,8 @@ def main():
         st.markdown(
             """
             <div class="tab-content">
-                <div class="section-header" style="font-size: 24px; font-weight: bold; color: #333;">What is Deepfake?</div>
-                <p style="font-size: 16px; color: #555;"> 
+                <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">What is Deepfake?</div>
+                <p style="font-size: 16px; color: #FFFFFF;"> 
                 <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
                 The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
                 </p>
@@ -253,7 +253,8 @@ def main():
             <style>
                 .news-container {
                     display: flex;
-                    justify-content: space-evenly;
+                    justify-content: space-around;  /* Distribute items evenly */
+                    flex-wrap: nowrap;  /* Prevent wrapping */
                     gap: 20px;
                     padding: 20px;
                     align-items: center;
@@ -265,14 +266,14 @@ def main():
                     text-align: center;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                     transition: transform 0.3s ease;
-                    width: 200px; /* Fixed width for consistency */
+                    width: 250px; /* Fixed width for consistency */
                 }
                 .news-item:hover {
                     transform: scale(1.05);
                 }
                 .news-item img {
                     width: 100%;
-                    height: 120px;
+                    height: 150px;
                     object-fit: cover;
                     border-radius: 8px;
                     margin-bottom: 15px;
@@ -314,8 +315,8 @@ def main():
         st.markdown(
             """
             <div class="tab-content">
-            <div class="section-header" style="font-size: 24px; font-weight: bold; color: #333;">Test Your Ability to Detect Deepfakes!</div>
-                <p style="font-size: 16px; color: #555;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">Test Your Ability to Detect Deepfakes!</div>
+                <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
             </div>
             """, 
             unsafe_allow_html=True
@@ -330,30 +331,32 @@ def main():
     
         # Add CSS for deepfake detection questions and answers
         st.markdown(
-            """
-            <style>
-                /* Styling for the question boxes */
-                .question-box {
-                    background-color: #f4f4f4;
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                    margin-bottom: 20px;
-                }
-                .question-box img {
-                    max-width: 100%;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                }
-                .question-box p {
-                    font-size: 18px;
-                    font-weight: bold;
-                    color: #333;
-                }
-            </style>
-            """, 
-            unsafe_allow_html=True
-        )
+        """
+        <style>
+            /* Styling for the question boxes */
+            .question-box {
+                background-color: #f4f4f4;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+            .question-box img {
+                max-width: 300px;  /* Set desired max-width for the image */
+                height: auto;      /* Keep aspect ratio */
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .question-box p {
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+            }
+        </style>
+        """, 
+        unsafe_allow_html=True
+    )
+
     
         # User answers and scoring
         answers = []
