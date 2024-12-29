@@ -197,7 +197,21 @@ def main():
         )
 
     # # Usage Tab
-     # Inside the What is Deepfake Tab
+    # with tabs[1]: 
+    #     st.markdown(
+    #         """
+    #         <div class="tab-content">
+    #             <div class="section-header">Usage Statistic</div>
+    #             <p>Thinking...</p>
+    #         </div>
+            
+    #         """, 
+    #         unsafe_allow_html=True
+    #     )
+         
+    # Usage Tab
+    # Usage Tab
+    # Inside the What is Deepfake Tab
     with tabs[1]: 
         st.markdown(
             """
@@ -218,216 +232,79 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
-    
-        # Add CSS for styling
+        
+        # Add CSS for background styling and hiding the "Dummy" option
         st.markdown(
             """
             <style>
                 /* Style for the background of each question */
                 .question-box {
-                    background-color: rgba(0, 0, 0, 0.8);  /* Black transparent background */
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-                    margin-bottom: 30px;
-                    color: white;  /* Text color inside the box */
-                    transition: transform 0.3s ease-in-out;
-                }
-    
-                /* Hover effect for each question box */
-                .question-box:hover {
-                    transform: scale(1.02);
-                }
-    
-                /* Optional: Styling for the images */
-                .image-box {
-                    margin-bottom: 20px;
-                    text-align: center;
-                    border-radius: 8px;
-                    overflow: hidden;
-                }
-    
-                /* Styling for the radio buttons */
-                .stRadio input[type="radio"] {
-                    background-color: #f0f0f0;
-                    padding: 5px;
-                    border-radius: 5px;
-                    font-size: 16px;
-                }
-    
-                .stRadio label {
+                    background-color: #ffffff;  /* White background */
                     padding: 10px;
-                    color: white;
-                    font-weight: bold;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
                 }
-    
-                /* Success, warning, and error messages styling */
-                .st-success {
-                    color: green;
-                    font-size: 16px;
-                    font-weight: bold;
+                
+                /* Hide the dummy radio button */
+                div[role=radiogroup] .st-cs:first-child {
+                    visibility: hidden;
+                    height: 0px;
                 }
-    
-                .st-warning {
-                    color: orange;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-    
-                .st-error {
-                    color: red;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-    
             </style>
             """, 
             unsafe_allow_html=True
         )
-        
+    
         # User answers
         answers = []
         score = 0
     
         for idx, image_url in enumerate(deepfake_images):
-            # Wrap each question inside the question-box div with the background styling
-            with st.markdown(
-                """
-                <div class="question-box">
-                """, 
-                unsafe_allow_html=True
-            ):
-                # Display the image using Streamlit's st.image()
-                st.image(image_url, caption=f"Image {idx + 1}", width=400)
-    
-                # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
-                answer = st.radio(
-                    f"Is this a deepfake? (Image {idx + 1})", 
-                    ["Yes", "No", "I'm not sure"],  
-                    key=f"question_{idx}", 
-                    index=2  # Default to "I'm not sure" (index 2)
-                )
-    
-            # Store the answers
-            answers.append(answer)
-    
-            # Calculate score (assumes the correct answer is "Yes" for all images)
-            if answer == "Yes":  # Assuming all images are deepfakes in this case
-                score += 1
-    
-        if len(answers) == len(deepfake_images):
-            st.markdown(f"Your score: {score}/3")
-            if score == 3:
-                st.success("Excellent! You correctly identified all the deepfakes.")
-            elif score == 2:
-                st.warning("Good job! You got 2 out of 3 correct.")
-            else:
-                st.error("Use our detection system when in doubt!")
-        
-        # End of the tab content
-        st.markdown(
-            """
-            </div> <!-- End of the transparent box -->
-            """, 
-            unsafe_allow_html=True
-        )
-
-        
-        # User answers
-        answers = []
-        score = 0
-    
-        for idx, image_url in enumerate(deepfake_images):
-            # Wrap each question inside the question-box div with the background styling
-            with st.markdown(
-                """
-                <div class="question-box">
-                """, 
-                unsafe_allow_html=True
-            ):
-                # Display the image using Streamlit's st.image() for better control
-                st.image(image_url, caption=f"Image {idx + 1}", width=400)
-    
-                # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
-                answer = st.radio(
-                    f"Is this a deepfake? (Image {idx + 1})", 
-                    ["Yes", "No", "I'm not sure"],  
-                    key=f"question_{idx}", 
-                    index=2  # Default to "I'm not sure" (index 2)
-                )
-    
-            # Store the answers
-            answers.append(answer)
-    
-            # Calculate score (assumes the correct answer is "Yes" for all images)
-            if answer == "Yes":  # Assuming all images are deepfakes in this case
-                score += 1
-    
-        if len(answers) == len(deepfake_images):
-            st.markdown(f"Your score: {score}/3")
-            if score == 3:
-                st.success("Excellent! You correctly identified all the deepfakes.")
-            elif score == 2:
-                st.warning("Good job! You got 2 out of 3 correct.")
-            else:
-                st.error("Try again! You can improve your ability to spot deepfakes.")
-        
-        # End of the tab content
-        st.markdown(
-            """
-            </div> <!-- End of the transparent box -->
-            """, 
-            unsafe_allow_html=True
-        )
-
-        # User answers
-        answers = []
-        score = 0
-    
-        for idx, image_url in enumerate(deepfake_images):
-            # Wrap each question inside the question-box div with the background styling
-            with st.markdown(
-                """
-                <div class="question-box">
-                """, 
-                unsafe_allow_html=True
-            ):
-                # Display the image using HTML img tag
-                st.markdown(f'<div class="image-box"><img src="{image_url}" width="400" /></div>', unsafe_allow_html=True)
-    
-                # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
-                answer = st.radio(
-                    f"Is this a deepfake? (Image {idx + 1})", 
-                    ["Yes", "No", "I'm not sure"],  
-                    key=f"question_{idx}", 
-                    index=2  # Default to "I'm not sure" (index 2)
-                )
-    
-            # Store the answers
-            answers.append(answer)
-    
-            # Calculate score (assumes the correct answer is "Yes" for all images)
-            if answer == "Yes":  # Assuming all images are deepfakes in this case
-                score += 1
-    
-        if len(answers) == len(deepfake_images):
-            st.markdown(f"Your score: {score}/3")
-            if score == 3:
-                st.success("Excellent! You correctly identified all the deepfakes.")
-            elif score == 2:
-                st.warning("Good job! You got 2 out of 3 correct.")
-            else:
-                st.error("Try again! You can improve your ability to spot deepfakes.")
-        
-        # End of the tab content
-        st.markdown(
-            """
-            </div> <!-- End of the transparent box -->
-            """, 
-            unsafe_allow_html=True
-        )
-
+            st.image(image_url, caption=f"Image {idx + 1}", width=400)
             
+            # Wrap each question in a div with the 'question-box' class for styling
+            with st.markdown(
+                """
+                <div class="question-box">
+                """, 
+                unsafe_allow_html=True
+            ):
+                # Actual deepfake detection radio buttons (Yes, No, and Dummy)
+                answer = st.radio(
+                    f"Is this a deepfake? (Image {idx + 1})", 
+                    ["Yes", "No", "I'm not sure"],  # Add "Dummy" as the third option
+                    key=f"question_{idx}",  # Each question should have a unique key
+                    index=2  # Default to "Dummy" (index 2)
+                )
+    
+            # Store the answers
+            answers.append(answer)
+    
+            # Calculate score (assumes the correct answer is "Yes" for all images)
+            if answer == "Yes":  # Assuming all images are deepfakes in this case
+                score += 1
+    
+        if len(answers) == len(deepfake_images):
+            st.markdown(f"Your score: {score}/3")
+            if score == 3:
+                st.success("Excellent! You correctly identified all the deepfakes.")
+            elif score == 2:
+                st.warning("Good job! You got 2 out of 3 correct.")
+            else:
+                st.error("Try again! You can improve your ability to spot deepfakes.")
+        
+        # End of the tab content
+        st.markdown(
+            """
+            </div> <!-- End of the transparent box -->
+            """, 
+            unsafe_allow_html=True
+        )
+
+
+
+    
     # Detection Tab
     # Detection Tab
     with tabs[2]:
