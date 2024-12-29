@@ -354,35 +354,11 @@ def main():
                             )
                             
                             # Comment box for feedback or additional notes
-                            comment = st.text_area("Leave a comment (optional)", height=100)
+                            comment = st.text_area("Leave a comment (optional)", height=100, width=400)
                             
                             # Submit Button
                             submit_button = st.button("Submit Report")
                             
-                            if submit_button:
-                                if report_fake == "Yes":
-                                    # Handle the report submission logic
-                                    report_fake_image()
-                                    st.success("Report submitted successfully!")
-                                if comment:
-                                    # Handle the comment submission logic
-                                    st.info(f"Your comment: {comment}")
-
-    
-                #             # Check if the submit button is clicked
-                #             if submit_button:
-                #                 if report_fake == "Yes":
-                #                     # Here you can handle the report and comment submission logic
-                #                     report_fake_image()  # Example: Send the report for the fake image
-                #                     st.success("Report submitted successfully!")
-    
-                #                 # Save or handle the comment
-                #                 st.text_area("Your comment: " + comment)
-    
-                #         except Exception as e:
-                #             st.error(f"Error during prediction: {e}")
-                # else:
-                #     st.warning("Please upload a valid image.")
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
 
