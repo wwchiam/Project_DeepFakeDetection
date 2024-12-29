@@ -249,7 +249,7 @@ def main():
                 By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
                 ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
                 
-                <div class="section-header">Model Performance</div>
+            <div class="section-header">Model Performance</div>
                 <p>These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
                 <ul>
                     <li>Accuracy: 79% </li>
@@ -258,7 +258,7 @@ def main():
                     <li>F1-Score: 81% </li>
                 </ul>
         
-                <div class="section-header">Model Evaluation</div>
+            <div class="section-header">Model Evaluation</div>
                 <ul>
                     <li>The following visualizations provide insights into the model's performance:</li>
                     <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
