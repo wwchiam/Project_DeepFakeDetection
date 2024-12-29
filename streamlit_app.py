@@ -138,7 +138,7 @@ def main():
             This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.
             """
         )
-        st.markdown("</div>", unsafe_allow_html=True)
+        
         
         st.markdown(
             """
@@ -156,6 +156,8 @@ def main():
             - **Stay Informed**: Access resources and guides to understand and navigate the challenges of deepfake technology.  
             """
         )
+        
+        st.markdown("</div>", unsafe_allow_html=True)
     
     # Detection Tab
     with tabs[2]:
