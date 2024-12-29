@@ -309,41 +309,8 @@ def main():
                     </div>
                     """, unsafe_allow_html=True)
             
-            # with col2:
-            #     # Question column
-            #     answer = st.radio(
-            #         f"Is this a deepfake? (Image {idx + 1})", 
-            #         ["Yes", "No", "I'm not sure"], 
-            #         key=f"question_{idx}", 
-            #         index=2  # Default to "I'm not sure"
-            #     )
-            #     answers.append(answer)
-
-            # Assuming col1 is already defined above, now add col2 for the question column
             with col2:
-                # Wrap the question (radio button) in the div with a transparent background
-                st.markdown(
-                    """
-                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
-                        <div class="question-box" style="text-align: left;">
-                
-                            <label for="deepfake_question_{idx}" style="color: #FFFFFF; font-size: 18px;">
-                                Is this a deepfake? (Image {idx + 1})
-                            </label>
-                            <div>
-                                {st.radio(
-                                    f"Is this a deepfake? (Image {idx + 1})", 
-                                    ["Yes", "No", "I'm not sure"], 
-                                    key=f"question_{idx}", 
-                                    index=2  # Default to "I'm not sure"
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True
-                )
-            
-                # Store the user's answer
+                # Question column
                 answer = st.radio(
                     f"Is this a deepfake? (Image {idx + 1})", 
                     ["Yes", "No", "I'm not sure"], 
@@ -351,7 +318,6 @@ def main():
                     index=2  # Default to "I'm not sure"
                 )
                 answers.append(answer)
-            
 
         
                 # Calculate score (assuming correct answer is "Yes" for all images)
