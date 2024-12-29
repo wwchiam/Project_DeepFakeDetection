@@ -210,7 +210,6 @@ def main():
     #     )
          
     # Usage Tab
-    # Usage Tab
     # Inside the What is Deepfake Tab
     with tabs[1]: 
         st.markdown(
@@ -278,7 +277,7 @@ def main():
                 unsafe_allow_html=True
             ):
                 # Display the image
-                st.image(image_url, caption=f"Image {idx + 1}", width=400)
+                st.image(image_url, caption=f"Image {idx + 1} - Source URL: {image_url}", width=400)
     
                 # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
                 answer = st.radio(
@@ -311,8 +310,8 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-
-        
+    
+            
     # Detection Tab
     # Detection Tab
     with tabs[2]:
