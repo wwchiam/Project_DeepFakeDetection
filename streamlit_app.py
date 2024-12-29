@@ -202,13 +202,6 @@ def main():
                         border-radius: 10px !important;
                         margin-top: -50px !important; /* Adjust margin for alignment */
                     }
-
-                    .st.slider{
-                        background-color: rgba(0, 0, 0, 0.7) !important;
-                        padding: 10px !important;
-                        border-radius: 10px !important;
-                        margin-top: -50px !important; /* Adjust margin for alignment */
-                    }
                 </style>
                 """,
                 unsafe_allow_html=True
@@ -226,18 +219,22 @@ def main():
     
                     /* Styling the slider */
                     .stSlider .st-bc {
-                        color: white;
+                        background-color: rgba(0, 0, 0, 0.7) !important;
+                        padding: 10px !important;
+                        border-radius: 10px !important;
+                        margin-top: -50px !important; /* Adjust margin for alignment */
                     }
     
                     /* Styling the slider handle */
                     .stSlider .st-bd {
                         background-color: white;
+                        
                     }
     
                     /* Styling the Detect button */
                     .stButton>button {
                         background-color: red;
-                        color: white;
+                        color: black;
                         font-size: 18px;
                         border-radius: 8px;
                         border: none;
