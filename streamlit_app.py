@@ -216,7 +216,7 @@ def main():
 
     with tabs[1]:
         # What is Deepfake section
-        st.markdown(
+            st.markdown(
                 """
                 <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                 <div class="section-header">What is Deepfake?</div>
