@@ -525,6 +525,7 @@ def main():
         )
 
     # Dashboard Tab
+    # Dashboard Tab
     with tabs[4]:
         st.markdown("## Overall Trend")
         
@@ -550,17 +551,30 @@ def main():
         
         st.markdown("## Daily Trend")
         
-        # Charts
-        chart1, chart2 = st.columns(2)
+        # Filters for country and date range
+        st.markdown("### Filter Data")
         
-        # Generate realistic data for visitors and deepfakes
+        # Create mock country data
+        countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
+        
+        # Country Filter
+        selected_country = st.selectbox("Select Country", countries)
+        
+        # Date Filter
+        today = datetime.today()
+        start_date = today - timedelta(days=30)
+        end_date = today
+        selected_date_range = st.date_input("Select Date Range", [start_date, end_date])
+        
+        st.markdown("<hr/>", unsafe_allow_html=True)
+    
+        # Simulate data for the chart (Visitors, Submissions, and Detections)
         num_days = 30  # Number of days for the dataset
         
         # Simulate data
         visitors = np.random.randint(500, 2000, num_days)  # Random number between 500 and 2000 visitors per day
         submissions = np.random.randint(10, 100, num_days)  # Random number between 10 and 100 deepfake videos submitted
         detections = np.random.randint(5, submissions+1, num_days)  # Deepfakes detected, can't be greater than submissions
-   
         
         # Create the dataframes
         chart_data1 = pd.DataFrame({
@@ -581,9 +595,52 @@ def main():
         
         # --- Chart 2: Deepfake Detection  ---
         with chart2:
-            st.markdown("#### Number of Deepfake Detected over Time")
+            st.markdown("#### Number of Deepfakes Detected over Time")
             st.line_chart(chart_data2)
-                
+        
+        st.markdown("<hr/>", unsafe_allow_html=True)
+        
+        st.markdown("## Deepfake Submissions by Country")
+        
+        # Create Mock Data for Deepfake Submissions by Country
+        country_data = {
+            'Country': ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
+            'Submissions': [random.randint(50, 200) for _ in range(10)],
+            'Latitude': [37.0902, 51.1657, 20.5937, 35.8617, -14.2350, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],
+            'Longitude': [-95.7129, 10.4515, 78.9629, 104.1954, -51.9253, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]
+        }
+        
+        # Convert to DataFrame
+        country_df = pd.DataFrame(country_data)
+        
+        # Create the map
+        m = folium.Map(location=[20, 0], zoom_start=2)
+        
+        # Create the heatmap
+        heat_data = [[row['Latitude'], row['Longitude'], row['Submissions']] for index, row in country_df.iterrows()]
+        HeatMap(heat_data).add_to(m)
+        
+        # Display the map
+        st.markdown("### Heatmap of Deepfake Submissions by Country")
+        st.markdown("The map below shows the intensity of deepfake video submissions across different countries.")
+        folium_static(m)
+        
+        st.markdown("<hr/>", unsafe_allow_html=True)
+        
+        st.markdown("### Summary of Submissions")
+        
+        # Filter Data by Country (for demonstration purposes)
+        filtered_data = country_df[country_df['Country'] == selected_country]
+        st.write(filtered_data)
+        
+        # Display message when no data is available
+        if filtered_data.empty:
+            st.warning(f"No data available for {selected_country} in the selected date range.")
+        
+        st.markdown("<hr/>", unsafe_allow_html=True)
+
+
+
     
             
     # Contact Us Tab
