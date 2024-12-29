@@ -176,6 +176,12 @@ def main():
             <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; color: white;">
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
+    
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    <!-- Left Column for Upload -->
+                    <div style="flex: 1; padding-right: 10px; color: white;">
+                        <div class="section-header" style="color: white;">Image Upload</div>
+                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
             """, 
             unsafe_allow_html=True
         )
@@ -195,7 +201,6 @@ def main():
                 unsafe_allow_html=True
             )
     
-           
             # Add custom CSS for tooltip (help) icon color
             st.markdown(
                 """
@@ -230,39 +235,29 @@ def main():
                     .stButton>button:hover {
                         background-color: darkred;
                     }
+    
+                    /* Styling the Radio Buttons */
+                    .stRadio>label {
+                        color: white;
+                    }
+    
+                    /* Styling the comment box */
+                    .stTextArea>label {
+                        color: white;
+                    }
                 </style>
                 """, 
                 unsafe_allow_html=True
             )
-
+    
             # Sensitivity Slider (Streamlit Widget)
             sensitivity = st.slider(
-                "", 
+                "Select Detection Sensitivity", 
                 min_value=0.1, 
                 max_value=0.9, 
                 value=0.5665,  # Default threshold
                 step=0.05, 
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
-            )
-    
-            # Style the 'Detect Deepfake' button with red color
-            st.markdown(
-                """
-                <style>
-                    .stButton>button {
-                        background-color: red;
-                        color: white;
-                        font-size: 18px;
-                        border-radius: 8px;
-                        border: none;
-                        padding: 10px 20px;
-                        cursor: pointer;
-                    }
-                    .stButton>button:hover {
-                        background-color: darkred;
-                    }
-                </style>
-                """, unsafe_allow_html=True
             )
     
             # Detect Button 
@@ -296,7 +291,7 @@ def main():
                             result = 'Fake' if predicted_prob > sensitivity else 'Real'
                             st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
     
-                            # White styled text for report question
+                            # Report question
                             st.markdown(
                                 """
                                 <p style="color: white;">Would you like to report this image as a deepfake?</p>
@@ -305,7 +300,7 @@ def main():
     
                             # Option to report fake image
                             report_fake = st.radio(
-                                "Would you like to report this image as a deepfake?", 
+                                "",  # No need to repeat the question here
                                 ["Yes", "No"], 
                                 index=1,
                                 help="Select 'Yes' to report the image as a deepfake"
@@ -322,7 +317,7 @@ def main():
                 st.text_area("Leave a comment (optional)", height=100)
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
-
+    
 
     # Technology Tab
     with tabs[3]: 
