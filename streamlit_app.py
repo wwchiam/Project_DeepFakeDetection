@@ -178,32 +178,32 @@ def main():
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
     
                 <!-- Start Layout with two columns -->
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="flex: 1; padding-right: 10px;">
-                        <div class="section-header" style="color: white;">Image Upload</div>
-                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="flex: 1; padding-right: 10px;">
+                <div class="section-header" style="color: white;">Image Upload</div>
+                <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
                         <!-- File Uploader -->
-                        <input type="file" id="file_uploader" accept=".jpg, .jpeg, .png" style="margin-bottom: 15px;" />
+                <input type="file" id="file_uploader" accept=".jpg, .jpeg, .png" style="margin-bottom: 15px;" />
                         
-                        <!-- Sensitivity Slider -->
-                        <p style="color: white;">Adjust the sensitivity:</p>
-                        <input type="range" min="0.1" max="0.9" step="0.05" value="0.5665" style="width: 100%; margin-bottom: 15px;" />
-                        <div style="color: white;">Recommended threshold: 56.65%</div>
+                <!-- Sensitivity Slider -->
+                <p style="color: white;">Adjust the sensitivity:</p>
+                <input type="range" min="0.1" max="0.9" step="0.05" value="0.5665" style="width: 100%; margin-bottom: 15px;" />
+                <div style="color: white;">Recommended threshold: 56.65%</div>
                         
-                        <!-- Detect Button -->
-                        <button onclick="detectDeepfake()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Detect Deepfake</button>
-                    </div>
-    
-                    <div style="flex: 1; padding-left: 10px;">
-                        <!-- Results Display Section -->
-                        <div id="results_section" style="color: white;">
-                            <div id="image_display"></div>
-                            <div id="probability_display"></div>
-                            <div id="result_display"></div>
-                        </div>
-                    </div>
+                <!-- Detect Button -->
+                <button onclick="detectDeepfake()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Detect Deepfake</button>
                 </div>
-            </div>
+    
+            <div style="flex: 1; padding-left: 10px;">
+                <!-- Results Display Section -->
+                <div id="results_section" style="color: white;">
+                    <div id="image_display"></div>
+                    <div id="probability_display"></div>
+                    <div id="result_display"></div>
+                </div>
+             </div>
+         </div>
+    </div>
             """, 
             unsafe_allow_html=True
         )
