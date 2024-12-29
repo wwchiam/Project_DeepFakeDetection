@@ -194,20 +194,33 @@ def main():
             # File Uploader (Streamlit Widget)
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
         
-            # Sensitivity Slider (Streamlit Widget)
-            st.markdown(
-                """
-                <p style="color: white;">Adjust the sensitivity:</p>
-                """, unsafe_allow_html=True
-            )
-            sensitivity = st.slider(
-                "Select Detection Sensitivity", 
-                min_value=0.1, 
-                max_value=0.9, 
-                value=0.5665,  # Default threshold
-                step=0.05, 
-                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
-            )
+        st.markdown(
+            """
+            <p style="color: white;">Adjust the sensitivity:</p>
+            """, 
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            """
+            <style>
+                .stTooltip {
+                    color: white !important;
+                }
+            </style>
+            """, 
+            unsafe_allow_html=True
+        )
+        
+  
+        # Sensitivity Slider (Streamlit Widget)
+        sensitivity = st.slider(
+            min_value=0.1, 
+            max_value=0.9, 
+            value=0.5665,  # Default threshold
+            step=0.05, 
+            help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+        )
         
             # Style the 'Detect Deepfake' button with red color
             st.markdown(
@@ -282,8 +295,8 @@ def main():
                 else:
                     st.warning("Please upload a valid image.")
     
-            # Comment box for feedback or additional notes
-            st.text_area("Leave a comment (optional)", height=100)
+                            # Comment box for feedback or additional notes
+                            st.text_area("Leave a comment (optional)", height=100)
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
 
