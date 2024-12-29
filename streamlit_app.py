@@ -211,71 +211,86 @@ def main():
          
     # Usage Tab
     # Usage Tab
+
+
     # Inside the What is Deepfake Tab
-    with tabs[1]: 
+    with tabs[1]:
+        # What is Deepfake section
         st.markdown(
             """
             <div class="tab-content">
-                <div class="section-header">What is Deepfake?</div>
-                <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
-                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
-                
+                <div class="section-header" style="font-size: 24px; font-weight: bold; color: #333;">What is Deepfake?</div>
+                <p style="font-size: 16px; color: #555;"> 
+                <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
+                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
+                </p>
+            </div>
             """, 
             unsafe_allow_html=True
         )
-
-            # Display News Links with Icons
+    
+        # Display News Links with Larger Images and Improved Layout
         news_links = [
             {
                 'title': 'AI and 2024 Elections: What to Expect', 
                 'url': 'https://time.com/7131271/ai-2024-elections/',
-                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg' 
+                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg'
             },
             {
                 'title': 'Top 5 Cases of AI Deepfake Fraud Exposed in 2024',
                 'url': 'https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/',
-                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg' 
+                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg'
             },
             {
                 'title': 'Deepfake CFO Scam in Hong Kong - A New Era of Fraud',
                 'url': 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html',
-                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg' 
+                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg'
             }
         ]
     
-        # Display News Links in a Catalog Style
+        # Improved Style for News Links
         st.markdown(
             """
             <style>
                 .news-container {
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-around;
                     flex-wrap: wrap;
                     gap: 20px;
+                    padding: 20px;
                 }
                 .news-item {
                     background-color: rgba(0, 0, 0, 0.7);
-                    padding: 15px;
-                    border-radius: 8px;
-                    width: 30%;
+                    padding: 20px;
+                    border-radius: 10px;
+                    width: 28%;
                     text-align: center;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    transition: transform 0.3s ease;
+                }
+                .news-item:hover {
+                    transform: scale(1.05);
                 }
                 .news-item img {
-                    width: 80px;
-                    height: 80px;
-                    margin-bottom: 10px;
+                    width: 100%;
+                    height: 180px;
+                    object-fit: cover;
+                    border-radius: 8px;
+                    margin-bottom: 15px;
                 }
                 .news-item a {
-                    font-size: 16px;
+                    font-size: 18px;
                     color: #ffffff;
                     text-decoration: none;
                     font-weight: bold;
+                    display: block;
+                    transition: color 0.3s;
                 }
                 .news-item a:hover {
                     color: #4a90e2;
                 }
             </style>
-            """,
+            """, 
             unsafe_allow_html=True
         )
     
@@ -296,83 +311,79 @@ def main():
     
         st.markdown('</div>', unsafe_allow_html=True)  # Close the news container
     
+        # Test Your Ability to Detect Deepfakes section
         st.markdown(
-                """
-                <div class="tab-content">
-                <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                    <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
-                """, 
-                unsafe_allow_html=True
-            )
-        
-        # Sample Deepfake Images (replace with actual images you want to use for the test)
+            """
+            <div class="tab-content">
+            <div class="section-header" style="font-size: 24px; font-weight: bold; color: #333;">Test Your Ability to Detect Deepfakes!</div>
+                <p style="font-size: 16px; color: #555;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+    
+        # Sample Deepfake Images
         deepfake_images = [
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
-        
-        # Add CSS for background styling and hiding the "Dummy" option
+    
+        # Add CSS for deepfake detection questions and answers
         st.markdown(
             """
             <style>
-                /* Style for the background of each question */
+                /* Styling for the question boxes */
                 .question-box {
-                    background-color: #ffffff;  /* White background */
-                    padding: 10px;
+                    background-color: #f4f4f4;
+                    padding: 20px;
                     border-radius: 8px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                     margin-bottom: 20px;
                 }
-                
-                /* Hide the dummy radio button */
-                div[role=radiogroup] .st-cs:first-child {
-                    visibility: hidden;
-                    height: 0px;
+                .question-box img {
+                    max-width: 100%;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                }
+                .question-box p {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #333;
                 }
             </style>
             """, 
             unsafe_allow_html=True
         )
     
-        # User answers
+        # User answers and scoring
         answers = []
         score = 0
     
         for idx, image_url in enumerate(deepfake_images):
-            st.image(image_url, caption=f"Image {idx + 1}", width=400)
-            
-            # Wrap each question in a div with the 'question-box' class for styling
-            with st.markdown(
-                """
-                <div class="question-box">
-                """, 
-                unsafe_allow_html=True
-            ):
-                # Actual deepfake detection radio buttons (Yes, No, and Dummy)
-                answer = st.radio(
-                    f"Is this a deepfake? (Image {idx + 1})", 
-                    ["Yes", "No", "I'm not sure"],  # Add "Dummy" as the third option
-                    key=f"question_{idx}",  # Each question should have a unique key
-                    index=2  # Default to "Dummy" (index 2)
-                )
-    
-            # Store the answers
+            st.markdown(f'<div class="question-box"><img src="{image_url}" alt="Image {idx + 1}" />', unsafe_allow_html=True)
+            answer = st.radio(
+                f"Is this a deepfake? (Image {idx + 1})", 
+                ["Yes", "No", "I'm not sure"], 
+                key=f"question_{idx}", 
+                index=2  # Default to "I'm not sure"
+            )
             answers.append(answer)
     
-            # Calculate score (assumes the correct answer is "Yes" for all images)
+            # Calculate score (assuming correct answer is "Yes" for all images)
             if answer == "Yes":  # Assuming all images are deepfakes in this case
                 score += 1
     
+        # Show score and feedback
         if len(answers) == len(deepfake_images):
-            st.markdown(f"Your score: {score}/3")
+            st.markdown(f"Your score: {score}/3", unsafe_allow_html=True)
             if score == 3:
                 st.success("Excellent! You correctly identified all the deepfakes.")
             elif score == 2:
                 st.warning("Good job! You got 2 out of 3 correct.")
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
-        
+            
         # End of the tab content
         st.markdown(
             """
