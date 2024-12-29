@@ -584,29 +584,61 @@ def main():
         
         # Charts
         chart1, chart2 = st.columns(2)
-
+        
+        # Generate realistic data for visitors and deepfakes
         num_days = 30  # Number of days for the dataset
-
-        # Simulate daily data for the # of visitors, # of deepfake videos submitted, and # of deepfakes detected
+        
+        # Simulate data
         visitors = np.random.randint(500, 2000, num_days)  # Random number between 500 and 2000 visitors per day
         submissions = np.random.randint(10, 100, num_days)  # Random number between 10 and 100 deepfake videos submitted
-        detections = np.random.randint(5, 60, num_days)  # Random number between 5 and 60 deepfakes detected per day
+        detections = np.random.randint(5, submissions+1, num_days)  # Deepfakes detected, can't be greater than submissions
+        detection_percentage = (detections / submissions) * 100  # Detection percentage
         
-        # Create a DataFrame to hold this data
+        # Create the dataframes
         chart_data1 = pd.DataFrame({
-            'Visitors': visitors,
-            'Deepfakes Submitted': submissions,
-            'Deepfakes Detected': detections
+            'Visitors': visitors
         }, index=pd.date_range('2024-12-01', periods=num_days))
         
-        # Create the chart layout
-        st.markdown("### Visitor, Submission, and Detection Data")
+        chart_data2 = pd.DataFrame({
+            'Deepfakes Submitted': submissions,
+            'Deepfakes Detected': detection_percentage
+        }, index=pd.date_range('2024-12-01', periods=num_days))
+        
+        # --- Chart 1: Number of Visitors ---
+        st.markdown("### Number of Visitors Over Time")
         chart1, chart2 = st.columns(2)
         
         with chart1:
-            st.markdown("#### Number of Visitors, Deepfakes Submitted, and Detected")
+            st.markdown("#### Number of Visitors")
             st.line_chart(chart_data1)
         
+        # --- Chart 2: Deepfake Submissions and Detection Percentage ---
+        with chart2:
+            st.markdown("#### Deepfake Submissions and Detection Percentage")
+        
+            # Plotting the second chart with twin axes
+            fig, ax1 = plt.subplots(figsize=(8, 4))
+        
+            # Bar chart for deepfake submissions
+            ax1.bar(chart_data2.index, chart_data2['Deepfakes Submitted'], color='blue', alpha=0.6, label='Deepfakes Submitted')
+            ax1.set_xlabel('Date')
+            ax1.set_ylabel('Deepfakes Submitted', color='blue')
+            ax1.tick_params(axis='y', labelcolor='blue')
+        
+            # Twin axis for deepfake detection percentage
+            ax2 = ax1.twinx()
+            ax2.plot(chart_data2.index, chart_data2['Deepfakes Detected'], color='red', label='Detection Percentage', linestyle='-', marker='o')
+            ax2.set_ylabel('Detection Percentage (%)', color='red')
+            ax2.tick_params(axis='y', labelcolor='red')
+        
+            # Title and layout adjustments
+            plt.title('Deepfake Submissions and Detection Percentage')
+            plt.xticks(rotation=45)
+            fig.tight_layout()
+        
+            # Display the plot in Streamlit
+            st.pyplot(fig)
+                
         
     
             
