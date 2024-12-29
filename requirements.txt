@@ -16,3 +16,4 @@ pandas
 matplotlib
 seaborn
 datetime
+streamlit-aggrid
