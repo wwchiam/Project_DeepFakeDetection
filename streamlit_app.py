@@ -242,6 +242,7 @@ def main():
                 f"Is this a deepfake? (Image {idx + 1})", 
                 ["Yes", "No"],
                 key=f"question_{idx}"
+                index=-1 
             )
     
             # Store the answers
