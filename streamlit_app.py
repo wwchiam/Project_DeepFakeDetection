@@ -334,6 +334,7 @@ def main():
             # What is Deepfake section
             st.markdown(
                 """
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                 <div class="section-header">What is Deepfake?</div>
                 <p style="font-size: 16px; color: #FFFFFF;">
                 <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
@@ -350,6 +351,7 @@ def main():
             with col1:
                 st.markdown(
                     """
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                     <div class="news-item">
                         <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" />
                         <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
@@ -362,6 +364,7 @@ def main():
             with col2:
                 st.markdown(
                     """
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                     <div class="news-item">
                         <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" />
                         <a href="https://time.com/7131271/ai-2024-elections/" target="_blank">AI and 2024 Elections: What to Expect</a>
@@ -374,6 +377,7 @@ def main():
             with col3:
                 st.markdown(
                     """
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                     <div class="news-item">
                         <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" />
                         <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
@@ -385,6 +389,7 @@ def main():
             # Test Your Ability to Detect Deepfakes section
             st.markdown(
                 """
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                 <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
                 <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
                 """,
@@ -403,7 +408,13 @@ def main():
             score = 0
         
             for idx, image_url in enumerate(deepfake_images):
-                st.markdown(f'<div class="question-box"><img src="{image_url}" alt="Image {idx + 1}" />', unsafe_allow_html=True)
+                st.markdown(f"""
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+                    <div class="question-box">
+                        <img src="{image_url}" alt="Image {idx + 1}" />
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
                 answer = st.radio(
                     f"Is this a deepfake? (Image {idx + 1})", 
                     ["Yes", "No", "I'm not sure"], 
