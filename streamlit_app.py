@@ -178,50 +178,51 @@ def main():
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
     
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                
-                <!-- Left Column for Upload -->
-                <div style="flex: 1; padding-right: 10px; color: white;">
-                    <div class="section-header" style="color: white;">Image Upload</div>
-                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
-        """, 
+                    <!-- Left Column for Upload -->
+                    <div style="flex: 1; padding-right: 10px; color: white;">
+                        <div class="section-header" style="color: white;">Image Upload</div>
+                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+            """, 
             unsafe_allow_html=True
         )
-        
+    
         # Create two columns for left (image upload) and right (result)
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
-        
+    
         with col1:  # Left column for image upload and controls
             # File Uploader (Streamlit Widget)
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
-        
-        st.markdown(
-            """
-            <p style="color: white;">Adjust the sensitivity:</p>
-            """, 
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            """
-            <style>
-                .stTooltip {
-                    color: white !important;
-                }
-            </style>
-            """, 
-            unsafe_allow_html=True
-        )
-        
-  
-        # Sensitivity Slider (Streamlit Widget)
-        sensitivity = st.slider(
-            min_value=0.1, 
-            max_value=0.9, 
-            value=0.5665,  # Default threshold
-            step=0.05, 
-            help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
-        )
-        
+    
+            # Sensitivity Slider (Streamlit Widget)
+            st.markdown(
+                """
+                <p style="color: white;">Adjust the sensitivity:</p>
+                """, 
+                unsafe_allow_html=True
+            )
+    
+            # Add custom CSS for tooltip (help) icon color
+            st.markdown(
+                """
+                <style>
+                    .stTooltip {
+                        color: white !important;
+                    }
+                </style>
+                """, 
+                unsafe_allow_html=True
+            )
+    
+            # Sensitivity Slider (Streamlit Widget)
+            sensitivity = st.slider(
+                "Select Detection Sensitivity", 
+                min_value=0.1, 
+                max_value=0.9, 
+                value=0.5665,  # Default threshold
+                step=0.05, 
+                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+            )
+    
             # Style the 'Detect Deepfake' button with red color
             st.markdown(
                 """
@@ -241,7 +242,7 @@ def main():
                 </style>
                 """, unsafe_allow_html=True
             )
-        
+    
             # Detect Button 
             detect_button = st.button("Detect Deepfake")
     
@@ -295,8 +296,8 @@ def main():
                 else:
                     st.warning("Please upload a valid image.")
     
-                            # Comment box for feedback or additional notes
-                            st.text_area("Leave a comment (optional)", height=100)
+                # Comment box for feedback or additional notes
+                st.text_area("Leave a comment (optional)", height=100)
     
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
 
