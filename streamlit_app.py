@@ -592,68 +592,27 @@ def main():
         else:
             st.write("Please upload a dataset to proceed.")
 
-#####
-
-    # Manually created data for the dashboard
-    data = {
-        'Timestamp': [
-            datetime.now() - timedelta(minutes=5 * i) for i in range(10)
-        ],
-        'Active Users': [75, 80, 85, 78, 90, 100, 95, 88, 85, 80],
-        'Deepfake Detections': [10, 12, 8, 9, 15, 18, 14, 13, 11, 9]
-    }
-    manual_data = pd.DataFrame(data)
-    
     # Dashboard Tab
-    with tabs[5]:  # Assuming this is the correct tab index for the dashboard
-        st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header" style="font-size: 24px; font-weight: bold;">Dashboard</div>
-                <p style="font-size: 16px;">Monitor system performance and deepfake statistics in real-time.</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        
-        # Interactive Data Table using streamlit-aggrid
-        st.markdown("### Interactive Data Table")
-        gb = GridOptionsBuilder.from_dataframe(manual_data)
-        gb.configure_pagination(paginationAutoPageSize=True)  # Add Pagination
-        gb.configure_side_bar()  # Add sidebar for filtering and column options
-        gb.configure_selection('single')  # Enable single row selection
-        grid_options = gb.build()
+    with tabs[5]:
+        st.title("US Population Dashboard")
     
-        # Display AgGrid
-        grid_response = AgGrid(
-            manual_data, 
-            gridOptions=grid_options,
-            theme='blue',  # Available themes: 'streamlit', 'light', 'dark', 'blue', 'material'
-            enable_enterprise_modules=True,
-            update_mode='MODEL_CHANGED', 
-            fit_columns_on_grid_load=True
-        )
-    
-        # Capture Selected Row
-        selected_row = grid_response['selected_rows']
-        if selected_row:
-            st.write("You selected:")
-            st.json(selected_row)
-        
-        # Visualizations
-        st.markdown("### Active Users Over Time")
-        st.line_chart(manual_data.set_index('Timestamp')['Active Users'])
-        
-        st.markdown("### Deepfake Detections Over Time")
-        st.line_chart(manual_data.set_index('Timestamp')['Deepfake Detections'])
-        
-        # Summary Statistics
-        st.markdown("### Summary Statistics")
-        total_users = manual_data['Active Users'].sum()
-        total_detections = manual_data['Deepfake Detections'].sum()
-        st.write(f"**Total Active Users Monitored:** {total_users}")
-        st.write(f"**Total Deepfake Detections:** {total_detections}")
-        
+        # Load the dataset (assuming df_reshaped is your dataset)
+        df_reshaped = pd.read_csv('data.csv')  # Adjust based on your dataset location
+
+        # Function to calculate population differences between years
+        def calculate_population_difference(input_df, input_year):
+            selected_year_data = input_df[input_df['year'] == input_year].reset_index()
+            previous_year_data = input_df[input_df['year'] == input_year - 1].reset_index()
+            merged_data = pd.merge(selected_year_data, previous_year_data, on='states', suffixes=('', '_prev'))
+            merged_data['population_difference'] = merged_data['population'] - merged_data['population_prev']
+            return merged_data[['states', 'id', 'population', 'population_difference']].sort_values(by="population_difference", ascending=False)
+
+        # Display Dashboard content
+        selected_year = st.selectbox("Select a Year", df_reshaped['year'].unique())
+        df_population_difference_sorted = calculate_population_difference(df_reshaped, selected_year)
+
+        st.write("Population Difference from Previous Year")
+        st.dataframe(df_population_difference_sorted.head())         
 
 # Run the main function
 if __name__ == "__main__":
