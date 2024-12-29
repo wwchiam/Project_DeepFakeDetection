@@ -9,6 +9,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime, timedelta
+from st_aggrid import AgGrid, GridOptionsBuilder
 
 # Page Title and Config
 st.set_page_config(
@@ -591,6 +592,8 @@ def main():
         else:
             st.write("Please upload a dataset to proceed.")
 
+#####
+
     # Manually created data for the dashboard
     data = {
         'Timestamp': [
@@ -599,11 +602,10 @@ def main():
         'Active Users': [75, 80, 85, 78, 90, 100, 95, 88, 85, 80],
         'Deepfake Detections': [10, 12, 8, 9, 15, 18, 14, 13, 11, 9]
     }
-
     manual_data = pd.DataFrame(data)
     
     # Dashboard Tab
-    with tabs[5]:
+    with tabs[5]:  # Assuming this is the correct tab index for the dashboard
         st.markdown(
             """
             <div class="tab-content">
@@ -613,50 +615,45 @@ def main():
             """,
             unsafe_allow_html=True
         )
+        
+        # Interactive Data Table using streamlit-aggrid
+        st.markdown("### Interactive Data Table")
+        gb = GridOptionsBuilder.from_dataframe(manual_data)
+        gb.configure_pagination(paginationAutoPageSize=True)  # Add Pagination
+        gb.configure_side_bar()  # Add sidebar for filtering and column options
+        gb.configure_selection('single')  # Enable single row selection
+        grid_options = gb.build()
     
-        # Show active users over time
+        # Display AgGrid
+        grid_response = AgGrid(
+            manual_data, 
+            gridOptions=grid_options,
+            theme='blue',  # Available themes: 'streamlit', 'light', 'dark', 'blue', 'material'
+            enable_enterprise_modules=True,
+            update_mode='MODEL_CHANGED', 
+            fit_columns_on_grid_load=True
+        )
+    
+        # Capture Selected Row
+        selected_row = grid_response['selected_rows']
+        if selected_row:
+            st.write("You selected:")
+            st.json(selected_row)
+        
+        # Visualizations
         st.markdown("### Active Users Over Time")
-        fig, ax = plt.subplots(figsize=(10, 5))
-        sns.lineplot(x=manual_data['Timestamp'], y=manual_data['Active Users'], ax=ax, label='Active Users', color='blue')
-        ax.set_title("Real-Time Active Users", fontsize=16)
-        ax.set_xlabel("Time")
-        ax.set_ylabel("Number of Users")
-        ax.legend()
-        st.pyplot(fig)
-    
-        # Show deepfake detections over time
+        st.line_chart(manual_data.set_index('Timestamp')['Active Users'])
+        
         st.markdown("### Deepfake Detections Over Time")
-        fig, ax = plt.subplots(figsize=(10, 5))
-        sns.lineplot(x=manual_data['Timestamp'], y=manual_data['Deepfake Detections'], ax=ax, label='Detections', color='red')
-        ax.set_title("Deepfake Detections", fontsize=16)
-        ax.set_xlabel("Time")
-        ax.set_ylabel("Number of Detections")
-        ax.legend()
-        st.pyplot(fig)
-    
-        # Show summary statistics
+        st.line_chart(manual_data.set_index('Timestamp')['Deepfake Detections'])
+        
+        # Summary Statistics
         st.markdown("### Summary Statistics")
         total_users = manual_data['Active Users'].sum()
         total_detections = manual_data['Deepfake Detections'].sum()
         st.write(f"**Total Active Users Monitored:** {total_users}")
         st.write(f"**Total Deepfake Detections:** {total_detections}")
-    
-        # Display detection distribution
-        st.markdown("### Detection Distribution")
-        fig, ax = plt.subplots(figsize=(10, 5))
-        sns.histplot(manual_data['Deepfake Detections'], bins=10, kde=True, color='purple', ax=ax)
-        ax.set_title("Distribution of Deepfake Detections", fontsize=16)
-        ax.set_xlabel("Detections")
-        ax.set_ylabel("Frequency")
-        st.pyplot(fig)
-    
-        st.markdown(
-            """
-            <div class="section-header" style="font-size: 18px; font-weight: bold;">Insights:</div>
-            <p style="font-size: 16px;">Our system is actively monitoring users and detecting deepfakes in real-time. The visualized trends provide key insights into usage patterns and system performance.</p>
-            """,
-            unsafe_allow_html=True
-        )
+        
 
 # Run the main function
 if __name__ == "__main__":
