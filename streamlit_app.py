@@ -210,6 +210,7 @@ def main():
     #     )
          
     # Usage Tab
+# Usage Tab
     # Inside the What is Deepfake Tab
     with tabs[1]: 
         st.markdown(
@@ -232,6 +233,28 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
         
+        # Add CSS for background styling and hiding the "Dummy" option
+        st.markdown(
+            """
+            <style>
+                /* Style for the background of each question */
+                .question-box {
+                    background-color: #ffffff;  /* White background */
+                    padding: 10px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+                
+                /* Hide the dummy radio button */
+                div[role=radiogroup] .st-cs:first-child {
+                    visibility: hidden;
+                    height: 0px;
+                }
+            </style>
+            """, 
+            unsafe_allow_html=True
+        )
     
         # User answers
         answers = []
@@ -240,13 +263,29 @@ def main():
         for idx, image_url in enumerate(deepfake_images):
             st.image(image_url, caption=f"Image {idx + 1}", width=400)
             
-            # Actual deepfake detection radio buttons (Yes, No, and Dummy)
-            answer = st.radio(
-                f"Is this a deepfake? (Image {idx + 1})", 
-                ["Yes", "No", "Dummy"],  # Add "Dummy" as the third option
-                key=f"question_{idx}" , # Each question should have a unique key
-                index=3
+            # Invisible dummy radio button for each question
+            st.radio(
+                f"Dummy selection for Image {idx + 1}", 
+                ["Dummy"],  # Only one option to keep it invisible
+                key=f"dummy_radio_{idx}", 
+                index=0,  # Automatically select the dummy option (hidden from view)
+                help="This is a dummy radio button to ensure no pre-selected state."
             )
+            
+            # Wrap each question in a div with the 'question-box' class for styling
+            with st.markdown(
+                """
+                <div class="question-box">
+                """, 
+                unsafe_allow_html=True
+            ):
+                # Actual deepfake detection radio buttons (Yes, No, and Dummy)
+                answer = st.radio(
+                    f"Is this a deepfake? (Image {idx + 1})", 
+                    ["Yes", "No", "Dummy"],  # Add "Dummy" as the third option
+                    key=f"question_{idx}",  # Each question should have a unique key
+                    index=2  # Default to "Dummy" (index 2)
+                )
     
             # Store the answers
             answers.append(answer)
