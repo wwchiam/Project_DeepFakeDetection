@@ -1,0 +1,7 @@
+# .streamlit/config.toml
+
+[theme]
+primaryColor = "#F63366"  # Customize primary color
+backgroundColor = "#000000"  # Set black background
+secondaryBackgroundColor = "#333333"  # Dark secondary background
+textColor = "#FFFFFF"  # Set text color to white
