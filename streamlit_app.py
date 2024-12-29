@@ -526,57 +526,25 @@ def main():
 
     # Dashboard Tab
     with tabs[4]:
-        st.markdown("## KPI First Row")
+        st.markdown("## Overall Trend")
         
         # KPI 1
         kpi1, kpi2, kpi3 = st.columns(3)
         
         with kpi1:
-            st.markdown("**First KPI**")
+            st.markdown("**Total Visitors today**")
             number1 = 111 
             st.markdown(f"<h1 style='text-align: center; color: red;'>{number1}</h1>", unsafe_allow_html=True)
         
         with kpi2:
-            st.markdown("**Second KPI**")
-            number2 = 222 
+            st.markdown("**Total Submission**")
+            number2 = 130 
             st.markdown(f"<h1 style='text-align: center; color: red;'>{number2}</h1>", unsafe_allow_html=True)
         
         with kpi3:
-            st.markdown("**Third KPI**")
-            number3 = 333 
+            st.markdown("**% Deepfake Detected**")
+            number3 = 70% 
             st.markdown(f"<h1 style='text-align: center; color: red;'>{number3}</h1>", unsafe_allow_html=True)
-        
-        st.markdown("<hr/>", unsafe_allow_html=True)
-        
-        st.markdown("## KPI Second Row")
-        
-        # KPI 2
-        kpi01, kpi02, kpi03, kpi04, kpi05 = st.columns(5)
-        
-        with kpi01:
-            st.markdown("**Another 1st KPI**")
-            number1 = 111 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number1}</h1>", unsafe_allow_html=True)
-        
-        with kpi02:
-            st.markdown("**Another 2nd KPI**")
-            number2 = 222 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number2}</h1>", unsafe_allow_html=True)
-        
-        with kpi03:
-            st.markdown("**Another 3rd KPI**")
-            number3 = 555 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number3}</h1>", unsafe_allow_html=True)
-        
-        with kpi04:
-            st.markdown("**Another 4th KPI**")
-            number4 = 333 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number4}</h1>", unsafe_allow_html=True)
-        
-        with kpi05:
-            st.markdown("**Another 5th KPI**")
-            number5 = 444 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number5}</h1>", unsafe_allow_html=True)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
         
