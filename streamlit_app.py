@@ -240,19 +240,53 @@ def main():
         st.markdown('</div>', unsafe_allow_html=True)
 
     # Technology Tab
-    with tabs[3]:
-        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
-        st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
-        
-        # Technology Overview
-        st.write(
+    with tabs[3]: 
+        st.markdown(
             """
-            Our deepfake detection system is powered by **ResNet50**, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.  
+            <div class="tab-content">
+                <div class="section-header">Powered by ResNet50</div>
+                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.  
             By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
-            ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.
-            """
+            ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
+            </div>
+            
+            """, 
+            unsafe_allow_html=True
         )
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class="tab-content">
+                <div class="section-header">Powered by ResNet50</div>
+                <p>Our deepfake detection system is powered by <b>ResNet50</b>, a cutting-edge deep learning model known for its remarkable accuracy in image classification tasks.
+                By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
+                ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
+                
+            <div class="section-header">Model Performance</div>
+                <p> These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
+                <ul>
+                <li>Accuracy: 79% </li>
+                <li>Recall: 92% </li>
+                <li>Precision: 73% </li>
+                <li>F1-Score: 81% </li>
+                </ul>
+    
+            <div class="section-header">Model Evaluation</div>
+                <li> The following visualizations provide insights into the model's performance</li>
+                <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
+                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
+            </div>
+
+            st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png", 
+                 caption="Confusion Matrix", use_container_width =False, width=300)
+        
+            st.image("https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png", 
+                 caption="Loss Plot", use_container_width =False, width=300)
+    
+  
+            """, 
+            unsafe_allow_html=True
+        )
+    
 
     # Contact Us Tab
     with tabs[4]:
