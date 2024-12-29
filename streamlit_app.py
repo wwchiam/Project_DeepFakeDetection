@@ -532,8 +532,8 @@ def main():
 
     # Dashboard Tab
     # Dashboard Tab
-    # Dashboard Tab
-    with tabs[4]:
+
+    
     # Sample country data with submissions and coordinates
     country_data = {
         'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
@@ -546,7 +546,10 @@ def main():
     country_df = pd.DataFrame(country_data)
     
     # Streamlit app
-    with st.container():
+    tabs = st.tabs(["Dashboard", "About", "Data", "Visualization", "Statistics", "Contact Us"])
+    
+    # Dashboard Tab
+    with tabs[4]:
         ##################### Statistic Section #####################
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
@@ -679,14 +682,12 @@ def main():
             st.markdown("#### Number of Visitors", unsafe_allow_html=True)
             st.line_chart(filtered_chart_data1)
         
-        # --- Chart 2: Deepfake Detection ---
         with chart2:
             st.markdown("#### Number of Deepfakes Detected over Time", unsafe_allow_html=True)
             st.line_chart(filtered_chart_data2)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
     
-                 
     # Contact Us Tab
     with tabs[5]:
         st.markdown(
@@ -740,7 +741,6 @@ def main():
     
         else:
             st.write("Please upload a dataset to proceed.")
-     
 
 # Run the main function
 if __name__ == "__main__":
