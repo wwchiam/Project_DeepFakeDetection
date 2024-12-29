@@ -133,7 +133,8 @@ def main():
             <div class="tab-content">
                 <div class="section-header">About the Platform</div>
                 <p>Welcome to our <b>Deepfake Detection System</b>, your trusted tool for identifying manipulated media.</p>
-                <p>In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users to verify the authenticity of images with just a simple upload. 
+                <p>In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users 
+                to verify the authenticity of images with just a simple upload. 
                 This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.</p>
                 
             <div class="section-header">Why It Matters?</div>
@@ -142,13 +143,20 @@ def main():
                 <li>Deepfakes fuel misinformation, invade privacy, and undermine trust.</li>
                 </ul>
     
-            <div class="section-header">How can we help</div>
+            <div class="tab-content">
+                <div class="section-header">How can we help</div>
                 <ul>
-                <li><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
-                <li><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
-                <li><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
+                    <li><b>Detect & Verify</b><br>
+                    Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
+            
+                    <li><b>Report Deepfakes</b><br>
+                    Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
+            
+                    <li><b>Stay Informed</b><br>
+                    Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
                 </ul>
             </div>
+            
             """, 
             unsafe_allow_html=True
         )
