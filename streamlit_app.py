@@ -216,20 +216,31 @@ def main():
                 
                 # Title and Instructions for Reporting
                 st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
-
+                
                 st.markdown("""
-                        <style>
-                        .stRadio > label {
-                            color: white !important;  /* Ensures that the radio buttons text is white */
-                        }
-                        .stRadio input[type="radio"]:checked + label {
-                            color: white !important;  /* Ensures selected radio option is white */
-                        }
-                        .stRadio label:hover {
-                            color: #4a90e2 !important;  /* Optional: change color on hover */
-                        }
-                        </style>
-                    """, unsafe_allow_html=True)
+                    <style>
+                    /* Ensure the text color for the radio button options is white */
+                    .stRadio label {
+                        color: white !important;
+                    }
+                
+                    /* Make sure the selected radio button also has white text */
+                    .stRadio input[type="radio"]:checked + label {
+                        color: white !important;
+                    }
+                
+                    /* Optional: Change the color when hovering over the radio button */
+                    .stRadio label:hover {
+                        color: #4a90e2 !important;
+                    }
+                
+                    /* Ensure the radio button itself has a good color */
+                    .stRadio input[type="radio"]:checked {
+                        accent-color: #4a90e2;  /* Change the selected color to blue */
+                    }
+                    </style>
+                """, unsafe_allow_html=True)
+                
 
                 
                 
