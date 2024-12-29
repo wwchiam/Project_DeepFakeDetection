@@ -24,6 +24,14 @@ st.markdown(
         color: #ffffff;
     }
     
+    /* Container for Tab Content */
+    .tab-content {
+        background-color: rgba(0, 0, 0, 0.6);  /* Semi-transparent black background */
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+
     /* Title Section */
     .title {
         font-size: 48px;
@@ -41,7 +49,7 @@ st.markdown(
         margin-bottom: 40px;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
-    
+
     /* Section Headers */
     .section-header {
         font-size: 22px;
@@ -50,7 +58,7 @@ st.markdown(
         margin-bottom: 10px;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
-    
+
     /* Adjusted Tab Styling */
     .stTabs div[role="tablist"] {
         justify-content: center !important;
@@ -69,14 +77,14 @@ st.markdown(
         background-color: #4a90e2;
         color: #ffffff;
     }
-    
+
     /* File Uploader Styling */
     .stFileUploader label {
         font-size: 18px;
         color: #ffffff;
         font-weight: bold;
     }
-    
+
     /* Result Styling */
     .result {
         font-size: 22px;
@@ -86,21 +94,9 @@ st.markdown(
         color: #ffffff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
-
-    /* Help Icon Color */
-    .stSlider .stHelpIcon {
-        color: white !important;  /* Change the color of the help icon to white */
-    }
-
-    /* Radio Button Text Color */
-    .stRadio label {
-        color: white !important;  /* Change the radio button labels to white */
-    }
-
     </style>
     """, unsafe_allow_html=True
 )
-
 
 # Title Section
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
@@ -129,10 +125,11 @@ def report_fake_image():
 # Main Functionality
 def main():
     # Tab Layout
-    tabs = st.tabs(["About", "Detection", "Technology", "Contact Us"])
+    tabs = st.tabs(["About", "Usage", "Detection", "Technology", "Contact Us"])
     
     # About Tab
-    with tabs[0]:
+    with tabs[0]:  # About Tab
+        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
         st.markdown('<div class="section-header">About the Platform</div>', unsafe_allow_html=True)
         st.write(
             """
@@ -141,6 +138,7 @@ def main():
             This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.
             """
         )
+        st.markdown("</div>", unsafe_allow_html=True)
         
         st.markdown(
             """
@@ -160,7 +158,7 @@ def main():
         )
     
     # Detection Tab
-    with tabs[1]:
+    with tabs[2]:
         st.subheader("Upload an Image for Detection")
         
         # Layout with two columns
@@ -229,8 +227,7 @@ def main():
                     st.warning("Please upload an image to proceed.")
                 
     # Technology Tab
-    # Technology Tab
-    with tabs[2]:
+    with tabs[3]:
         st.markdown('<div class="section-header">Powered by ResNet50</div>', unsafe_allow_html=True)
         
         # Technology Overview
@@ -282,7 +279,7 @@ def main():
         )
     
     # Contact Us Tab
-    with tabs[3]:
+    with tabs[4]:
         st.markdown('<div class="section-header">Contact Us</div>', unsafe_allow_html=True)
         st.write("For inquiries or support, email us at [23054196@siswa.um.edu.my](mailto:23054196@siswa.um.edu.my).")
 
