@@ -173,12 +173,12 @@ def main():
     with tabs[2]:
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; color: white;">
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                     <!-- Left Column for Upload -->
-                    <div style="flex: 1; padding-right: 10px; color: white;">
+                    <div style="flex: 1; padding-right: 10px;">
                         <div class="section-header" style="color: white;">Image Upload</div>
                         <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
             """, 
@@ -187,7 +187,7 @@ def main():
     
         # Create two columns for left (image upload) and right (result)
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
-        
+    
         with col1:
             # File Uploader (Streamlit Widget)
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
@@ -249,7 +249,7 @@ def main():
                             predicted_class = np.argmax(prediction[0])
                             predicted_prob = prediction[0][predicted_class]
     
-                            # Probability and classification
+                            # Display Probability of the image being fake
                             st.markdown(
                                 f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%",
                                 unsafe_allow_html=True
@@ -290,6 +290,7 @@ def main():
             </div>
             </div>
         """, unsafe_allow_html=True)  # Closing the divs properly
+
 
     # Technology Tab
     with tabs[3]: 
