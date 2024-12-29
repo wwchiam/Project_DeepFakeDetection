@@ -168,7 +168,7 @@ def main():
         )
          
 
-    # Detection Tab
+    # Detection Tab 
     # Detection Tab
     with tabs[2]:
         st.markdown(
@@ -176,22 +176,24 @@ def main():
             <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; color: white;">
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
+    
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                    <!-- Left Column for Upload -->
-                    <div style="flex: 1; padding-right: 10px;">
-                        <div class="section-header" style="color: white;">Image Upload</div>
-                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
-            """, 
+                
+                <!-- Left Column for Upload -->
+                <div style="flex: 1; padding-right: 10px; color: white;">
+                    <div class="section-header" style="color: white;">Image Upload</div>
+                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+        """, 
             unsafe_allow_html=True
         )
-    
+        
         # Create two columns for left (image upload) and right (result)
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
-    
-        with col1:
+        
+        with col1:  # Left column for image upload and controls
             # File Uploader (Streamlit Widget)
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
-    
+        
             # Sensitivity Slider (Streamlit Widget)
             st.markdown(
                 """
@@ -206,7 +208,7 @@ def main():
                 step=0.05, 
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
-    
+        
             # Style the 'Detect Deepfake' button with red color
             st.markdown(
                 """
@@ -226,14 +228,13 @@ def main():
                 </style>
                 """, unsafe_allow_html=True
             )
-    
-            # Detect Button
+        
+            # Detect Button 
             detect_button = st.button("Detect Deepfake")
     
-        with col2:
-            # Right Column for Results
+        with col2:  # Right column for results
+            # Displaying the uploaded image (if available) in the right column with optimized size
             if uploaded_file:
-                # Displaying the uploaded image (if available) in the right column with optimized size
                 st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=350)
     
             # Displaying the results (probability and classification)
@@ -249,7 +250,7 @@ def main():
                             predicted_class = np.argmax(prediction[0])
                             predicted_prob = prediction[0][predicted_class]
     
-                            # Display Probability of the image being fake
+                            # Probability and classification
                             st.markdown(
                                 f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%",
                                 unsafe_allow_html=True
@@ -284,12 +285,7 @@ def main():
             # Comment box for feedback or additional notes
             st.text_area("Leave a comment (optional)", height=100)
     
-        # Close the right div
-        st.markdown("""
-            </div>
-            </div>
-            </div>
-        """, unsafe_allow_html=True)  # Closing the divs properly
+        st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
 
 
     # Technology Tab
