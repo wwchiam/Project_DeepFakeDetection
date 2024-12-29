@@ -597,7 +597,7 @@ def main():
     #                                 agree = st.radio(
     #                                     "Would you like to report this image as a deepfake?", 
     #                                     ["Yes", "No"], 
-    #                                     index=1
+    #                                     index=0
     #                                 )
     #                                 if agree == "Yes":
     #                                     report_fake_image()
