@@ -155,10 +155,18 @@ def main():
         )
 
     # Usage Tab
-    with tabs[1]:
-        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
-        st.write("This tab will explain how to use the Deepfake Detection system.")
-        st.markdown('</div>', unsafe_allow_html=True)
+     with tabs[1]: 
+        st.markdown(
+            """
+            <div class="tab-content">
+                <div class="section-header">Usage Statistic</div>
+                <p>Thinking...</p>
+            </div>
+            
+            """, 
+            unsafe_allow_html=True
+        )
+         
 
     # Detection Tab
     with tabs[2]:
