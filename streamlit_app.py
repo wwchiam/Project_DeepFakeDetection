@@ -171,22 +171,18 @@ def main():
     # Detection Tab
     # Detection Tab
     with tabs[2]:
+        # Overall container with a slightly transparent background, rounded corners, and padding
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-                <div class="section-header" style="color: white;">Upload an Image for Detection</div>
-                <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
-            
-            <div style="display: flex; justify-content: space-between;">
-                <div style="flex: 1; padding-right: 10px;">
-                    <div class="section-header" style="color: white;">Image Upload</div>
-                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 20px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);">
+                <div class="section-header" style="color: white; font-size: 24px; font-weight: bold; margin-bottom: 20px;">Upload an Image for Detection</div>
+                <p style="color: white; font-size: 16px; margin-bottom: 20px;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
             """, 
             unsafe_allow_html=True
         )
         
         # Create two columns for left (image upload) and right (result)
-        col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
+        col1, col2 = st.columns([1, 2])  # Left column for image upload, right for result
         
         with col1:  # Left column for image upload
             # File Uploader (Streamlit Widget)
@@ -196,7 +192,9 @@ def main():
             # Sensitivity Slider (Streamlit Widget)
             st.markdown(
                 """
-                <p style="color: white;">Adjust the sensitivity:</p>
+                <div style="margin-bottom: 20px;">
+                    <p style="color: white; font-size: 16px;">Adjust the sensitivity:</p>
+                </div>
                 """, unsafe_allow_html=True
             )
             sensitivity = st.slider(
@@ -208,30 +206,31 @@ def main():
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
             
-            # Style the 'Detect Deepfake' button with red color
+            # Style the 'Detect Deepfake' button with a sleek red color
             st.markdown(
                 """
                 <style>
                     .stButton>button {
-                        background-color: red;
+                        background-color: #e74c3c; /* McKinsey-style red */
                         color: white;
                         font-size: 18px;
-                        border-radius: 8px;
+                        border-radius: 20px;
                         border: none;
-                        padding: 10px 20px;
+                        padding: 12px 25px;
                         cursor: pointer;
+                        font-weight: bold;
                     }
                     .stButton>button:hover {
-                        background-color: darkred;
+                        background-color: #c0392b;
                     }
                 </style>
                 """, unsafe_allow_html=True
             )
             
             # Detect Button 
-            detect_button = st.button("Detect Deepfake")
+            detect_button = st.button("Detect Deepfake", key="detect_button")
             
-        # Displaying the results (will be inside the transparent box)
+        # Displaying the results (inside a well-designed container)
         with st.container():
             if uploaded_file and detect_button:
                 # Processing the uploaded file
@@ -245,20 +244,23 @@ def main():
                             predicted_class = np.argmax(prediction[0])
                             predicted_prob = prediction[0][predicted_class]
         
-                            # Display the uploaded image on the left column
+                            # Display the uploaded image in a visually appealing manner
                             with col1:
                                 st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
         
-                            # Display results (probability and classification) on the right column
+                            # Display results (probability and classification) in a sleek card on the right
                             with col2:
                                 st.markdown(
-                                    f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%",
+                                    f"<div style='background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);'><h3 style='color: white;'>Probability of Fake Image: {predicted_prob * 100:.2f}%</h3></div>",
                                     unsafe_allow_html=True
                                 )
         
                                 # Determine if the image is fake based on the threshold
                                 result = 'Fake' if predicted_prob > sensitivity else 'Real'
-                                st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
+                                st.markdown(
+                                    f"<h2 style='color: white;'>This image is classified as <span style='color: #e74c3c;'>{result}</span>.</h2>",
+                                    unsafe_allow_html=True
+                                )
         
                         except Exception as e:
                             st.error(f"Error during prediction: {e}")
@@ -266,8 +268,9 @@ def main():
                     st.warning("Please upload a valid image.")
             else:
                 st.warning("Please upload an image and click 'Detect Deepfake'.")
-        
-        st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
+            
+        # Closing the divs properly
+        st.markdown("</div></div></div>", unsafe_allow_html=True)
     
 
 
