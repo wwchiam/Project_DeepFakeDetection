@@ -197,21 +197,25 @@ def main():
                         st.markdown(f"**This image is classified as {result}.**")
             
                 # Report Section
+                # Title and Instructions for Reporting
                 st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
-                    
+                
                 # Radio buttons for reporting (Yes / No)
                 report_fake = st.radio("", ["Yes", "No"], index=1)
-                    
-                # Comment box is always visible
+                
+                # Always visible comment box
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
                 comment = st.text_area("", height=100)
-                    
+                
                 # Submit button
                 if st.button("Submit"):
-                    if report_fake == "Yes":
+                    if report_fake == "Yes" and comment:
                         st.success("Thank you for reporting. Your input helps improve our system.")
+                    elif report_fake == "Yes" and not comment:
+                        st.warning("You didn't leave a comment. Your input will be submitted without a comment.")
                     else:
                         st.success("Thank you! No report was submitted.")
+
 
     
     
