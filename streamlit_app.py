@@ -220,8 +220,6 @@ def main():
                 <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
                 The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
                 
-            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
             """, 
             unsafe_allow_html=True
         )
@@ -231,23 +229,24 @@ def main():
             {
                 'title': 'AI and 2024 Elections: What to Expect', 
                 'url': 'https://time.com/7131271/ai-2024-elections/',
-                'icon': 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Time_logo.svg'  # Time Logo
+                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg' 
             },
             {
                 'title': 'Top 5 Cases of AI Deepfake Fraud Exposed in 2024',
                 'url': 'https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/',
-                'icon': 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Incode_Logo_2x.png'  # Incode Logo
+                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg' 
             },
             {
                 'title': 'Deepfake CFO Scam in Hong Kong - A New Era of Fraud',
                 'url': 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html',
-                'icon': 'https://upload.wikimedia.org/wikipedia/commons/4/4d/CNN_logo.svg'  # CNN Logo
+                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg' 
             }
         ]
     
         for article in news_links:
             st.markdown(
                 f"""
+                <div class="tab-content">
                 <div style="display: flex; align-items: center; margin-bottom: 20px;">
                     <img src="{article['icon']}" alt="{article['title']}" width="30" style="margin-right: 10px;" />
                     <a href="{article['url']}" target="_blank" style="font-size: 18px; color: #4a90e2; text-decoration: none;">
@@ -257,7 +256,15 @@ def main():
                 """, 
                 unsafe_allow_html=True
             )
-        
+
+        st.markdown(
+            """
+            <div class="tab-content">
+            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            """, 
+            unsafe_allow_html=True
+        )
         
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
