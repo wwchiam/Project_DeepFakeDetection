@@ -406,11 +406,11 @@ def main():
 
     # Detection Tab
     # Detection Tab
+    # Detection Tab
     with tabs[2]:
-        
         # Layout with two columns
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
-        
+    
         with col1:  # Left column for upload and detection controls
             st.markdown(
                 """
@@ -419,7 +419,7 @@ def main():
                 unsafe_allow_html=True
             )
             uploaded_file = st.file_uploader("Upload a JPG, JPEG, or PNG image for detection.", type=["jpg", "jpeg", "png"])
-            
+    
             # Add a note above the slider for recommended threshold
             st.markdown(
                 """
@@ -427,7 +427,7 @@ def main():
                 """, 
                 unsafe_allow_html=True
             )
-            
+    
             sensitivity = st.slider(
                 "Select Detection Sensitivity", 
                 min_value=0.1, 
@@ -436,7 +436,7 @@ def main():
                 step=0.05, 
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
-            
+    
             # Single detection button
             if st.button("Detect Deepfake"):
                 if uploaded_file:
@@ -450,7 +450,7 @@ def main():
                                 # Extract the top predicted class and the corresponding probability
                                 predicted_class = np.argmax(prediction[0])
                                 predicted_prob = prediction[0][predicted_class]
-                                
+    
                                 # Display results in the right column
                                 with col2:
                                     st.image(
@@ -462,11 +462,11 @@ def main():
                                     st.markdown(
                                         f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%"
                                     )
-                                    
+    
                                     # Determine if the image is fake based on the threshold
                                     result = 'Fake' if predicted_prob > sensitivity else 'Real'
                                     st.markdown(f"**This image is classified as {result}.**")
-                                  
+                                    
                                     # Show the radio button and comment box after the analysis
                                     st.markdown(
                                         """
@@ -474,39 +474,30 @@ def main():
                                         """, 
                                         unsafe_allow_html=True
                                     )
-                                    
-                                    # Maintain session state for radio button and comment box
-                                    if "agree" not in st.session_state:
-                                        st.session_state.agree = "No"  # Default to "No"
-                                    
+    
                                     # Radio button for "Yes" or "No"
                                     agree = st.radio(
                                         "Would you like to report this image as a deepfake?", 
                                         ["Yes", "No"],  # Only "Yes" and "No" options
-                                        index=["Yes", "No"].index(st.session_state.agree),  # Preserve the previous choice
+                                        index=0,  # Default to "Yes" (index 0)
                                         key="agree_radio"
                                     )
-                                    
-                                    # Save the radio button choice in session state
-                                    st.session_state.agree = agree
-                                    
+    
                                     # Comment box
                                     comment = st.text_area(
                                         "Leave a comment (optional):", 
                                         placeholder="Please enter your comment here.",
-                                        key="comment_text",
-                                        value=st.session_state.get("comment_text", "")  # Retrieve comment from session state
+                                        key="comment_text"
                                     )
-                                    
+    
                                     # Submit button for comment
                                     if st.button("Submit Comment"):
                                         if comment:
-                                            # Save the comment in session state
-                                            st.session_state.comment_text = comment
+                                            # Display and save the comment
                                             st.write(f"**Comment:** {comment}")
                                         else:
                                             st.warning("Please enter a comment before submitting.")
-                                            
+    
                                     # Handle the reporting logic after the radio selection
                                     if agree == "Yes":
                                         report_fake_image()  # Call your function to report fake images
@@ -520,7 +511,7 @@ def main():
                         st.warning("Please upload a valid image.")
                 else:
                     st.warning("Please upload an image to proceed.")
-        
+    
         # End transparent box for the entire tab content
         st.markdown(
             """
@@ -528,6 +519,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+    
 
     
 
@@ -597,7 +589,7 @@ def main():
     #                                 agree = st.radio(
     #                                     "Would you like to report this image as a deepfake?", 
     #                                     ["Yes", "No"], 
-    #                                     index=1
+    #                                     index=0
     #                                 )
     #                                 if agree == "Yes":
     #                                     report_fake_image()
@@ -861,14 +853,22 @@ def main():
                 """, 
                 unsafe_allow_html=True
             )
+            # Privacy notice checkbox
+            privacy_accepted = st.checkbox(
+                "I have read and agree to the [Privacy Notice](#) and the terms of data usage.",
+                key="privacy_check"
+            )
             
-            # Optionally, you can provide a button to confirm submission
-            if st.button("Submit Dataset"):
-                st.success("Thank you for submitting your dataset! We will review it shortly.")
-                # Here you can handle the submission logic, like saving the file or sending it via email
-    
-        else:
-            st.write("Please upload a dataset to proceed.")
+            # Proceed with submission only if the user agrees to the privacy notice
+            if privacy_accepted:
+                # Provide a unique key to the button
+                if st.button("Submit Dataset", key="submit_dataset_button"):
+                    # Handle dataset submission logic
+                    st.success("Thank you for submitting your dataset!")
+            else:
+                st.warning("Please agree to the Privacy Notice before submitting your dataset.")
+
+            
 
 # Run the main function
 if __name__ == "__main__":
