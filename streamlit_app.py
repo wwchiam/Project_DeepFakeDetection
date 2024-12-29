@@ -532,8 +532,9 @@ def main():
 
     # Dashboard Tab
     # Dashboard Tab
+    # Dashboard Tab
     with tabs[4]:
-
+    
         ##################### Statistic Section #####################
         st.markdown("""
         <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px;">
@@ -570,12 +571,10 @@ def main():
         
         st.markdown("<hr/>", unsafe_allow_html=True)
         
-         #####################filter  #####################
-        # Filters for country and date range (at the top)
+        ##################### Filter #####################
         # Filters for country and date range (at the top)
         countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
         selected_countries = st.multiselect("Select Countries", countries, default=countries, key="country_filter")
-
         
         today = datetime.today()
         start_date = today - timedelta(days=30)
@@ -583,8 +582,6 @@ def main():
         selected_date_range = st.date_input("Select Date Range", [start_date, end_date], key="date_filter")
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-    
-
     
         ##################### Map and Table Layout #####################
     
@@ -626,13 +623,15 @@ def main():
             </div>
             """, unsafe_allow_html=True)
             
-            # Display filtered data in the table (this will be filtered by the country selected)
-            filtered_data = country_df[country_df['Country'] == selected_country]
+            # Filter the data based on selected countries (this will now show data for all selected countries)
+            filtered_data = country_df[country_df['Country'].isin(selected_countries)]
+            
+            # Display the filtered data in the table
             st.write(filtered_data)
             
             # Display message when no data is available
             if filtered_data.empty:
-                st.warning(f"No data available for {selected_country} in the selected date range.")
+                st.warning(f"No data available for the selected countries in the selected date range.")
         
         st.markdown("<hr/>", unsafe_allow_html=True)
     
@@ -692,10 +691,7 @@ def main():
         
         st.markdown("<hr/>", unsafe_allow_html=True)
     
-        
-        
-        
-            
+                 
     # Contact Us Tab
     with tabs[5]:
         st.markdown(
