@@ -63,6 +63,18 @@ st.markdown("""
             background-color: rgba(0, 0, 0, 0.5);  /* Transparent black */
             border-radius: 10px;
             padding: 10px;
+            margin: 0 !important;  /* Remove any margin */
+        }
+
+        /* Remove gap between columns */
+        .stColumn > div {
+            margin: 0 !important;  /* Remove any internal margin inside the column */
+            padding: 0 !important; /* Remove any internal padding inside the column */
+        }
+
+        /* Adjust the gap between columns */
+        .stColumns > div {
+            margin-right: 0 !important;  /* Remove right margin */
         }
     </style>
 """, unsafe_allow_html=True)
