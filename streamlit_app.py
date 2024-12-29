@@ -436,6 +436,34 @@ def main():
                 help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
             )
             
+            # Store the user inputs in session state for persistence
+            if 'agree' not in st.session_state:
+                st.session_state.agree = "I'm not sure"
+            if 'comment' not in st.session_state:
+                st.session_state.comment = ""
+            
+            # Radio button and comment box
+            agree = st.radio(
+                "Would you like to report this image as a deepfake?", 
+                ["Yes", "No", "I'm not sure"],  # Added "I'm not sure"
+                index=["Yes", "No", "I'm not sure"].index(st.session_state.agree),  # Ensure the radio keeps the previous selection
+                key="agree_radio"
+            )
+            
+            # Save the radio button value to session state
+            st.session_state.agree = agree
+            
+            # Comment box stays visible
+            comment = st.text_area(
+                "Leave a comment (optional):", 
+                placeholder="Please enter your comment here.",
+                value=st.session_state.comment,  # Retrieve the stored comment
+                key="comment_text"
+            )
+            
+            # Save the comment to session state
+            st.session_state.comment = comment
+            
             # Single detection button
             if st.button("Detect Deepfake"):
                 if uploaded_file:
@@ -466,16 +494,6 @@ def main():
                                     result = 'Fake' if predicted_prob > sensitivity else 'Real'
                                     st.markdown(f"**This image is classified as {result}.**")
                                   
-                                    # Option to report fake
-                                    agree = st.radio(
-                                        "Would you like to report this image as a deepfake?", 
-                                        ["Yes", "No", "I'm not sure"],  # Added "I'm not sure"
-                                        index=2  # Set default selection to "I'm not sure"
-                                    )
-                                    
-                                    # Show a comment box if any option is selected
-                                    comment = st.text_area("Leave a comment (optional):", placeholder="Please enter your comment here.")
-                                    
                                     # Handle the reporting logic
                                     if agree == "Yes":
                                         report_fake_image()  # Call your function to report fake images
@@ -500,6 +518,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+
 
 
     # with tabs[2]:
