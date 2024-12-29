@@ -266,10 +266,12 @@ def main():
                 </ul>
 
             <div style="text-align: left;">
+                <p><b>Confusion Metrix</p>
                 <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" alt="Confusion Matrix" width="400" />
             </div>
                 
             <div style="text-align: left;">
+                <p><b>Learning Curve</p>
                 <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
             </div>
             </div>
