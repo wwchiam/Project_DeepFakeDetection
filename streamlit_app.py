@@ -197,7 +197,7 @@ def main():
         )
 
     # What is Deepfake Tab
-    with tabs[1]:  
+    with tabs[1]:  # What is Deepfake Tab
         st.markdown(
             """
             <div class="tab-content">
@@ -227,7 +227,7 @@ def main():
         if 'score' not in st.session_state:
             st.session_state['score'] = 0
         
-        # Function to handle image navigation and feedback
+        # Function to handle image navigation
         def navigate_images(direction):
             if direction == 'Next' and st.session_state['current_image'] < len(deepfake_images) - 1:
                 st.session_state['current_image'] += 1
@@ -245,7 +245,7 @@ def main():
             index=-1  # No default selection
         )
     
-        # Immediate Feedback
+        # Feedback and Save Answer only after selecting an answer
         if answer:
             correct_answer = "Yes"  # Assuming all images are deepfakes in this case
             if answer == correct_answer:
