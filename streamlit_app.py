@@ -223,50 +223,47 @@ def main():
                 <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
                 The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.
                 </p>
-                
-                <!-- News Section -->
+    
+                <!-- Latest News Section -->
+                <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">Latest News</div>
+    
                 <div class="news-container">
-        """, 
+                    <div class="news-item">
+                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" />
+                        <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
+                    </div>
+                    <div class="news-item">
+                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" />
+                        <a href="https://time.com/7131271/ai-2024-elections/" target="_blank">AI and 2024 Elections: What to Expect</a>
+                    </div>
+                    <div class="news-item">
+                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" />
+                        <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
+                    </div>
+                </div>
+            </div>
+            """, 
             unsafe_allow_html=True
         )
-    
-        # News Links Data
-        news_links = [
-            {
-                'title': 'AI and 2024 Elections: What to Expect', 
-                'url': 'https://time.com/7131271/ai-2024-elections/',
-                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg'
-            },
-            {
-                'title': 'Top 5 Cases of AI Deepfake Fraud Exposed in 2024',
-                'url': 'https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/',
-                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg'
-            },
-            {
-                'title': 'Deepfake CFO Scam in Hong Kong - A New Era of Fraud',
-                'url': 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html',
-                'icon': 'https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg'
-            }
-        ]
-    
-        # Improved Style for News Links in a horizontal line
+        
+        # Add CSS for the news section
         st.markdown(
             """
             <style>
                 .news-container {
                     display: flex;
-                    justify-content: space-between;  /* Distribute items evenly */
+                    justify-content: space-between;
                     gap: 20px;
                     padding: 20px;
-                    flex-wrap: wrap;  /* Allows wrapping if the screen size is small */
+                    flex-wrap: wrap;
                 }
                 .news-item {
                     background-color: rgba(0, 0, 0, 0.7);
-                    padding: 20px;
+                    padding: 15px;
                     border-radius: 10px;
                     text-align: center;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                    width: 30%; /* Fixed width for consistency */
+                    width: 30%;
                     transition: transform 0.3s ease;
                 }
                 .news-item:hover {
@@ -277,7 +274,7 @@ def main():
                     height: 150px;
                     object-fit: cover;
                     border-radius: 8px;
-                    margin-bottom: 15px;
+                    margin-bottom: 10px;
                 }
                 .news-item a {
                     font-size: 16px;
@@ -294,27 +291,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-    
-        # Loop through the news articles
-        for article in news_links:
-            st.markdown(
-                f"""
-                <div class="news-item">
-                    <img src="{article['icon']}" alt="{article['title']}"/>
-                    <a href="{article['url']}" target="_blank">{article['title']}</a>
-                </div>
-                """, 
-                unsafe_allow_html=True
-            )
-    
-        st.markdown(
-            """
-            </div> <!-- End of news-container -->
-            </div> <!-- End of tab-content -->
-            """, 
-            unsafe_allow_html=True
-        )
-        
+
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
             """
