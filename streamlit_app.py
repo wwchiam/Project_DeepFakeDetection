@@ -585,6 +585,14 @@ def main():
         st.markdown("<hr/>", unsafe_allow_html=True)
 
 ##################### Mapsss
+
+         # Filter Data by Country (for demonstration purposes)
+        filtered_data = country_df[country_df['Country'] == selected_country]
+        st.write(filtered_data)
+        
+        # Display message when no data is available
+        if filtered_data.empty:
+            st.warning(f"No data available for {selected_country} in the selected date range.")
     
         # Create Mock Data for Deepfake Submissions by Country (with corrected coordinates)
         country_data = {
@@ -622,14 +630,7 @@ def main():
             
         </div>
         """, unsafe_allow_html=True)
-        
-        # Filter Data by Country (for demonstration purposes)
-        filtered_data = country_df[country_df['Country'] == selected_country]
-        st.write(filtered_data)
-        
-        # Display message when no data is available
-        if filtered_data.empty:
-            st.warning(f"No data available for {selected_country} in the selected date range.")
+    
 
 ##################### Charts
         
