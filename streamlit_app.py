@@ -144,7 +144,6 @@ def main():
                     <p><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</p>
                     <p><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</p>
                     <p><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</p>
-                </ul>
             </div>
             """, 
             unsafe_allow_html=True
@@ -274,7 +273,4 @@ def main():
     # Contact Us Tab
     with tabs[4]:
         st.markdown('<div class="section-header">Contact Us</div>', unsafe_allow_html=True)
-        st.write("For inquiries or support, email us at [23054196@siswa.um.edu.my](mailto:23054196@siswa.um.edu.my).")
-
-if __name__ == "__main__":
-    main()
+        st.write("For inquiries or support
