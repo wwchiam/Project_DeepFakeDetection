@@ -560,17 +560,14 @@ def main():
     
             # You can read the file and process it here (e.g., preview the data)
             if uploaded_file.type == "text/csv":
-                import pandas as pd
                 df = pd.read_csv(uploaded_file)
                 st.write("Preview of the uploaded dataset:")
                 st.dataframe(df.head())  # Display the first few rows of the uploaded dataset
             elif uploaded_file.type == "application/json":
-                import json
                 data = json.load(uploaded_file)
                 st.write("Preview of the uploaded JSON data:")
                 st.json(data)  # Display the JSON structure
             elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-                import pandas as pd
                 df = pd.read_excel(uploaded_file)
                 st.write("Preview of the uploaded Excel dataset:")
                 st.dataframe(df.head())  # Display the first few rows of the uploaded dataset
@@ -593,15 +590,15 @@ def main():
     
         else:
             st.write("Please upload a dataset to proceed.")
-    # Manually created data for the dashboard
-data = {
-    'Timestamp': [
-        datetime.now() - timedelta(minutes=5 * i) for i in range(10)
-    ],
-    'Active Users': [75, 80, 85, 78, 90, 100, 95, 88, 85, 80],
-    'Deepfake Detections': [10, 12, 8, 9, 15, 18, 14, 13, 11, 9]
-}
 
+    # Manually created data for the dashboard
+    data = {
+        'Timestamp': [
+            datetime.now() - timedelta(minutes=5 * i) for i in range(10)
+        ],
+        'Active Users': [75, 80, 85, 78, 90, 100, 95, 88, 85, 80],
+        'Deepfake Detections': [10, 12, 8, 9, 15, 18, 14, 13, 11, 9]
+    }
 
     manual_data = pd.DataFrame(data)
     
