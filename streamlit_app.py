@@ -169,7 +169,7 @@ def main():
          
 
     # Detection Tab 
-  # Detection Tab
+    # Detection Tab
     with tabs[2]:
         st.markdown(
             """
@@ -311,26 +311,30 @@ def main():
                                 index=1,
                                 help="Select 'Yes' to report the image as a deepfake"
                             )
-                            if report_fake == "Yes":
-                                report_fake_image()
+    
+                            # Comment box for feedback or additional notes
+                            comment = st.text_area("Leave a comment (optional)", height=100)
+    
+                            # Submit Button
+                            submit_button = st.button("Submit Report")
+    
+                            # Check if the submit button is clicked
+                            if submit_button:
+                                if report_fake == "Yes":
+                                    # Here you can handle the report and comment submission logic
+                                    report_fake_image()  # Example: Send the report for the fake image
+                                    st.success("Report submitted successfully!")
+    
+                                # Save or handle the comment
+                                st.text_area("Your comment: " + comment)
     
                         except Exception as e:
                             st.error(f"Error during prediction: {e}")
                 else:
                     st.warning("Please upload a valid image.")
     
-                # Comment box for feedback or additional notes
-                comment = st.text_area("Leave a comment (optional)", height=100)
-    
-                # Submit Button
-                submit_button = st.button("Submit Report")
-    
-                # Check if the submit button is clicked
-                if submit_button:
-                    # Here you can handle the comment submission logic or report submission
-                    st.success("Report submitted successfully!")
-    
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
+
 
     # Technology Tab
     with tabs[3]: 
