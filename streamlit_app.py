@@ -195,20 +195,99 @@ def main():
             unsafe_allow_html=True
         )
 
+    # # Usage Tab
+    # with tabs[1]: 
+    #     st.markdown(
+    #         """
+    #         <div class="tab-content">
+    #             <div class="section-header">Usage Statistic</div>
+    #             <p>Thinking...</p>
+    #         </div>
+            
+    #         """, 
+    #         unsafe_allow_html=True
+    #     )
+         
     # Usage Tab
     with tabs[1]: 
         st.markdown(
             """
             <div class="tab-content">
-                <div class="section-header">Usage Statistic</div>
-                <p>Thinking...</p>
+                <div class="section-header">What is Deepfake?</div>
+                <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
+                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
+                
+                <div class="section-header">System Usage Statistics</div>
+                <p>Below is the usage statistics of users who have used our system to detect deepfakes. The chart shows the number of users who have interacted with the platform:</p>
             </div>
-            
             """, 
             unsafe_allow_html=True
         )
-         
+    
+        # Sample statistic chart using Plotly (just an example, this could be replaced with actual data)
+        # You would replace the data in this chart with your actual data (e.g., data from a database)
+        data = {
+            'Date': ['2024-12-01', '2024-12-02', '2024-12-03', '2024-12-04', '2024-12-05'],
+            'Users': [150, 200, 180, 220, 250]
+        }
+        df = pd.DataFrame(data)
+        fig = px.bar(df, x='Date', y='Users', title="Number of Users Detecting Deepfakes",
+                     labels={'Date': 'Date', 'Users': 'Number of Users'})
+        st.plotly_chart(fig)
+    
+        # User Assessment: Deepfake Detection Quiz
+        st.markdown(
+            """
+            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+            <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            """, 
+            unsafe_allow_html=True
+        )
+    
+        # Sample Deepfake Images (replace with actual images you want to use for the test)
+        deepfake_images = [
+            "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
+            "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
+            "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
+        ]
+    
+        # User answers
+        answers = []
+        score = 0
+    
+        for idx, image_url in enumerate(deepfake_images):
+            st.image(image_url, caption=f"Image {idx + 1}", width=400)
+            answer = st.radio(
+                f"Is this a deepfake? (Image {idx + 1})", 
+                ["Yes", "No"],
+                key=f"question_{idx}"
+            )
+    
+            # Store the answers
+            answers.append(answer)
+    
+            # Calculate score (assumes the correct answer is "Yes" for all images)
+            if answer == "Yes":  # Assuming all images are deepfakes in this case
+                score += 1
+    
+        if len(answers) == len(deepfake_images):
+            st.markdown(f"Your score: {score}/3")
+            if score == 3:
+                st.success("Excellent! You correctly identified all the deepfakes.")
+            elif score == 2:
+                st.warning("Good job! You got 2 out of 3 correct.")
+            else:
+                st.error("Try again! You can improve your ability to spot deepfakes.")
+    
+        # End of the tab content
+        st.markdown(
+            """
+            </div> <!-- End of the transparent box -->
+            """, 
+            unsafe_allow_html=True
+        )
 
+    
     # Detection Tab
     # Detection Tab
     with tabs[2]:
