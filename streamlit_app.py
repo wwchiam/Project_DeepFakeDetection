@@ -316,7 +316,6 @@ def main():
             st.markdown(
                 """
                 <div class="section-header">Image Upload</div>
-                # <p>Upload a JPG, JPEG, or PNG image for detection.</p>
                 """, 
                 unsafe_allow_html=True
             )
