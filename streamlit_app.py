@@ -616,29 +616,50 @@ def main():
         with chart2:
             st.markdown("#### Deepfake Submissions and Detection Percentage")
         
-            # Plotting the second chart with twin axes
-            fig, ax1 = plt.subplots(figsize=(8, 4))
+            # Create a Plotly figure with two y-axes
+            fig = go.Figure()
         
-            # Bar chart for deepfake submissions
-            ax1.bar(chart_data2.index, chart_data2['Deepfakes Submitted'], color='blue', alpha=0.6, label='Deepfakes Submitted')
-            ax1.set_xlabel('Date')
-            ax1.set_ylabel('Deepfakes Submitted', color='blue')
-            ax1.tick_params(axis='y', labelcolor='blue')
+            # Add the bar chart for Deepfake Submissions (left axis)
+            fig.add_trace(go.Bar(
+                x=chart_data2.index,
+                y=chart_data2['Deepfakes Submitted'],
+                name='Deepfakes Submitted',
+                marker=dict(color='blue'),
+                yaxis='y1'
+            ))
         
-            # Twin axis for deepfake detection percentage
-            ax2 = ax1.twinx()
-            ax2.plot(chart_data2.index, chart_data2['Deepfakes Detected'], color='red', label='Detection Percentage', linestyle='-', marker='o')
-            ax2.set_ylabel('Detection Percentage (%)', color='red')
-            ax2.tick_params(axis='y', labelcolor='red')
+            # Add the line chart for Detection Percentage (right axis)
+            fig.add_trace(go.Scatter(
+                x=chart_data2.index,
+                y=chart_data2['Deepfakes Detected'],
+                name='Detection Percentage',
+                mode='lines+markers',
+                line=dict(color='red'),
+                yaxis='y2'
+            ))
         
-            # Title and layout adjustments
-            plt.title('Deepfake Submissions and Detection Percentage')
-            plt.xticks(rotation=45)
-            fig.tight_layout()
+            # Set the layout for dual y-axes
+            fig.update_layout(
+                title='Deepfake Submissions and Detection Percentage',
+                xaxis_title='Date',
+                yaxis=dict(
+                    title='Deepfakes Submitted',
+                    titlefont=dict(color='blue'),
+                    tickfont=dict(color='blue')
+                ),
+                yaxis2=dict(
+                    title='Detection Percentage (%)',
+                    titlefont=dict(color='red'),
+                    tickfont=dict(color='red'),
+                    overlaying='y',
+                    side='right'
+                ),
+                plot_bgcolor='#f0f0f5',  # Match background color
+                hovermode='x unified'
+            )
         
-            # Display the plot in Streamlit
-            st.pyplot(fig)
-                
+            # Display the interactive chart
+            st.plotly_chart(fig)
         
     
             
