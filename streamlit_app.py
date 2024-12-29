@@ -403,6 +403,8 @@ def main():
     # Detection Tab
     # Detection Tab
     # Detection Tab
+
+    # Detection Tab
     with tabs[2]:
         
         # Layout with two columns
@@ -477,16 +479,13 @@ def main():
                                     # Handle the reporting logic
                                     if agree == "Yes":
                                         report_fake_image()  # Call your function to report fake images
-                                        if comment:
-                                            st.write(f"**Comment:** {comment}")
+                                        st.write(f"**Comment:** {comment}" if comment else "")
                                     elif agree == "No":
                                         st.write("Thank you for your feedback.")
-                                        if comment:
-                                            st.write(f"**Comment:** {comment}")
+                                        st.write(f"**Comment:** {comment}" if comment else "")
                                     elif agree == "I'm not sure":
                                         st.write("You are unsure about the image.")
-                                        if comment:
-                                            st.write(f"**Comment:** {comment}")
+                                        st.write(f"**Comment:** {comment}" if comment else "")
                             except Exception as e:
                                 st.error(f"Error during prediction: {e}")
                     else:
@@ -501,6 +500,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+
 
     # with tabs[2]:
     
