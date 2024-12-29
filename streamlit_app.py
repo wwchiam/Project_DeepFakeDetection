@@ -176,8 +176,7 @@ def main():
             <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
-    
-                <!-- Start Layout with two columns -->
+            
             <div style="display: flex; justify-content: space-between;">
                 <div style="flex: 1; padding-right: 10px;">
                     <div class="section-header" style="color: white;">Image Upload</div>
@@ -185,48 +184,53 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-    
-        # File Uploader (Streamlit Widget)
-        uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
-    
-        # Sensitivity Slider (Streamlit Widget)
-        st.markdown(
-            """
-            <p style="color: white;">Adjust the sensitivity:</p>
-            """, unsafe_allow_html=True
-        )
-        sensitivity = st.slider(
-            "Select Detection Sensitivity", 
-            min_value=0.1, 
-            max_value=0.9, 
-            value=0.5665,  # Default threshold
-            step=0.05, 
-            help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
-        )
         
-        # Style the 'Detect Deepfake' button with red color
-        st.markdown(
-            """
-            <style>
-                .stButton>button {
-                    background-color: red;
-                    color: white;
-                    font-size: 18px;
-                    border-radius: 8px;
-                    border: none;
-                    padding: 10px 20px;
-                    cursor: pointer;
-                }
-                .stButton>button:hover {
-                    background-color: darkred;
-                }
-            </style>
-            """, unsafe_allow_html=True
-        )
-    
-        # Detect Button 
-        detect_button = st.button("Detect Deepfake")
+        # Create two columns for left (image upload) and right (result)
+        col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
         
+        with col1:  # Left column for image upload
+            # File Uploader (Streamlit Widget)
+            uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+            
+        with col2:  # Right column for results (initially empty)
+            # Sensitivity Slider (Streamlit Widget)
+            st.markdown(
+                """
+                <p style="color: white;">Adjust the sensitivity:</p>
+                """, unsafe_allow_html=True
+            )
+            sensitivity = st.slider(
+                "Select Detection Sensitivity", 
+                min_value=0.1, 
+                max_value=0.9, 
+                value=0.5665,  # Default threshold
+                step=0.05, 
+                help="Adjust the sensitivity of the deepfake detection model. Lower sensitivity may result in fewer false positives."
+            )
+            
+            # Style the 'Detect Deepfake' button with red color
+            st.markdown(
+                """
+                <style>
+                    .stButton>button {
+                        background-color: red;
+                        color: white;
+                        font-size: 18px;
+                        border-radius: 8px;
+                        border: none;
+                        padding: 10px 20px;
+                        cursor: pointer;
+                    }
+                    .stButton>button:hover {
+                        background-color: darkred;
+                    }
+                </style>
+                """, unsafe_allow_html=True
+            )
+            
+            # Detect Button 
+            detect_button = st.button("Detect Deepfake")
+            
         # Displaying the results (will be inside the transparent box)
         with st.container():
             if uploaded_file and detect_button:
@@ -240,25 +244,29 @@ def main():
                             # Extract the top predicted class and the corresponding probability
                             predicted_class = np.argmax(prediction[0])
                             predicted_prob = prediction[0][predicted_class]
-    
-                            # Display the uploaded image and results inside the transparent box
-                            st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
-                            st.markdown(
-                                f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%",
-                                unsafe_allow_html=True
-                            )
-    
-                            # Determine if the image is fake based on the threshold
-                            result = 'Fake' if predicted_prob > sensitivity else 'Real'
-                            st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
-    
+        
+                            # Display the uploaded image on the left column
+                            with col1:
+                                st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
+        
+                            # Display results (probability and classification) on the right column
+                            with col2:
+                                st.markdown(
+                                    f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%",
+                                    unsafe_allow_html=True
+                                )
+        
+                                # Determine if the image is fake based on the threshold
+                                result = 'Fake' if predicted_prob > sensitivity else 'Real'
+                                st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
+        
                         except Exception as e:
                             st.error(f"Error during prediction: {e}")
                 else:
                     st.warning("Please upload a valid image.")
             else:
                 st.warning("Please upload an image and click 'Detect Deepfake'.")
-    
+        
         st.markdown("</div></div></div>", unsafe_allow_html=True)  # Closing the divs properly
     
 
