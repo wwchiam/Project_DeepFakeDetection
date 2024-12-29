@@ -225,6 +225,39 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+
+            # Display News Links with Icons
+        news_links = [
+            {
+                'title': 'AI and 2024 Elections: What to Expect', 
+                'url': 'https://time.com/7131271/ai-2024-elections/',
+                'icon': 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Time_logo.svg'  # Time Logo
+            },
+            {
+                'title': 'Top 5 Cases of AI Deepfake Fraud Exposed in 2024',
+                'url': 'https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/',
+                'icon': 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Incode_Logo_2x.png'  # Incode Logo
+            },
+            {
+                'title': 'Deepfake CFO Scam in Hong Kong - A New Era of Fraud',
+                'url': 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html',
+                'icon': 'https://upload.wikimedia.org/wikipedia/commons/4/4d/CNN_logo.svg'  # CNN Logo
+            }
+        ]
+    
+        for article in news_links:
+            st.markdown(
+                f"""
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <img src="{article['icon']}" alt="{article['title']}" width="30" style="margin-right: 10px;" />
+                    <a href="{article['url']}" target="_blank" style="font-size: 18px; color: #4a90e2; text-decoration: none;">
+                        {article['title']}
+                    </a>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
+        
         
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
