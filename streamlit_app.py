@@ -226,21 +226,7 @@ def main():
     
    
                 <div class="section-header" style="font-size: 24px; font-weight: bold; color: #FFFFFF;">Latest News</div>
-    
-                <div class="news-container">
-                    <div class="news-item">
-                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" />
-                        <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" />
-                        <a href="https://time.com/7131271/ai-2024-elections/" target="_blank">AI and 2024 Elections: What to Expect</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" />
-                        <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
-                    </div>
-                </div>
+  
             </div>
             """, 
             unsafe_allow_html=True
