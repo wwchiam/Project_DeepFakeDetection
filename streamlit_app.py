@@ -15,6 +15,7 @@ st.set_page_config(
 )
 
 # Global CSS Styling with Background Image
+# Global CSS Styling with Background Image and button/radio styling
 st.markdown(
     """
     <style>
@@ -96,9 +97,33 @@ st.markdown(
         color: #ffffff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
+
+    /* Styling for Radio Buttons */
+    .stRadio label {
+        color: white !important;  /* Always white font for radio buttons */
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Styling for Buttons (Make all buttons red with white text) */
+    .stButton button {
+        background-color: red !important;  /* Red background */
+        color: white !important;  /* White text */
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 10px;
+        width: 150px;
+        cursor: pointer;
+    }
+    .stButton button:hover {
+        background-color: darkred !important;  /* Darker red on hover */
+    }
+
     </style>
     """, unsafe_allow_html=True
 )
+
 
 # Title Section
 st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_html=True)
