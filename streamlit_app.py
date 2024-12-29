@@ -477,7 +477,7 @@ def main():
                                     
                                     # Maintain session state for radio button and comment box
                                     if "agree" not in st.session_state:
-                                        st.session_state.agree = "No"  # Default to "No"
+                                        st.session_state.agree = "Yes"  # Default to "No"
                                     
                                     # Radio button for "Yes" or "No"
                                     agree = st.radio(
@@ -596,7 +596,7 @@ def main():
     #                                 # Option to report fake
     #                                 agree = st.radio(
     #                                     "Would you like to report this image as a deepfake?", 
-    #                                     ["No", "Yes"], 
+    #                                     ["Yes", "No"], 
     #                                     index=0
     #                                 )
     #                                 if agree == "Yes":
