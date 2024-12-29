@@ -239,7 +239,7 @@ def report_fake_image():
 # Main Functionality
 def main():
     # Tab Layout
-    tabs = st.tabs(["About Us", "What is Deepfake", "Detection", "Technology", "Contact Us",'Dashboard'])
+    tabs = st.tabs(["About Us", "What is Deepfake", "Detection", "Technology", "Dashboard", "Contact Us"])
     
     with tabs[0]:  # About Tab
         st.markdown(
@@ -539,7 +539,7 @@ def main():
     #         unsafe_allow_html=True
     #     )
     # Contact Us Tab
-    with tabs[4]:
+    with tabs[5]:
         st.markdown(
             """
             <div class="tab-content">
@@ -591,28 +591,7 @@ def main():
     
         else:
             st.write("Please upload a dataset to proceed.")
-
-    # Dashboard Tab
-    with tabs[5]:
-        st.title("US Population Dashboard")
-    
-        # Load the dataset (assuming df_reshaped is your dataset)
-        df_reshaped = pd.read_csv('data.csv')  # Adjust based on your dataset location
-
-        # Function to calculate population differences between years
-        def calculate_population_difference(input_df, input_year):
-            selected_year_data = input_df[input_df['year'] == input_year].reset_index()
-            previous_year_data = input_df[input_df['year'] == input_year - 1].reset_index()
-            merged_data = pd.merge(selected_year_data, previous_year_data, on='states', suffixes=('', '_prev'))
-            merged_data['population_difference'] = merged_data['population'] - merged_data['population_prev']
-            return merged_data[['states', 'id', 'population', 'population_difference']].sort_values(by="population_difference", ascending=False)
-
-        # Display Dashboard content
-        selected_year = st.selectbox("Select a Year", df_reshaped['year'].unique())
-        df_population_difference_sorted = calculate_population_difference(df_reshaped, selected_year)
-
-        st.write("Population Difference from Previous Year")
-        st.dataframe(df_population_difference_sorted.head())         
+     
 
 # Run the main function
 if __name__ == "__main__":
