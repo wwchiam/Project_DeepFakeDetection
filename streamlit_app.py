@@ -249,41 +249,41 @@ def main():
                 By fine-tuning this model, we have adapted it to detect deepfake images with high reliability. 
                 ResNet50 achieves an impressive balance between performance and efficiency, making it a top choice for tasks that require quick and accurate predictions.</p>
                 
-            <div class="section-header">Model Performance</div>
-                <p> These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
+                <div class="section-header">Model Performance</div>
+                <p>These metrics represent the model's ability to accurately identify real vs. fake images, while minimizing false positives and false negatives.</p>
                 <ul>
-                <li>Accuracy: 79% </li>
-                <li>Recall: 92% </li>
-                <li>Precision: 73% </li>
-                <li>F1-Score: 81% </li>
+                    <li>Accuracy: 79% </li>
+                    <li>Recall: 92% </li>
+                    <li>Precision: 73% </li>
+                    <li>F1-Score: 81% </li>
                 </ul>
-    
-            <div class="section-header">Model Evaluation</div>
-            <ul>
-                <li>The following visualizations provide insights into the model's performance:</li>
-                <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
-            </ul>
-            
-            <!-- Image below Confusion Matrix description -->
-            <div style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" 
-                     alt="Confusion Matrix" width="300" />
+        
+                <div class="section-header">Model Evaluation</div>
+                <ul>
+                    <li>The following visualizations provide insights into the model's performance:</li>
+                    <li><b>Confusion Matrix</b>: Shows the model's predictions against actual labels, illustrating its accuracy.</li>
+                </ul>
+                
+                <!-- Image below Confusion Matrix description -->
+                <div style="text-align: center;">
+                    <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_confusion_matrix.png" 
+                         alt="Confusion Matrix" width="300" />
+                </div>
+                
+                <ul>
+                    <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
+                </ul>
+                
+                <!-- Image below Learning Curve description -->
+                <div style="text-align: center;">
+                    <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" 
+                         alt="Loss Plot" width="300" />
+                </div>
             </div>
-            
-            <ul>
-                <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
-            </ul>
-            
-            <!-- Image below Learning Curve description -->
-            <div style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" 
-                     alt="Loss Plot" width="300" />
-            </div>
-        </div>
-        """, 
-        unsafe_allow_html=True
-     )
-    
+            """, 
+            unsafe_allow_html=True
+        )
+
 
     # Contact Us Tab
     with tabs[4]:
