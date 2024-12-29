@@ -224,40 +224,32 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-        
+    
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
-        
-        # Add CSS for black transparent background and hiding the "Dummy" option
+    
+        # Add CSS for styling
         st.markdown(
             """
             <style>
-                /* Style for the background of each question with a black transparent box */
-                .tab-content {
-                    background-color: rgba(0, 0, 0, 0.5);  /* Black transparent background */
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                    margin-bottom: 20px;
-                }
-    
+                /* Style for the background of each question */
                 .question-box {
                     background-color: rgba(0, 0, 0, 0.8);  /* Black transparent background */
-                    padding: 10px;
+                    padding: 15px;
                     border-radius: 8px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
                     margin-bottom: 20px;
                     color: white;  /* Text color inside the box */
                 }
     
-                /* Hide the dummy radio button */
-                div[role=radiogroup] .st-cs:first-child {
-                    visibility: hidden;
-                    height: 0px;
+                /* Optional: Styling for the images */
+                .image-box {
+                    margin-bottom: 15px;
+                    text-align: center;
                 }
             </style>
             """, 
@@ -269,21 +261,21 @@ def main():
         score = 0
     
         for idx, image_url in enumerate(deepfake_images):
-            # Wrap each image inside a question box with the background styling
+            # Wrap each question inside the question-box div with the background styling
             with st.markdown(
                 """
                 <div class="question-box">
                 """, 
                 unsafe_allow_html=True
             ):
-                # Display the image
-                st.image(image_url, caption=f"Image {idx + 1} - Source URL: {image_url}", width=400)
+                # Display the image using HTML img tag
+                st.markdown(f'<div class="image-box"><img src="{image_url}" width="400" /></div>', unsafe_allow_html=True)
     
                 # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
                 answer = st.radio(
                     f"Is this a deepfake? (Image {idx + 1})", 
-                    ["Yes", "No", "I'm not sure"],  # Add "Dummy" as the third option
-                    key=f"question_{idx}",  # Each question should have a unique key
+                    ["Yes", "No", "I'm not sure"],  
+                    key=f"question_{idx}", 
                     index=2  # Default to "I'm not sure" (index 2)
                 )
     
@@ -310,7 +302,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-    
+
             
     # Detection Tab
     # Detection Tab
