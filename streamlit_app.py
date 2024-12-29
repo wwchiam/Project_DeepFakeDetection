@@ -592,7 +592,7 @@ def main():
         visitors = np.random.randint(500, 2000, num_days)  # Random number between 500 and 2000 visitors per day
         submissions = np.random.randint(10, 100, num_days)  # Random number between 10 and 100 deepfake videos submitted
         detections = np.random.randint(5, submissions+1, num_days)  # Deepfakes detected, can't be greater than submissions
-        detection_percentage = (detections / submissions) * 100  # Detection percentage
+   
         
         # Create the dataframes
         chart_data1 = pd.DataFrame({
@@ -600,8 +600,7 @@ def main():
         }, index=pd.date_range('2024-12-01', periods=num_days))
         
         chart_data2 = pd.DataFrame({
-            'Deepfakes Submitted': submissions,
-            'Deepfakes Detected': detection_percentage
+            'Deepfakes Detected': detections
         }, index=pd.date_range('2024-12-01', periods=num_days))
         
         # --- Chart 1: Number of Visitors ---
@@ -612,21 +611,10 @@ def main():
             st.markdown("#### Number of Visitors")
             st.line_chart(chart_data1)
         
-        # --- Chart 2: Deepfake Submissions and Detection Percentage ---
+        # --- Chart 2: Deepfake Detection  ---
         with chart2:
-            st.markdown("#### Deepfake Submissions and Detection Percentage")
-        
-            # Create a Plotly figure with two lines
-            fig = go.Figure()
-        
-            # Add the line chart for Deepfake Submissions
-            fig.add_trace(go.Scatter(
-                x=chart_data2.index,
-                y=chart_data2['Deepfakes Submitted'],
-                name='Deepfakes Submitted',
-                mode='lines+markers',
-                line=dict(color='blue'),
-            ))
+            st.markdown("#### Number of Deepfake Detected over Time")
+            st.line_chart(chart_data2)
         
             # Add the line chart for Detection Percentage
             fig.add_trace(go.Scatter(
