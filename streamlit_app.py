@@ -241,7 +241,7 @@ def main():
             answer = st.radio(
                 f"Is this a deepfake? (Image {idx + 1})", 
                 ["Yes", "No"],
-                key=f"question_{idx}"
+                key=f"question_{idx}",
                 index=-1 
             )
     
