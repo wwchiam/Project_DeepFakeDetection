@@ -177,10 +177,10 @@ def main():
                 <div class="section-header" style="color: white;">Upload an Image for Detection</div>
                 <p style="color: white;">Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
     
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="flex: 1; padding-right: 10px; color: white;">
-                        <div class="section-header" style="color: white;">Image Upload</div>
-                        <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="flex: 1; padding-right: 10px; color: white;">
+                    <div class="section-header" style="color: white;">Image Upload</div>
+                    <p style="color: white;">Upload a JPG, JPEG, or PNG image for detection.</p>
         """, 
             unsafe_allow_html=True
         )
