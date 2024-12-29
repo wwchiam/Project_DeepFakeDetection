@@ -349,7 +349,7 @@ def main():
         # Loop over the images
         for idx, image_url in enumerate(deepfake_images):
             # Create 3 columns: 1 for the image, 2 for the question, and 3 for extra content
-            col1, col2, col3 = st.columns([1, 2, 1])  # Adjust column ratios as needed
+            col1, col2 = st.columns([1, 2])  # Adjust column ratios as needed
             
             with col1:
                 # Image column
@@ -376,10 +376,10 @@ def main():
                 if answer == "Yes":  # Assuming all images are deepfakes in this case
                     score += 1
         
-            with col3:
-                # Extra column for additional content (optional)
-                # You can add an explanation, a button, or leave it empty for spacing
-                st.markdown(f"<div style='height: 200px;'></div>", unsafe_allow_html=True)  # Optional empty space
+            # with col3:
+            #     # Extra column for additional content (optional)
+            #     # You can add an explanation, a button, or leave it empty for spacing
+            #     st.markdown(f"<div style='height: 200px;'></div>", unsafe_allow_html=True)  # Optional empty space
             
         # Show score and feedback
         if len(answers) == len(deepfake_images):
