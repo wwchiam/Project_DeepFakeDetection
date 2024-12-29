@@ -238,6 +238,14 @@ def main():
             """
             <style>
                 /* Style for the background of each question */
+                .tab-content {
+                    background-color: rgba(255, 255, 255, 0.9);  /* Light transparent white background */
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+    
                 .question-box {
                     background-color: #ffffff;  /* White background */
                     padding: 10px;
@@ -245,7 +253,7 @@ def main():
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     margin-bottom: 20px;
                 }
-                
+    
                 /* Hide the dummy radio button */
                 div[role=radiogroup] .st-cs:first-child {
                     visibility: hidden;
@@ -261,21 +269,22 @@ def main():
         score = 0
     
         for idx, image_url in enumerate(deepfake_images):
-            st.image(image_url, caption=f"Image {idx + 1}", width=400)
-            
-            # Wrap each question in a div with the 'question-box' class for styling
+            # Wrap each image inside a question box with the background styling
             with st.markdown(
                 """
                 <div class="question-box">
                 """, 
                 unsafe_allow_html=True
             ):
-                # Actual deepfake detection radio buttons (Yes, No, and Dummy)
+                # Display the image
+                st.image(image_url, caption=f"Image {idx + 1}", width=400)
+    
+                # Actual deepfake detection radio buttons (Yes, No, I'm not sure)
                 answer = st.radio(
                     f"Is this a deepfake? (Image {idx + 1})", 
                     ["Yes", "No", "I'm not sure"],  # Add "Dummy" as the third option
                     key=f"question_{idx}",  # Each question should have a unique key
-                    index=2  # Default to "Dummy" (index 2)
+                    index=2  # Default to "I'm not sure" (index 2)
                 )
     
             # Store the answers
@@ -301,10 +310,8 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-
-
-
     
+        
     # Detection Tab
     # Detection Tab
     with tabs[2]:
