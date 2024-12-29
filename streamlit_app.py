@@ -215,13 +215,6 @@ def main():
     # Inside the What is Deepfake Tab
 
     with tabs[1]:
-        # Create a transparent black background for the entire tab content
-        st.markdown(
-            """
-            <div class="tab-container" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; width: 100%; min-height: 100vh; display: block;">
-            """, unsafe_allow_html=True
-        )
-    
         # What is Deepfake section
         st.markdown(
             """
@@ -281,48 +274,49 @@ def main():
             )
     
         # Test Your Ability to Detect Deepfakes section
-        st.markdown(
-            """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
-            <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
-            <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    
         # Sample Deepfake Images
         deepfake_images = [
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
-    
+        
         # User answers and scoring
         answers = []
         score = 0
-    
+        
+        # Loop over the images
         for idx, image_url in enumerate(deepfake_images):
-            st.markdown(f"""
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
-                <div class="question-box" style="text-align: left;">
+            # Create 3 columns: 1 for the image, 2 for the question, and 3 for extra content
+            col1, col2, col3 = st.columns([1, 2, 1])  # Adjust column ratios as needed
+            
+            with col1:
+                # Image column
+                st.markdown(f"""
+                <div class="question-box" style="text-align: center;">
                     <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
             
-            answer = st.radio(
-                f"Is this a deepfake? (Image {idx + 1})", 
-                ["Yes", "No", "I'm not sure"], 
-                key=f"question_{idx}", 
-                index=2  # Default to "I'm not sure"
-            )
-            answers.append(answer)
-    
-            # Calculate score (assuming correct answer is "Yes" for all images)
-            if answer == "Yes":  # Assuming all images are deepfakes in this case
-                score += 1
-    
+            with col2:
+                # Question column
+                answer = st.radio(
+                    f"Is this a deepfake? (Image {idx + 1})", 
+                    ["Yes", "No", "I'm not sure"], 
+                    key=f"question_{idx}", 
+                    index=2  # Default to "I'm not sure"
+                )
+                answers.append(answer)
+        
+                # Calculate score (assuming correct answer is "Yes" for all images)
+                if answer == "Yes":  # Assuming all images are deepfakes in this case
+                    score += 1
+        
+            with col3:
+                # Extra column for additional content (optional)
+                # You can add an explanation, a button, or leave it empty for spacing
+                st.markdown(f"<div style='height: 200px;'></div>", unsafe_allow_html=True)  # Optional empty space
+            
         # Show score and feedback
         if len(answers) == len(deepfake_images):
             st.markdown(f"Your score: {score}/3", unsafe_allow_html=True)
@@ -333,8 +327,63 @@ def main():
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
         
-        # Close the transparent background wrapper div
-        st.markdown("</div>", unsafe_allow_html=True)
+
+
+
+        # st.markdown(
+        #     """
+        #     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+        #     <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
+        #     <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
+        #     </div>
+        #     """,
+        #     unsafe_allow_html=True
+        # )
+    
+        # # Sample Deepfake Images
+        # deepfake_images = [
+        #     "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
+        #     "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
+        #     "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
+        # ]
+    
+        # # User answers and scoring
+        # answers = []
+        # score = 0
+    
+        # for idx, image_url in enumerate(deepfake_images):
+        #     st.markdown(f"""
+        #     <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+        #         <div class="question-box" style="text-align: left;">
+        #             <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
+        #         </div>
+        #     </div>
+        #     """, unsafe_allow_html=True)
+            
+        #     answer = st.radio(
+        #         f"Is this a deepfake? (Image {idx + 1})", 
+        #         ["Yes", "No", "I'm not sure"], 
+        #         key=f"question_{idx}", 
+        #         index=2  # Default to "I'm not sure"
+        #     )
+        #     answers.append(answer)
+    
+        #     # Calculate score (assuming correct answer is "Yes" for all images)
+        #     if answer == "Yes":  # Assuming all images are deepfakes in this case
+        #         score += 1
+    
+        # # Show score and feedback
+        # if len(answers) == len(deepfake_images):
+        #     st.markdown(f"Your score: {score}/3", unsafe_allow_html=True)
+        #     if score == 3:
+        #         st.success("Excellent! You correctly identified all the deepfakes.")
+        #     elif score == 2:
+        #         st.warning("Good job! You got 2 out of 3 correct.")
+        #     else:
+        #         st.error("Try again! You can improve your ability to spot deepfakes.")
+        
+        # # Close the transparent background wrapper div
+        # st.markdown("</div>", unsafe_allow_html=True)
     
 
 
