@@ -530,89 +530,75 @@ def main():
 
 
 
+
     # Dashboard Tab
     with tabs[4]:
-        st.markdown("## Overall Trend")
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h2 style="color: white;">Overall Trend</h2>
+        </div>
+        """, unsafe_allow_html=True)
         
         # KPI 1
         kpi1, kpi2, kpi3 = st.columns(3)
         
         with kpi1:
-            st.markdown("**Total Visitors today**")
-            number1 = 111 
-            st.markdown(f"<h1 style='text-align: center; color: blue;'>{number1}</h1>", unsafe_allow_html=True)
+            st.markdown("""
+            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                <p style="color: white; text-align: center;">**Total Visitors today**</p>
+                <h1 style="text-align: center; color: #1E90FF;">111</h1>
+            </div>
+            """, unsafe_allow_html=True)
         
         with kpi2:
-            st.markdown("**Total Submission**")
-            number2 = 130 
-            st.markdown(f"<h1 style='text-align: center; color: blue;'>{number2}</h1>", unsafe_allow_html=True)
+            st.markdown("""
+            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                <p style="color: white; text-align: center;">**Total Submission**</p>
+                <h1 style="text-align: center; color: #1E90FF;">130</h1>
+            </div>
+            """, unsafe_allow_html=True)
         
         with kpi3:
-            st.markdown("**% Deepfake Detected**")
-            number3 = '70%'
-            st.markdown(f"<h1 style='text-align: center; color: red;'>{number3}</h1>", unsafe_allow_html=True)
+            st.markdown("""
+            <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                <p style="color: white; text-align: center;">**% Deepfake Detected**</p>
+                <h1 style="text-align: center; color: #FF6347;">70%</h1>
+            </div>
+            """, unsafe_allow_html=True)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-        
-        st.markdown("## Daily Trend")
+    
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h3 style="color: white;">Daily Trend</h3>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Filters for country and date range
-        st.markdown("### Filter Data")
+        st.markdown("### Filter Data", unsafe_allow_html=True)
         
-        # Create mock country data
         countries = ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan']
-        
-        # Country Filter
         selected_country = st.selectbox("Select Country", countries)
         
-        # Date Filter
         today = datetime.today()
         start_date = today - timedelta(days=30)
         end_date = today
         selected_date_range = st.date_input("Select Date Range", [start_date, end_date])
-        
+    
         st.markdown("<hr/>", unsafe_allow_html=True)
     
-        # Simulate data for the chart (Visitors, Submissions, and Detections)
-        num_days = 30  # Number of days for the dataset
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h3 style="color: white;">Deepfake Submissions by Country</h3>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Simulate data
-        visitors = np.random.randint(500, 2000, num_days)  # Random number between 500 and 2000 visitors per day
-        submissions = np.random.randint(10, 100, num_days)  # Random number between 10 and 100 deepfake videos submitted
-        detections = np.random.randint(5, submissions+1, num_days)  # Deepfakes detected, can't be greater than submissions
-        
-        # Create the dataframes
-        chart_data1 = pd.DataFrame({
-            'Visitors': visitors
-        }, index=pd.date_range('2024-12-01', periods=num_days))
-        
-        chart_data2 = pd.DataFrame({
-            'Deepfakes Detected': detections
-        }, index=pd.date_range('2024-12-01', periods=num_days))
-        
-        # --- Chart 1: Number of Visitors ---
-        st.markdown("### Number of Visitors Over Time")
-        chart1, chart2 = st.columns(2)
-        
-        with chart1:
-            st.markdown("#### Number of Visitors")
-            st.line_chart(chart_data1)
-        
-        # --- Chart 2: Deepfake Detection  ---
-        with chart2:
-            st.markdown("#### Number of Deepfakes Detected over Time")
-            st.line_chart(chart_data2)
-        
-        st.markdown("<hr/>", unsafe_allow_html=True)
-        
-        st.markdown("## Deepfake Submissions by Country")
-        
-        # Create Mock Data for Deepfake Submissions by Country (with fixed coordinates)
+        # Create Mock Data for Deepfake Submissions by Country (with corrected coordinates)
         country_data = {
-            'Country': ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
+            'Country': ['United States', 'Malaysia', 'India', 'China', 'Singapore', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
             'Submissions': [130, 95, 70, 120, 85, 60, 40, 50, 55, 100],
-            'Latitude': [37.0902, 51.1657, 20.5937, 35.8617, -14.2350, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],
-            'Longitude': [-95.7129, 10.4515, 78.9629, 104.1954, -51.9253, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]
+            'Latitude': [37.0902, 4.2105, 20.5937, 35.8617, 1.3521, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],  # Corrected Malaysia and Singapore coords
+            'Longitude': [-95.7129, 101.9758, 78.9629, 104.1954, 103.8198, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]  # Corrected Malaysia and Singapore coords
         }
         
         # Convert to DataFrame
@@ -626,13 +612,22 @@ def main():
         HeatMap(heat_data).add_to(m)
         
         # Display the map
-        st.markdown("### Heatmap of Deepfake Submissions by Country")
-        st.markdown("The map below shows the intensity of deepfake video submissions across different countries.")
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h3 style="color: white;">Heatmap of Deepfake Submissions by Country</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("The map below shows the intensity of deepfake video submissions across different countries.", unsafe_allow_html=True)
         folium_static(m)
         
         st.markdown("<hr/>", unsafe_allow_html=True)
         
-        st.markdown("### Summary of Submissions")
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h3 style="color: white;">Summary of Submissions</h3>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Filter Data by Country (for demonstration purposes)
         filtered_data = country_df[country_df['Country'] == selected_country]
@@ -642,10 +637,44 @@ def main():
         if filtered_data.empty:
             st.warning(f"No data available for {selected_country} in the selected date range.")
         
+        # Simulate data for the chart (Visitors, Submissions, and Detections)
+        num_days = 30  # Number of days for the dataset
+        
+        visitors = np.random.randint(500, 2000, num_days)
+        submissions = np.random.randint(10, 100, num_days)
+        detections = np.random.randint(5, submissions+1, num_days)
+        
+        # Create the dataframes
+        chart_data1 = pd.DataFrame({
+            'Visitors': visitors
+        }, index=pd.date_range('2024-12-01', periods=num_days))
+        
+        chart_data2 = pd.DataFrame({
+            'Deepfakes Detected': detections
+        }, index=pd.date_range('2024-12-01', periods=num_days))
+        
+        # --- Chart 1: Number of Visitors ---
+        st.markdown("""
+        <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h3 style="color: white;">Number of Visitors Over Time</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        chart1, chart2 = st.columns(2)
+        
+        with chart1:
+            st.markdown("#### Number of Visitors", unsafe_allow_html=True)
+            st.line_chart(chart_data1)
+        
+        # --- Chart 2: Deepfake Detection  ---
+        with chart2:
+            st.markdown("#### Number of Deepfakes Detected over Time", unsafe_allow_html=True)
+            st.line_chart(chart_data2)
+        
         st.markdown("<hr/>", unsafe_allow_html=True)
-
-
     
+    
+        
             
     # Contact Us Tab
     with tabs[5]:
