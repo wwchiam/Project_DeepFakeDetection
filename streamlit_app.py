@@ -10,6 +10,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime, timedelta
 from st_aggrid import AgGrid, GridOptionsBuilder
+import folium
+from folium.plugins import HeatMap
+from datetime import datetime, timedelta
+from streamlit_folium import folium_static
 
 # Page Title and Config
 st.set_page_config(
@@ -524,7 +528,8 @@ def main():
             unsafe_allow_html=True
         )
 
-    # Dashboard Tab
+
+
     # Dashboard Tab
     with tabs[4]:
         st.markdown("## Overall Trend")
@@ -602,10 +607,10 @@ def main():
         
         st.markdown("## Deepfake Submissions by Country")
         
-        # Create Mock Data for Deepfake Submissions by Country
+        # Create Mock Data for Deepfake Submissions by Country (with fixed coordinates)
         country_data = {
             'Country': ['United States', 'Germany', 'India', 'China', 'Brazil', 'Russia', 'Australia', 'Canada', 'Mexico', 'Japan'],
-            'Submissions': [random.randint(50, 200) for _ in range(10)],
+            'Submissions': [130, 95, 70, 120, 85, 60, 40, 50, 55, 100],
             'Latitude': [37.0902, 51.1657, 20.5937, 35.8617, -14.2350, 55.7558, -25.2744, 56.1304, 23.6345, 36.2048],
             'Longitude': [-95.7129, 10.4515, 78.9629, 104.1954, -51.9253, 37.6176, 133.7751, -106.3468, -90.4606, 138.2529]
         }
@@ -638,7 +643,6 @@ def main():
             st.warning(f"No data available for {selected_country} in the selected date range.")
         
         st.markdown("<hr/>", unsafe_allow_html=True)
-
 
 
     
