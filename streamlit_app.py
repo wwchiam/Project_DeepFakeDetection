@@ -534,12 +534,12 @@ def main():
         with kpi1:
             st.markdown("**Total Visitors today**")
             number1 = 111 
-            st.markdown(f"<h1 style='text-align: center; color: red;'>{number1}</h1>", unsafe_allow_html=True)
+            st.markdown(f"<h1 style='text-align: center; color: blue;'>{number1}</h1>", unsafe_allow_html=True)
         
         with kpi2:
             st.markdown("**Total Submission**")
             number2 = 130 
-            st.markdown(f"<h1 style='text-align: center; color: red;'>{number2}</h1>", unsafe_allow_html=True)
+            st.markdown(f"<h1 style='text-align: center; color: blue;'>{number2}</h1>", unsafe_allow_html=True)
         
         with kpi3:
             st.markdown("**% Deepfake Detected**")
@@ -548,7 +548,7 @@ def main():
         
         st.markdown("<hr/>", unsafe_allow_html=True)
         
-        st.markdown("## Chart Layout")
+        st.markdown("## Daily Trend")
         
         # Charts
         chart1, chart2 = st.columns(2)
@@ -583,28 +583,6 @@ def main():
         with chart2:
             st.markdown("#### Number of Deepfake Detected over Time")
             st.line_chart(chart_data2)
-        
-            # Add the line chart for Detection Percentage
-            fig.add_trace(go.Scatter(
-                x=chart_data2.index,
-                y=chart_data2['Deepfakes Detected'],
-                name='Detection Percentage',
-                mode='lines+markers',
-                line=dict(color='red'),
-            ))
-        
-            # Set the layout for the chart
-            fig.update_layout(
-                title='Deepfake Submissions and Detection Percentage',
-                xaxis_title='Date',
-                yaxis_title='Values',
-                plot_bgcolor='#f0f0f5',  # Match background color
-                hovermode='x unified',
-                legend=dict(x=0.1, y=0.9),  # Adjust the legend position
-            )
-        
-            # Display the interactive chart
-            st.plotly_chart(fig)
                 
     
             
