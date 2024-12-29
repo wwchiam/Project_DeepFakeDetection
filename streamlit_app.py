@@ -616,51 +616,40 @@ def main():
         with chart2:
             st.markdown("#### Deepfake Submissions and Detection Percentage")
         
-            # Create a Plotly figure with two y-axes
+            # Create a Plotly figure with two lines
             fig = go.Figure()
         
-            # Add the bar chart for Deepfake Submissions (left axis)
-            fig.add_trace(go.Bar(
+            # Add the line chart for Deepfake Submissions
+            fig.add_trace(go.Scatter(
                 x=chart_data2.index,
                 y=chart_data2['Deepfakes Submitted'],
                 name='Deepfakes Submitted',
-                marker=dict(color='blue'),
-                yaxis='y1'
+                mode='lines+markers',
+                line=dict(color='blue'),
             ))
         
-            # Add the line chart for Detection Percentage (right axis)
+            # Add the line chart for Detection Percentage
             fig.add_trace(go.Scatter(
                 x=chart_data2.index,
                 y=chart_data2['Deepfakes Detected'],
                 name='Detection Percentage',
                 mode='lines+markers',
                 line=dict(color='red'),
-                yaxis='y2'
             ))
         
-            # Set the layout for dual y-axes
+            # Set the layout for the chart
             fig.update_layout(
                 title='Deepfake Submissions and Detection Percentage',
                 xaxis_title='Date',
-                yaxis=dict(
-                    title='Deepfakes Submitted',
-                    titlefont=dict(color='blue'),
-                    tickfont=dict(color='blue')
-                ),
-                yaxis2=dict(
-                    title='Detection Percentage (%)',
-                    titlefont=dict(color='red'),
-                    tickfont=dict(color='red'),
-                    overlaying='y',
-                    side='right'
-                ),
+                yaxis_title='Values',
                 plot_bgcolor='#f0f0f5',  # Match background color
-                hovermode='x unified'
+                hovermode='x unified',
+                legend=dict(x=0.1, y=0.9),  # Adjust the legend position
             )
         
             # Display the interactive chart
             st.plotly_chart(fig)
-        
+                
     
             
     # Contact Us Tab
