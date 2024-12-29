@@ -269,6 +269,7 @@ def main():
                 
             <div style="text-align: left;">
                 <ul>
+                <br>
                 <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
                 </ul>
                 <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
