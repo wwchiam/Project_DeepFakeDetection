@@ -196,20 +196,21 @@ def main():
             unsafe_allow_html=True
         )
 
-    with tabs[1]:  # What is Deepfake Tab
+    # What is Deepfake Tab
+    with tabs[1]:  
         st.markdown(
-                    """
-                    <div class="tab-content">
-                        <div class="section-header">What is Deepfake?</div>
-                        <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
-                        The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
-                        
-                    <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
-                        <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
-            
-                    """, 
-                    unsafe_allow_html=True
-                )
+            """
+            <div class="tab-content">
+                <div class="section-header">What is Deepfake?</div>
+                <p><b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
+                The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
+                
+            <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
+                <p>Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+    
+            """, 
+            unsafe_allow_html=True
+        )
     
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
@@ -217,35 +218,76 @@ def main():
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake2.jpg",
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake3.jpg"
         ]
+        
+        # Initialize session state variables for tracking progress and answers
+        if 'current_image' not in st.session_state:
+            st.session_state['current_image'] = 0
+        if 'answers' not in st.session_state:
+            st.session_state['answers'] = []
+        if 'score' not in st.session_state:
+            st.session_state['score'] = 0
+        
+        # Function to handle image navigation and feedback
+        def navigate_images(direction):
+            if direction == 'Next' and st.session_state['current_image'] < len(deepfake_images) - 1:
+                st.session_state['current_image'] += 1
+            elif direction == 'Previous' and st.session_state['current_image'] > 0:
+                st.session_state['current_image'] -= 1
+    
+        # Show the current image
+        st.image(deepfake_images[st.session_state['current_image']], caption=f"Image {st.session_state['current_image'] + 1}", width=400)
     
         # User answers
-        answers = []
-        score = 0
+        answer = st.radio(
+            f"Is this a deepfake? (Image {st.session_state['current_image'] + 1})", 
+            ["Yes", "No"],
+            key=f"question_{st.session_state['current_image']}",
+            index=-1  # No default selection
+        )
     
-        for idx, image_url in enumerate(deepfake_images):
-            st.image(image_url, caption=f"Image {idx + 1}", width=400)
-            answer = st.radio(
-                f"Is this a deepfake? (Image {idx + 1})", 
-                ["Yes", "No"],
-                key=f"question_{idx}"
-            )
+        # Immediate Feedback
+        if answer:
+            correct_answer = "Yes"  # Assuming all images are deepfakes in this case
+            if answer == correct_answer:
+                feedback = "Correct!"
+                st.session_state['score'] += 1
+            else:
+                feedback = "Incorrect. The correct answer is Yes."
+            
+            st.write(feedback)
     
-            # Store the answers
-            answers.append(answer)
+            # Save the user's answer
+            st.session_state['answers'].append(answer)
     
-            # Calculate score (assumes the correct answer is "Yes" for all images)
-            if answer == "Yes":  # Assuming all images are deepfakes in this case
-                score += 1
+            # Wait for the user to click next
+            st.session_state['current_image'] += 1
     
-        if len(answers) == len(deepfake_images):
-            st.markdown(f"Your score: {score}/3")
-            if score == 3:
+        # Buttons to navigate between images
+        col1, col2 = st.columns([1, 1])
+        with col1:
+            if st.session_state['current_image'] > 0:
+                if st.button("Previous"):
+                    navigate_images('Previous')
+    
+        with col2:
+            if st.session_state['current_image'] < len(deepfake_images):
+                if st.button("Next"):
+                    navigate_images('Next')
+    
+        # Display progress bar
+        progress = (st.session_state['current_image'] + 1) / len(deepfake_images) * 100
+        st.progress(progress)
+    
+        # If all images are answered, display the final score
+        if st.session_state['current_image'] == len(deepfake_images):
+            st.write(f"Your final score: {st.session_state['score']}/{len(deepfake_images)}")
+            if st.session_state['score'] == len(deepfake_images):
                 st.success("Excellent! You correctly identified all the deepfakes.")
-            elif score == 2:
-                st.warning("Good job! You got 2 out of 3 correct.")
+            elif st.session_state['score'] > len(deepfake_images) // 2:
+                st.warning("Good job! You got most of them right.")
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
-    
+        
         # End of the tab content
         st.markdown(
             """
@@ -253,6 +295,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+    
 
     
     # Detection Tab
