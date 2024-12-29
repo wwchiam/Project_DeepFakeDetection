@@ -20,7 +20,7 @@ st.markdown("""
     <style>
         /* Custom transparent black background for the whole app */
         .css-1v0mbdj {  /* Tab content */
-            background-color: rgba(0, 0, 0, 0.7);  /* Transparent black */
+            background-color: rgba(0, 0, 0, 0.6);  /* Transparent black with 0.6 opacity */
         }
 
         /* Custom transparent black background for the radio button widget */
@@ -79,7 +79,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 st.markdown(
     """
     <style>
@@ -93,7 +92,7 @@ st.markdown(
     
     /* Container for Tab Content */
     .tab-content {
-        background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent black background */
+        background-color: rgba(0, 0, 0, 0.6);  /* Semi-transparent black background with 0.6 opacity */
         padding: 20px;
         border-radius: 10px;
         margin: 10px 0;
@@ -204,6 +203,7 @@ st.markdown(
     </style>
     """, unsafe_allow_html=True
 )
+
 
 
 # Title Section
