@@ -276,7 +276,7 @@ def main():
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
             """
-            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 8; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 10; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
             <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
             <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
             """,
@@ -309,8 +309,41 @@ def main():
                     </div>
                     """, unsafe_allow_html=True)
             
+            # with col2:
+            #     # Question column
+            #     answer = st.radio(
+            #         f"Is this a deepfake? (Image {idx + 1})", 
+            #         ["Yes", "No", "I'm not sure"], 
+            #         key=f"question_{idx}", 
+            #         index=2  # Default to "I'm not sure"
+            #     )
+            #     answers.append(answer)
+
+            # Assuming col1 is already defined above, now add col2 for the question column
             with col2:
-                # Question column
+                # Wrap the question (radio button) in the div with a transparent background
+                st.markdown(
+                    """
+                    <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                        <div class="question-box" style="text-align: left;">
+                            <!-- Question (radio button) -->
+                            <label for="deepfake_question_{idx}" style="color: #FFFFFF; font-size: 18px;">
+                                Is this a deepfake? (Image {idx + 1})
+                            </label>
+                            <div>
+                                {st.radio(
+                                    f"Is this a deepfake? (Image {idx + 1})", 
+                                    ["Yes", "No", "I'm not sure"], 
+                                    key=f"question_{idx}", 
+                                    index=2  # Default to "I'm not sure"
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True
+                )
+            
+                # Store the user's answer
                 answer = st.radio(
                     f"Is this a deepfake? (Image {idx + 1})", 
                     ["Yes", "No", "I'm not sure"], 
@@ -318,6 +351,8 @@ def main():
                     index=2  # Default to "I'm not sure"
                 )
                 answers.append(answer)
+            
+
         
                 # Calculate score (assuming correct answer is "Yes" for all images)
                 if answer == "Yes":  # Assuming all images are deepfakes in this case
