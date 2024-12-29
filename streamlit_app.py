@@ -296,7 +296,7 @@ def main():
     
         st.markdown('</div>', unsafe_allow_html=True)  # Close the news container
     
-            st.markdown(
+        st.markdown(
                 """
                 <div class="tab-content">
                 <div class="section-header">Test Your Ability to Detect Deepfakes!</div>
