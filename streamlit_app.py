@@ -210,7 +210,6 @@ def main():
     #     )
          
     # Usage Tab
-    # Usage Tab
 
 
     # Inside the What is Deepfake Tab
@@ -229,7 +228,7 @@ def main():
             unsafe_allow_html=True
         )
     
-        # Display News Links with Larger Images and Improved Layout
+        # Display News Links with Larger Images and Improved Layout in a single line
         news_links = [
             {
                 'title': 'AI and 2024 Elections: What to Expect', 
@@ -248,38 +247,38 @@ def main():
             }
         ]
     
-        # Improved Style for News Links
+        # Improved Style for News Links in a horizontal line
         st.markdown(
             """
             <style>
                 .news-container {
                     display: flex;
-                    justify-content: space-around;
-                    flex-wrap: wrap;
+                    justify-content: space-evenly;
                     gap: 20px;
                     padding: 20px;
+                    align-items: center;
                 }
                 .news-item {
                     background-color: rgba(0, 0, 0, 0.7);
                     padding: 20px;
                     border-radius: 10px;
-                    width: 28%;
                     text-align: center;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                     transition: transform 0.3s ease;
+                    width: 200px; /* Fixed width for consistency */
                 }
                 .news-item:hover {
                     transform: scale(1.05);
                 }
                 .news-item img {
                     width: 100%;
-                    height: 180px;
+                    height: 120px;
                     object-fit: cover;
                     border-radius: 8px;
                     margin-bottom: 15px;
                 }
                 .news-item a {
-                    font-size: 18px;
+                    font-size: 16px;
                     color: #ffffff;
                     text-decoration: none;
                     font-weight: bold;
@@ -391,6 +390,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
+    
 
 
 
