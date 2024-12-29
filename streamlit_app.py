@@ -177,19 +177,37 @@ def main():
                 <div class="section-header">Upload an Image for Detection</div>
                 <p>Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
             </div>
+        """, 
+        unsafe_allow_html=True
+        )
+    
+        # Create the transparent box for the entire content of this tab
+        st.markdown(
+            """
+            <div class="tab-content">
             """, 
             unsafe_allow_html=True
         )
-        
+    
         # Layout with two columns
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
         
         with col1:  # Left column for upload and detection controls
+            st.markdown(
+                """
+                <div class="section-header">Image Upload</div>
+                <p>Upload a JPG, JPEG, or PNG image for detection.</p>
+                """, 
+                unsafe_allow_html=True
+            )
             uploaded_file = st.file_uploader("Upload an image (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
             
             # Add a note above the slider for recommended threshold
             st.markdown(
-                "**Recommended threshold: 56.65%** This is the optimal threshold based on our model's performance."
+                """
+                <p><b>Recommended threshold: 56.65%</b> This is the optimal threshold based on our model's performance.</p>
+                """, 
+                unsafe_allow_html=True
             )
             
             sensitivity = st.slider(
@@ -245,10 +263,14 @@ def main():
                         st.warning("Please upload a valid image.")
                 else:
                     st.warning("Please upload an image to proceed.")
+        
+        st.markdown(
+            """
+            </div> <!-- End of the transparent box -->
+            """, 
+            unsafe_allow_html=True
+        )
 
-    
-        
-        
 
     # Technology Tab
     with tabs[3]: 
