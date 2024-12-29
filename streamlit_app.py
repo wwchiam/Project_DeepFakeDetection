@@ -297,6 +297,7 @@ def main():
         # Add CSS for deepfake detection questions and answers
         st.markdown(
         """
+        <div class="tab-content">
         <style>
             /* Styling for the question boxes */
             .question-box {
@@ -318,6 +319,7 @@ def main():
                 color: #333;
             }
         </style>
+        </div>
         """, 
         unsafe_allow_html=True
     )
