@@ -171,23 +171,6 @@ def main():
     # Detection Tab
     # Detection Tab
     with tabs[2]:
-        st.markdown(
-            """
-            <div class="tab-content">
-                <div class="section-header">Upload an Image for Detection</div>
-                <p>Upload an image to check if it is a deepfake. Adjust the sensitivity threshold for more control over the detection results.</p>
-            </div>
-            """, 
-            unsafe_allow_html=True
-        )
-    
-        # Begin transparent box for the entire tab content
-        st.markdown(
-            """
-            <div class="tab-content">
-            """, 
-            unsafe_allow_html=True
-        )
     
         # Layout with two columns
         col1, col2 = st.columns([1, 2])  # Adjust column ratios for a better balance
