@@ -273,4 +273,10 @@ def main():
     # Contact Us Tab
     with tabs[4]:
         st.markdown('<div class="section-header">Contact Us</div>', unsafe_allow_html=True)
-        st.write("For inquiries or support
+        st.write("For inquiries or support, please contact us at:")
+        st.write("📧 support@deepfakedetection.com")
+        st.write("💼 Visit our website: [Deepfake Detection](https://www.deepfakedetection.com)")
+
+# Run the main function
+if __name__ == "__main__":
+    main()
