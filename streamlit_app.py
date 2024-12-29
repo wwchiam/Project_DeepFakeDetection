@@ -14,7 +14,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Global CSS Styling with Background Image
 # Global CSS Styling with Background Image and button/radio styling
 st.markdown(
     """
@@ -118,6 +117,23 @@ st.markdown(
     }
     .stButton button:hover {
         background-color: darkred !important;  /* Darker red on hover */
+    }
+
+    /* Styling for Slider (Ensure slider labels have white text) */
+    .stSlider label {
+        color: white !important;  /* White font for slider labels */
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Ensure Radio button options (Yes/No) always have white text */
+    .stRadio div div div span {
+        color: white !important; /* White text for options in radio button */
+    }
+
+    /* Ensure selected radio button option text is also white */
+    .stRadio div[aria-checked="true"] span {
+        color: white !important; /* Selected option text is white */
     }
 
     </style>
