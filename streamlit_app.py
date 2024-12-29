@@ -178,22 +178,29 @@ def main():
         )
          
     # Detection Tab
+    # Detection Tab
     with tabs[2]:  # Detection Tab
         col1, col2 = st.columns([1, 2])
     
+        # Add a transparent background container for the content
         with col1:
+            st.markdown('<div class="tab-content">', unsafe_allow_html=True)
+            
             st.markdown("<div style='color:white;'>Upload an image (JPG, JPEG, PNG):</div>", unsafe_allow_html=True)
             uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
     
             st.markdown("<div style='color:white;'>Detection Sensitivity:</div>", unsafe_allow_html=True)
             sensitivity = st.slider("", min_value=0.1, max_value=0.9, value=0.5, step=0.05)
     
-            detect_button = st.button("Detect Deepfake")
-                
+            # Improved button design with a modern look
+            detect_button = st.button("Detect Deepfake", key="detect_button")
+            
+            st.markdown('</div>', unsafe_allow_html=True)  # End the container div for consistent design
+            
         with col2:
             if uploaded_file:
                 st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=400)
-            
+    
             if uploaded_file and detect_button:
                 image_array = preprocess_image(uploaded_file)
                 if image_array is not None:
@@ -201,72 +208,33 @@ def main():
                         prediction = model.predict(image_array)
                         predicted_class = np.argmax(prediction[0])
                         predicted_prob = prediction[0][predicted_class]
-                        st.markdown(f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%")
+                        st.markdown(f"### Probability of **Fake** Image: {predicted_prob * 100:.2f}%", unsafe_allow_html=True)
                         result = "Fake" if predicted_prob > sensitivity else "Real"
-                        st.markdown(f"**This image is classified as {result}.**")
-            
+                        st.markdown(f"**This image is classified as {result}.**", unsafe_allow_html=True)
+    
                 # Report Section
-                
-                # Initialize session state to store the user's choices
                 if "report_fake" not in st.session_state:
                     st.session_state.report_fake = "No"  # Default value for the radio button
-                
+    
                 if "comment" not in st.session_state:
                     st.session_state.comment = ""  # Default value for the comment box
-                
-                # Title and Instructions for Reporting
+    
                 st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
-                
-                st.markdown("""
-                    <style>
-                    /* Ensure the text color for the radio button options is white */
-                    .stRadio label {
-                        color: white !important;
-                    }
-                
-                    /* Make sure the selected radio button also has white text */
-                    .stRadio input[type="radio"]:checked + label {
-                        color: white !important;
-                    }
-                
-                    /* Optional: Change the color when hovering over the radio button */
-                    .stRadio label:hover {
-                        color: #4a90e2 !important;
-                    }
-                
-                    /* Ensure the radio button itself has a good color */
-                    .stRadio input[type="radio"]:checked {
-                        accent-color: #4a90e2;  /* Change the selected color to blue */
-                    }
-                    </style>
-                """, unsafe_allow_html=True)
-                
-
-                
-                
+    
                 # Radio buttons for reporting (Yes / No)
                 st.session_state.report_fake = st.radio(
                     "Would you like to report this image as a deepfake?", 
                     ["Yes", "No"], 
-                    index=0 if st.session_state.report_fake == "No" else 1
+                    index=0 if st.session_state.report_fake == "No" else 1,
+                    help="Select Yes if you believe this image is a deepfake."
                 )
-
-                st.markdown("""
-                        <style>
-                        .stTextArea {
-                            width: 400px;
-                        }
-                        </style>
-                    """, unsafe_allow_html=True)
-
-                
-                # Always visible comment box
+    
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
                 st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100)
-                
-                # Submit button with red text and border, no background color
+    
+                # Submit button with a modern design
                 submit_button = st.button("Submit", key="submit_button")
-
+    
                 if submit_button:
                     if st.session_state.report_fake == "Yes" and st.session_state.comment:
                         st.success("Thank you for reporting. Your input helps improve our system.")
@@ -274,6 +242,7 @@ def main():
                         st.warning("You didn't leave a comment. Your input will be submitted without a comment.")
                     else:
                         st.success("Thank you! No report was submitted.")
+
             
     # Technology Tab
     with tabs[3]: 
