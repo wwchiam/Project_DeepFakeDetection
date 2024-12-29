@@ -127,42 +127,32 @@ def main():
     # Tab Layout
     tabs = st.tabs(["About", "Usage", "Detection", "Technology", "Contact Us"])
     
-    # About Tab
     with tabs[0]:  # About Tab
-        # Open the semi-transparent container
-        st.markdown('<div class="tab-content">', unsafe_allow_html=True)
-        
-        # Section Header
-        st.markdown('<div class="section-header">About the Platform</div>', unsafe_allow_html=True)
-        
-        # Content Inside the Box
-        st.write(
-            """
-            Welcome to our **Deepfake Detection System**, your trusted tool for identifying manipulated media.  
-            In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users to verify the authenticity of images with just a simple upload. 
-            This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.
-            """
-        )
-            
         st.markdown(
             """
-            ### Why It Matters:
-            - Over 8 million deepfake attempts are shared weekly on social media.  
-            - Deepfakes fuel misinformation, invade privacy, and undermine trust.  
-            """
-        )
-        
-        st.markdown(
-            """
-            ### How We Help?:
-            - **Detect & Verify**: Quickly identify manipulated media using cutting-edge deep learning techniques.  
-            - **Report Deepfakes**: Contribute to combating misinformation by reporting suspicious content directly through the platform.  
-            - **Stay Informed**: Access resources and guides to understand and navigate the challenges of deepfake technology.  
-            """
-        )
+            <div class="tab-content">
+                <div class="section-header">About the Platform</div>
+                <p>Welcome to our <b>Deepfake Detection System</b>, your trusted tool for identifying manipulated media.</p>
+                <p>In an age where manipulated media is becoming alarmingly common, our Deepfake Detection platform empowers users to verify the authenticity of images with just a simple upload. 
+                This tool is designed to safeguard public trust, prevent misinformation, and protect against the malicious use of deepfake technology on social media.</p>
+                
+                <h3>Why It Matters:</h3>
+                <ul>
+                    <li>Over 8 million deepfake attempts are shared weekly on social media.</li>
+                    <li>Deepfakes fuel misinformation, invade privacy, and undermine trust.</li>
+                </ul>
     
-    # Close the semi-transparent container
-    st.markdown("</div>", unsafe_allow_html=True)
+                <h3>How We Help?</h3>
+                <ul>
+                    <li><b>Detect & Verify</b>: Quickly identify manipulated media using cutting-edge deep learning techniques.</li>
+                    <li><b>Report Deepfakes</b>: Contribute to combating misinformation by reporting suspicious content directly through the platform.</li>
+                    <li><b>Stay Informed</b>: Access resources and guides to understand and navigate the challenges of deepfake technology.</li>
+                </ul>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+        
     
     # Detection Tab
     with tabs[2]:
