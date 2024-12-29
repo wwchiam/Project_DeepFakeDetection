@@ -13,3 +13,6 @@ altair
 plotly
 folium
 pandas
+matplotlib
+seaborn
+datetime
