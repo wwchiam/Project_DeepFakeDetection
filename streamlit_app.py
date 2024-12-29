@@ -274,6 +274,15 @@ def main():
             )
     
         # Test Your Ability to Detect Deepfakes section
+        st.markdown(
+            """
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 8; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+            <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
+            <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake or not. Your score will be calculated at the end.</p>
+            """,
+            unsafe_allow_html=True
+)
+        
         # Sample Deepfake Images
         deepfake_images = [
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
