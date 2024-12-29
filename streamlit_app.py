@@ -524,25 +524,12 @@ def main():
             unsafe_allow_html=True
         )
 
-
     # Dashboard Tab
-    with tabs[4]: 
-        # st.markdown(
-        #     """
-        #     <div class="tab-content">
-        #         <div class="section-header">Contact Us</div>
-        #         <p>For inquiries or support, please contact us at:</p>
-        #         <p>📧 23054196@siswa.um.edu.com"</p>
-        #     </div>
-            
-        #     """, 
-        #     unsafe_allow_html=True
-        # )
+    with tabs[4]:
         st.markdown("## KPI First Row")
         
-        # kpi 1 
-        
-        kpi1, kpi2, kpi3 = st.beta_columns(3)
+        # KPI 1
+        kpi1, kpi2, kpi3 = st.columns(3)
         
         with kpi1:
             st.markdown("**First KPI**")
@@ -559,14 +546,12 @@ def main():
             number3 = 333 
             st.markdown(f"<h1 style='text-align: center; color: red;'>{number3}</h1>", unsafe_allow_html=True)
         
-        st.markdown("<hr/>",unsafe_allow_html=True)
-        
+        st.markdown("<hr/>", unsafe_allow_html=True)
         
         st.markdown("## KPI Second Row")
         
-        # kpi 1 
-        
-        kpi01, kpi02, kpi03, kpi04, kpi05 = st.beta_columns(5)
+        # KPI 2
+        kpi01, kpi02, kpi03, kpi04, kpi05 = st.columns(5)
         
         with kpi01:
             st.markdown("**Another 1st KPI**")
@@ -574,39 +559,43 @@ def main():
             st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number1}</h1>", unsafe_allow_html=True)
         
         with kpi02:
-            st.markdown("**Another 1st KPI**")
-            number1 = 222 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number1}</h1>", unsafe_allow_html=True)
+            st.markdown("**Another 2nd KPI**")
+            number2 = 222 
+            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number2}</h1>", unsafe_allow_html=True)
         
         with kpi03:
-            st.markdown("**Another 1st KPI**")
-            number1 = 555 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number1}</h1>", unsafe_allow_html=True)
+            st.markdown("**Another 3rd KPI**")
+            number3 = 555 
+            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number3}</h1>", unsafe_allow_html=True)
         
         with kpi04:
-            st.markdown("**Another 1st KPI**")
-            number1 = 333 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number1}</h1>", unsafe_allow_html=True)
+            st.markdown("**Another 4th KPI**")
+            number4 = 333 
+            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number4}</h1>", unsafe_allow_html=True)
         
         with kpi05:
-            st.markdown("**Another 1st KPI**")
-            number1 = 444 
-            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number1}</h1>", unsafe_allow_html=True)
+            st.markdown("**Another 5th KPI**")
+            number5 = 444 
+            st.markdown(f"<h1 style='text-align: center; color: yellow;'>{number5}</h1>", unsafe_allow_html=True)
         
-        st.markdown("<hr/>",unsafe_allow_html=True)
+        st.markdown("<hr/>", unsafe_allow_html=True)
         
         st.markdown("## Chart Layout")
         
-        chart1, chart2 = st.beta_columns(2)
+        # Charts
+        chart1, chart2 = st.columns(2)
         
         with chart1:
-            chart_data = pd.DataFrame(np.random.randn(20, 3),columns=['a', 'b', 'c'])
-            st.line_chart(chart_data)
+            st.markdown("### Line Chart 1")
+            chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
+            st.line_chart(chart_data1)
         
         with chart2:
-            chart_data = pd.DataFrame(np.random.randn(2000, 3),columns=['a', 'b', 'c'])
-            st.line_chart(chart_data)
-        
+            st.markdown("### Line Chart 2")
+            chart_data2 = pd.DataFrame(np.random.randn(2000, 3), columns=['a', 'b', 'c'])
+            st.line_chart(chart_data2)
+    
+            
     # Contact Us Tab
     with tabs[5]:
         st.markdown(
