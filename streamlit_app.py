@@ -197,19 +197,6 @@ def main():
         )
 
     # # Usage Tab
-    # with tabs[1]: 
-    #     st.markdown(
-    #         """
-    #         <div class="tab-content">
-    #             <div class="section-header">Usage Statistic</div>
-    #             <p>Thinking...</p>
-    #         </div>
-            
-    #         """, 
-    #         unsafe_allow_html=True
-    #     )
-         
-    # Usage Tab
     # Inside the What is Deepfake Tab
     with tabs[1]: 
         st.markdown(
@@ -224,7 +211,7 @@ def main():
             """, 
             unsafe_allow_html=True
         )
-    
+        
         # Sample Deepfake Images (replace with actual images you want to use for the test)
         deepfake_images = [
             "https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/deepfake1.jpg",
@@ -239,23 +226,65 @@ def main():
                 /* Style for the background of each question */
                 .question-box {
                     background-color: rgba(0, 0, 0, 0.8);  /* Black transparent background */
-                    padding: 15px;
+                    padding: 20px;
                     border-radius: 8px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                    margin-bottom: 20px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                    margin-bottom: 30px;
                     color: white;  /* Text color inside the box */
+                    transition: transform 0.3s ease-in-out;
+                }
+    
+                /* Hover effect for each question box */
+                .question-box:hover {
+                    transform: scale(1.02);
                 }
     
                 /* Optional: Styling for the images */
                 .image-box {
-                    margin-bottom: 15px;
+                    margin-bottom: 20px;
                     text-align: center;
+                    border-radius: 8px;
+                    overflow: hidden;
                 }
+    
+                /* Styling for the radio buttons */
+                .stRadio input[type="radio"] {
+                    background-color: #f0f0f0;
+                    padding: 5px;
+                    border-radius: 5px;
+                    font-size: 16px;
+                }
+    
+                .stRadio label {
+                    padding: 10px;
+                    color: white;
+                    font-weight: bold;
+                }
+    
+                /* Success, warning, and error messages styling */
+                .st-success {
+                    color: green;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+    
+                .st-warning {
+                    color: orange;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+    
+                .st-error {
+                    color: red;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+    
             </style>
             """, 
             unsafe_allow_html=True
         )
-    
+        
         # User answers
         answers = []
         score = 0
