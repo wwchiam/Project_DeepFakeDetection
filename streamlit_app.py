@@ -584,16 +584,30 @@ def main():
         
         # Charts
         chart1, chart2 = st.columns(2)
+
+        num_days = 30  # Number of days for the dataset
+
+        # Simulate daily data for the # of visitors, # of deepfake videos submitted, and # of deepfakes detected
+        visitors = np.random.randint(500, 2000, num_days)  # Random number between 500 and 2000 visitors per day
+        submissions = np.random.randint(10, 100, num_days)  # Random number between 10 and 100 deepfake videos submitted
+        detections = np.random.randint(5, 60, num_days)  # Random number between 5 and 60 deepfakes detected per day
+        
+        # Create a DataFrame to hold this data
+        chart_data1 = pd.DataFrame({
+            'Visitors': visitors,
+            'Deepfakes Submitted': submissions,
+            'Deepfakes Detected': detections
+        }, index=pd.date_range('2024-12-01', periods=num_days))
+        
+        # Create the chart layout
+        st.markdown("### Visitor, Submission, and Detection Data")
+        chart1, chart2 = st.columns(2)
         
         with chart1:
-            st.markdown("### Line Chart 1")
-            chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
+            st.markdown("#### Number of Visitors, Deepfakes Submitted, and Detected")
             st.line_chart(chart_data1)
         
-        with chart2:
-            st.markdown("### Line Chart 2")
-            chart_data2 = pd.DataFrame(np.random.randn(2000, 3), columns=['a', 'b', 'c'])
-            st.line_chart(chart_data2)
+        
     
             
     # Contact Us Tab
