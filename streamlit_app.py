@@ -215,8 +215,8 @@ def main():
     # Inside the What is Deepfake Tab
 
     with tabs[1]:
-            # What is Deepfake section
-            st.markdown(
+        # What is Deepfake section
+        st.markdown(
                 """
                 <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                 <div class="section-header">What is Deepfake?</div>
@@ -295,7 +295,7 @@ def main():
                 st.markdown(f"""
                 <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
                     <div class="question-box">
-                        <img src="{image_url}" alt="Image {idx + 1}" />
+                        <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
