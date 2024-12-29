@@ -43,6 +43,7 @@ st.markdown(
         margin-top: 20px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
+    
     .sub-title {
         font-size: 24px;
         font-weight: 400;
@@ -66,6 +67,7 @@ st.markdown(
         justify-content: center !important;
         gap: 20px !important;
     }
+    
     .stTabs [role="tab"] {
         font-size: 18px;
         font-weight: bold;
@@ -75,6 +77,7 @@ st.markdown(
         padding: 10px;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     }
+    
     .stTabs [role="tab"][aria-selected="true"] {
         background-color: #4a90e2;
         color: #ffffff;
@@ -167,8 +170,6 @@ def main():
             unsafe_allow_html=True
         )
          
-
-    # Detection Tab 
     # Detection Tab
     with tabs[2]:
     
@@ -285,9 +286,18 @@ def main():
             detect_button = st.button("Detect Deepfake")
     
         with col2:  # Right column for results
+            # Transparent black box
+            st.markdown(
+                """
+                <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+                    <p style="color: white; font-size: 16px; margin-bottom: 10px;">Upload an image (JPG, JPEG, PNG):</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
             # Displaying the uploaded image (if available) in the right column with optimized size
             if uploaded_file:
-                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=350)
+                st.image(uploaded_file, caption="Uploaded Image", use_container_width=False, width=400)
     
             # Displaying the results (probability and classification)
             if uploaded_file and detect_button:
