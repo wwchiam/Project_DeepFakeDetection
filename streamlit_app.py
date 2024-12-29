@@ -197,24 +197,38 @@ def main():
                         st.markdown(f"**This image is classified as {result}.**")
             
                 # Report Section
+                
+                # Initialize session state to store the user's choices
+                if "report_fake" not in st.session_state:
+                    st.session_state.report_fake = "No"  # Default value for the radio button
+                
+                if "comment" not in st.session_state:
+                    st.session_state.comment = ""  # Default value for the comment box
+                
                 # Title and Instructions for Reporting
                 st.markdown("<div style='color:white;'>Do you want to report this deepfake?</div>", unsafe_allow_html=True)
                 
                 # Radio buttons for reporting (Yes / No)
-                report_fake = st.radio("", ["Yes", "No"], index=1)
+                st.session_state.report_fake = st.radio(
+                    "Would you like to report this image as a deepfake?", 
+                    ["Yes", "No"], 
+                    index=0 if st.session_state.report_fake == "No" else 1
+                )
                 
                 # Always visible comment box
                 st.markdown("<div style='color:white;'>Leave a comment (optional):</div>", unsafe_allow_html=True)
-                comment = st.text_area("", height=100)
+                st.session_state.comment = st.text_area("Your comment", value=st.session_state.comment, height=100)
                 
                 # Submit button
                 if st.button("Submit"):
-                    if report_fake == "Yes" and comment:
+                    if st.session_state.report_fake == "Yes" and st.session_state.comment:
                         st.success("Thank you for reporting. Your input helps improve our system.")
-                    elif report_fake == "Yes" and not comment:
+                    elif st.session_state.report_fake == "Yes" and not st.session_state.comment:
                         st.warning("You didn't leave a comment. Your input will be submitted without a comment.")
                     else:
                         st.success("Thank you! No report was submitted.")
+
+
 
 
     
