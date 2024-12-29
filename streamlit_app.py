@@ -475,38 +475,30 @@ def main():
                                         unsafe_allow_html=True
                                     )
                                     
-                                    # Maintain session state for radio button and comment box
-                                    if "agree" not in st.session_state:
-                                        st.session_state.agree = "Yes"  # Default to "Yes"
-                                    
+            
                                     # Radio button for "Yes" or "No"
                                     agree = st.radio(
                                         "Would you like to report this image as a deepfake?", 
                                         ["Yes", "No"],  # Only "Yes" and "No" options
-                                        index=["Yes", "No"].index(st.session_state.agree),  # Preserve the previous choice
+                                        index=0,  # Default to "Yes" (index 0)
                                         key="agree_radio"
                                     )
-                                    
-                                    # Save the radio button choice in session state
-                                    st.session_state.agree = agree
                                     
                                     # Comment box
                                     comment = st.text_area(
                                         "Leave a comment (optional):", 
                                         placeholder="Please enter your comment here.",
-                                        key="comment_text",
-                                        value=st.session_state.get("comment_text", "")  # Retrieve comment from session state
+                                        key="comment_text"
                                     )
                                     
                                     # Submit button for comment
                                     if st.button("Submit Comment"):
                                         if comment:
-                                            # Save the comment in session state
-                                            st.session_state.comment_text = comment
+                                            # Display and save the comment
                                             st.write(f"**Comment:** {comment}")
                                         else:
                                             st.warning("Please enter a comment before submitting.")
-                                            
+                                    
                                     # Handle the reporting logic after the radio selection
                                     if agree == "Yes":
                                         report_fake_image()  # Call your function to report fake images
@@ -514,20 +506,15 @@ def main():
                                     elif agree == "No":
                                         st.write("Thank you for your feedback.")
                                         st.write(f"**Comment:** {comment}" if comment else "")
-                            except Exception as e:
-                                st.error(f"Error during prediction: {e}")
-                    else:
-                        st.warning("Please upload a valid image.")
-                else:
-                    st.warning("Please upload an image to proceed.")
-        
-        # End transparent box for the entire tab content
-        st.markdown(
-            """
-            </div> <!-- End of the transparent box -->
-            """, 
-            unsafe_allow_html=True
-        )
+                                    
+                                            
+                                            # End transparent box for the entire tab content
+                                            st.markdown(
+                                                """
+                                                </div> <!-- End of the transparent box -->
+                                                """, 
+                                                unsafe_allow_html=True
+                                            )
 
     
 
