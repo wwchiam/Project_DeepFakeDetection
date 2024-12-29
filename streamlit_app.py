@@ -594,21 +594,22 @@ def main():
         else:
             st.write("Please upload a dataset to proceed.")
     
+# Generate mock-up data for the dashboard
+np.random.seed(42)
+current_time = datetime.now()
+timestamps = [current_time - timedelta(minutes=5 * i) for i in range(50)]
+num_users = [np.random.randint(50, 100) for _ in range(50)]
+detection_counts = [np.random.randint(0, 30) for _ in range(50)]
+        
+mock_data = pd.DataFrame({
+'Timestamp': timestamps,
+'Active Users': num_users,
+'Deepfake Detections': detection_counts
+})
 
     # Dashboard Tab
     with tabs[5]:
-        # Generate mock-up data for the dashboard
-        np.random.seed(42)
-        current_time = datetime.now()
-        timestamps = [current_time - timedelta(minutes=5 * i) for i in range(50)]
-        num_users = [np.random.randint(50, 100) for _ in range(50)]
-        detection_counts = [np.random.randint(0, 30) for _ in range(50)]
-        
-        mock_data = pd.DataFrame({
-            'Timestamp': timestamps,
-            'Active Users': num_users,
-            'Deepfake Detections': detection_counts
-        })
+  
 
         st.markdown(
             """
