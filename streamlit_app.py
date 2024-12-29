@@ -215,34 +215,26 @@ def main():
     # Inside the What is Deepfake Tab
 
     with tabs[1]:
-        # Create a transparent black background that stays behind the content
+        # Create a transparent black background for the entire tab content
         st.markdown(
             """
-            <div class="tab-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: -1;">
-            </div>
-            """, unsafe_allow_html=True
-        )
-    
-        # Now start with the main content inside a container with relative positioning
-        st.markdown(
-            """
-            <div class="content-container" style="position: relative; z-index: 1; padding: 20px; color: #FFFFFF;">
+            <div class="tab-container" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; width: 100%; min-height: 100vh; display: block;">
             """, unsafe_allow_html=True
         )
     
         # What is Deepfake section
         st.markdown(
             """
-            <div class="tab-content" style="padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-            <div class="section-header" style="font-size: 24px; font-weight: bold;">What is Deepfake?</div>
-            <p style="font-size: 16px;">
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px; margin-bottom: 0;">
+            <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">What is Deepfake?</div>
+            <p style="font-size: 16px; color: #FFFFFF;">
             <b>Deepfake</b> refers to media—mostly videos or images—created using artificial intelligence (AI) to manipulate or generate realistic but fake content. 
             The term is a combination of "deep learning" (a form of AI) and "fake." Deepfakes are often used to create misleading or harmful content, such as fake videos of people saying things they never did.</p>
             </div>
             """,
             unsafe_allow_html=True
         )
-    
+        
         # Create three columns for the news items
         col1, col2, col3 = st.columns(3)
     
@@ -250,8 +242,8 @@ def main():
         with col1:
             st.markdown(
                 """
-                <div class="tab-content" style="margin-bottom: 20px;">
-                <div class="news-item" style="text-align: center;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%; width: 100%">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news2.jpg" alt="Top 5 Cases of AI Deepfake Fraud Exposed in 2024" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://incode.com/blog/top-5-cases-of-ai-deepfake-fraud-from-2024-exposed/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">Top 5 Cases of AI Deepfake Fraud Exposed in 2024</a>
                 </div>
@@ -264,8 +256,8 @@ def main():
         with col2:
             st.markdown(
                 """
-                <div class="tab-content" style="margin-bottom: 20px;">
-                <div class="news-item" style="text-align: center;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%;width: 100%">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news1.jpg" alt="AI and 2024 Elections: What to Expect" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://time.com/7131271/ai-2024-elections/" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">AI and 2024 Elections: What to Expect</a>
                 </div>
@@ -278,8 +270,8 @@ def main():
         with col3:
             st.markdown(
                 """
-                <div class="tab-content" style="margin-bottom: 20px;">
-                <div class="news-item" style="text-align: center;">
+                <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; width: 100%; height: 100%;">
+                <div class="news-item" style="margin-left: 0; margin-right: 0; text-align: center; height: 100%;width: 100%">
                     <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/news3.jpg" alt="Deepfake CFO Scam in Hong Kong - A New Era of Fraud" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
                     <a href="https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html" target="_blank" style="font-size: 16px; color: #ffffff; text-decoration: none; font-weight: bold;">Deepfake CFO Scam in Hong Kong - A New Era of Fraud</a>
                 </div>
@@ -291,9 +283,9 @@ def main():
         # Test Your Ability to Detect Deepfakes section
         st.markdown(
             """
-            <div class="tab-content" style="padding: 20px; border-radius: 8px;">
-            <div class="section-header" style="font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
-            <p style="font-size: 16px;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+            <div class="section-header" style="color: #FFFFFF; font-size: 24px; font-weight: bold;">Test Your Ability to Detect Deepfakes!</div>
+            <p style="font-size: 16px; color: #FFFFFF;">Let's see how good you are at detecting deepfake images! Below are 3 images. Please classify whether each one is a deepfake. Your score will be calculated at the end.</p>
             </div>
             """,
             unsafe_allow_html=True
@@ -312,8 +304,8 @@ def main():
     
         for idx, image_url in enumerate(deepfake_images):
             st.markdown(f"""
-            <div class="tab-content" style="padding: 20px; border-radius: 8px;">
-                <div class="question-box" style="text-align: center;">
+            <div class="tab-content" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;">
+                <div class="question-box" style="text-align: left;">
                     <img src="{image_url}" alt="Image {idx + 1}" style="width: 300px; height: auto; border-radius: 8px;"/>
                 </div>
             </div>
@@ -340,8 +332,8 @@ def main():
                 st.warning("Good job! You got 2 out of 3 correct.")
             else:
                 st.error("Try again! You can improve your ability to spot deepfakes.")
-    
-        # Close the content container div
+        
+        # Close the transparent background wrapper div
         st.markdown("</div>", unsafe_allow_html=True)
     
 
@@ -476,20 +468,76 @@ def main():
         )
 
 
+    # # Contact Us Tab
+    # with tabs[4]: 
+    #     st.markdown(
+    #         """
+    #         <div class="tab-content">
+    #             <div class="section-header">Contact Us</div>
+    #             <p>For inquiries or support, please contact us at:</p>
+    #             <p>📧 23054196@siswa.um.edu.com"</p>
+    #         </div>
+            
+    #         """, 
+    #         unsafe_allow_html=True
+    #     )
     # Contact Us Tab
-    with tabs[4]: 
+    with tabs[4]:
         st.markdown(
             """
             <div class="tab-content">
-                <div class="section-header">Contact Us</div>
-                <p>For inquiries or support, please contact us at:</p>
-                <p>📧 23054196@siswa.um.edu.com"</p>
+                <div class="section-header" style="font-size: 24px; font-weight: bold;">Contact Us</div>
+                <p style="font-size: 16px;">For inquiries or support, please contact us at:</p>
+                <p style="font-size: 16px;">📧 23054196@siswa.um.edu.com</p>
+                <p style="font-size: 16px;">If you have a dataset that you would like to submit for training purposes, please upload it below:</p>
             </div>
-            
             """, 
             unsafe_allow_html=True
         )
-
+    
+        # File Upload section
+        uploaded_file = st.file_uploader("Upload your dataset (CSV, JSON, etc.)", type=["csv", "json", "xlsx", "txt"])
+    
+        if uploaded_file is not None:
+            # Show file details
+            st.write(f"File uploaded: {uploaded_file.name}")
+    
+            # You can read the file and process it here (e.g., preview the data)
+            if uploaded_file.type == "text/csv":
+                import pandas as pd
+                df = pd.read_csv(uploaded_file)
+                st.write("Preview of the uploaded dataset:")
+                st.dataframe(df.head())  # Display the first few rows of the uploaded dataset
+            elif uploaded_file.type == "application/json":
+                import json
+                data = json.load(uploaded_file)
+                st.write("Preview of the uploaded JSON data:")
+                st.json(data)  # Display the JSON structure
+            elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+                import pandas as pd
+                df = pd.read_excel(uploaded_file)
+                st.write("Preview of the uploaded Excel dataset:")
+                st.dataframe(df.head())  # Display the first few rows of the uploaded dataset
+            else:
+                st.write("Unsupported file type.")
+    
+            # After uploading, you can ask the user to submit the file or contact you for further instructions
+            st.markdown(
+                """
+                <div class="section-header" style="font-size: 18px; font-weight: bold;">Next Steps:</div>
+                <p style="font-size: 16px;">Once the dataset is uploaded, we will review it for training purposes. If you have any further questions, feel free to reach out via the contact information above.</p>
+                """, 
+                unsafe_allow_html=True
+            )
+            
+            # Optionally, you can provide a button to confirm submission
+            if st.button("Submit Dataset"):
+                st.success("Thank you for submitting your dataset! We will review it shortly.")
+                # Here you can handle the submission logic, like saving the file or sending it via email
+    
+        else:
+            st.write("Please upload a dataset to proceed.")
+    
 
 
 # Run the main function
