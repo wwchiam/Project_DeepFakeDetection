@@ -221,7 +221,9 @@ st.markdown('<div class="title">Deepfake Detection System</div>', unsafe_allow_h
 st.markdown('<div class="sub-title">Empowering trust in digital media</div>', unsafe_allow_html=True)
 
 # Load ResNet50 Model
-model = ResNet50(weights="imagenet")
+# model = ResNet50(weights="imagenet")
+model = load_model("improved_resnet50.keras")  # Load your custom .keras file
+
 
 # Preprocess Image for Prediction
 def preprocess_image(image_file, target_size=(224, 224)):
