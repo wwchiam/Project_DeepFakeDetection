@@ -226,16 +226,30 @@ model = load_model("improved_resnet50.keras")  # Load your custom .keras file
 
 
 # Preprocess Image for Prediction
-def preprocess_image(image_file, target_size=(224, 224)):
-    """Preprocess the image for model prediction."""
+# def preprocess_image(image_file, target_size=(224, 224)):
+#     """Preprocess the image for model prediction."""
+#     try:
+#         image = load_img(image_file, target_size=target_size)
+#         image_array = img_to_array(image)
+#         image_array = np.expand_dims(image_array, axis=0)
+#         return preprocess_input(image_array)
+#     except Exception as e:
+#         st.error(f"Error processing image: {e}")
+#         return None
+
+def preprocess_image(uploaded_file, target_size=(224, 224)):
+    """Preprocess image from file uploader for prediction."""
     try:
-        image = load_img(image_file, target_size=target_size)
-        image_array = img_to_array(image)
-        image_array = np.expand_dims(image_array, axis=0)
-        return preprocess_input(image_array)
+        image = Image.open(uploaded_file).convert("RGB")  # Open and ensure 3 channels (RGB)
+        image = image.resize(target_size)  # Resize to match the model's input size
+        image_array = img_to_array(image)  # Convert to numpy array
+        image_array = image_array / 255.0  # Normalize pixel values to 0-1
+        image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+        return image_array
     except Exception as e:
         st.error(f"Error processing image: {e}")
         return None
+        
 
 # Report Fake Image
 def report_fake_image():
