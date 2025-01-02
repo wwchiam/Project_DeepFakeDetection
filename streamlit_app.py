@@ -395,7 +395,7 @@ def main():
             elif score == 2:
                 st.warning("Good job! You got 2 out of 3 correct.")
             else:
-                st.error("Please try again! Use our deepfake detection system if you're uncertain.")
+                st.error("Please try again! Use our deepfake detection system if you're uncertain. [Learn more about deepfakes here](https://www.youtube.com/watch?v=4JNBDwd40is)")
         
 
 
