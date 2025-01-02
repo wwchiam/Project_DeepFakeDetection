@@ -18,3 +18,4 @@ matplotlib
 seaborn
 datetime
 streamlit-aggrid
+PIL
