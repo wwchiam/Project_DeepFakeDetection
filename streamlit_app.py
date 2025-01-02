@@ -14,6 +14,7 @@ import folium
 from folium.plugins import HeatMap
 from datetime import datetime, timedelta
 from streamlit_folium import folium_static
+from PIL import Image
 
 # Page Title and Config
 st.set_page_config(
@@ -240,7 +241,7 @@ model = load_model("improved_resnet50.keras")  # Load your custom .keras file
 def preprocess_image(uploaded_file, target_size=(224, 224)):
     """Preprocess image from file uploader for prediction."""
     try:
-        image = image.open(uploaded_file).convert("RGB")  # Open and ensure 3 channels (RGB)
+        image = Image.open(uploaded_file).convert("RGB")  # Open and ensure 3 channels (RGB)
         image = image.resize(target_size)  # Resize to match the model's input size
         image_array = img_to_array(image)  # Convert to numpy array
         image_array = image_array / 255.0  # Normalize pixel values to 0-1
