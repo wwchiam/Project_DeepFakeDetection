@@ -644,7 +644,6 @@ def main():
                     <li>Recall: 92% </li>
                     <li>Precision: 73% </li>
                     <li>F1-Score: 81% </li>
-                    <li>For more details and access to the complete code, visit our <a href="https://github.com/wwchiam/project_deepfakedetection" target="_blank"><b>GitHub Repository</b></a>.</li>
                 </ul>
         
             <div class="section-header">Model Evaluation</div>
@@ -662,6 +661,8 @@ def main():
                 <li><b>Learning Curve</b>: Tracks the model's training progress over time, ensuring it converges toward optimal performance.</li>
                 </ul>
                 <img src="https://raw.githubusercontent.com/wwchiam/project_deepfakedetection/main/improved_resnet50_loss_plot.png" alt="Loss Plot" width="400" />
+                <br>
+                <li>For more details and access to the complete code, visit our <a href="https://github.com/wwchiam/project_deepfakedetection" target="_blank"><b>GitHub Repository</b></a>.</li>
             </div>
             </div>
             """, 
